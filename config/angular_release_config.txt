@@ -1,0 +1,17 @@
+# ===== RELEASE DETAILS =====
+RELEASE_VERSION=R26.1.0.4
+TARGET_BRANCH=ST
+
+# ===== JENKINS BUILD ARTIFACT =====
+JENKINS_DIST_ZIP=C:\Jenkins\artifacts\dist.zip
+
+# ===== BITBUCKET REPO (LOCAL CLONE) =====
+REPO_ROOT=C:\BNPP\CR\BNPP_FO_CSCCR_26.1_ST
+
+# ===== PATHS INSIDE REPO =====
+ANGULAR_DIST_REL=clientreg\src\main\bnppangular\dist
+BUILD_PROP_REL=build.properties
+
+# ===== COMMIT MESSAGES =====
+DIST_COMMIT_MSG=Angular dist update for RELEASE_VERSION
+BUILD_PROP_COMMIT_MSG=build.properties -> RELEASE_VERSION
