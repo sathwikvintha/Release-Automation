@@ -30,6 +30,21 @@ powershell -ExecutionPolicy Bypass `
   -JiraRef "R26.1.0.4" `
   -AppName "BNPP_CSC_SO"
 
+
+# -------- STEP 3.5: Release Report Generation --------
+Write-Host "`n[STEP 3.5] Release Report Generation"
+
+Push-Location ".\python\release-report-generator"
+python generate_release_doc.py
+Pop-Location
+
+Write-Host "`n[STEP 3.5] Attaching Release Report to Release Folder"
+Copy-Item `
+  ".\Report-output" `
+  ".\release_R26.1.0.4\Report-output" `
+  -Recurse -Force
+
+
 # -------- STEP 4: ZIP + PGP --------
 Write-Host "`n[STEP 4] ZIP & PGP Encryption"
 Push-Location config

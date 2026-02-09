@@ -1,0 +1,152 @@
+﻿{
+    "baseRelease":  "R25.3.0.1.1",
+    "deploymentDetails":  {
+                              "2.11 Keycloak Configuration changes":  [
+
+                                                                      ],
+                              "2.4 DB Changes- Environment Specific Changes":  [
+
+                                                                               ],
+                              "2.6 Scheduler jobs":  [
+
+                                                     ],
+                              "2.1 Web server Changes":  [
+
+                                                         ],
+                              "2.8 Shell Script changes":  [
+
+                                                           ],
+                              "2.2 Maven Deployment Changes":  [
+
+                                                               ],
+                              "2.5 Queue Configuration Scripts":  [
+
+                                                                  ],
+                              "2.3 App Server Changes":  [
+
+                                                         ],
+                              "2.10 Cron Job changes":  [
+
+                                                        ],
+                              "2.12 Scheduler Server changes":  [
+
+                                                                ],
+                              "2.7 Migration Scripts":  [
+
+                                                        ],
+                              "2.9 Sql Script change":  [
+
+                                                        ]
+                          },
+    "targetRelease":  "R26.0.0.1.1",
+    "generatedOn":  "29-Jan-2026",
+    "commitSummary":  [
+                          {
+                              "date":  "17-Dec-2025",
+                              "message":  "build.properties -\u003e R26.0.0.1.1_Containerization",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "6bdf8049"
+                          },
+                          {
+                              "date":  "17-Dec-2025",
+                              "message":  "updated helm charts",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "adf89233"
+                          },
+                          {
+                              "date":  "17-Dec-2025",
+                              "message":  "updated helm charts",
+                              "issues":  "",
+                              "author":  "Jenkins",
+                              "commitId":  "6c8444a3"
+                          },
+                          {
+                              "date":  "17-Dec-2025",
+                              "message":  "Merge remote-tracking branch \u0027remotes/origin/release/BNPP_CSC_SO_25.3_Containerization_DEV\u0027 into release/BNPP_CSC_SO_25.3_Containerization_ST",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "6a2b5275"
+                          },
+                          {
+                              "date":  "11-Dec-2025",
+                              "message":  "build.properties -\u003e R25.3.0.1.2_Containerization",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "d2e52f35"
+                          },
+                          {
+                              "date":  "11-Dec-2025",
+                              "message":  "updated helm charts",
+                              "issues":  "",
+                              "author":  "Jenkins",
+                              "commitId":  "d613f49c"
+                          },
+                          {
+                              "date":  "11-Dec-2025",
+                              "message":  "Merge remote-tracking branch \u0027remotes/origin/release/BNPP_CSC_SO_25.3_Containerization_DEV\u0027 into release/BNPP_CSC_SO_25.3_Containerization_ST",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "4fd5ac4c"
+                          },
+                          {
+                              "date":  "11-Dec-2025",
+                              "message":  "updated helm charts",
+                              "issues":  "",
+                              "author":  "Jenkins",
+                              "commitId":  "44ff8e6f"
+                          },
+                          {
+                              "date":  "11-Dec-2025",
+                              "message":  "Merge remote-tracking branch \u0027remotes/origin/release/BNPP_CSC_SO_25.3_Containerization_DEV\u0027 into release/BNPP_CSC_SO_25.3_Containerization_ST",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "d9f27a51"
+                          },
+                          {
+                              "date":  "03-Dec-2025",
+                              "message":  "updated helm charts (testing application with minimum resource limits)",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "93d63ee7"
+                          },
+                          {
+                              "date":  "03-Dec-2025",
+                              "message":  "updated helm charts (testing application with minimum resource limits)",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "e56ef844"
+                          },
+                          {
+                              "date":  "03-Dec-2025",
+                              "message":  "updated helm charts (testing application with minimum resource limits)",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "55adfed1"
+                          },
+                          {
+                              "date":  "03-Dec-2025",
+                              "message":  "updated helm charts (testing application with minimum resource limits)",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "cc6316ec"
+                          },
+                          {
+                              "date":  "26-Nov-2025",
+                              "message":  "update helm charts (increased the limit for reports service so that container don\u0027t fail due to out of memory in java heap)",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "cedd1abe"
+                          },
+                          {
+                              "date":  "26-Nov-2025",
+                              "message":  "build.properties -\u003e R25.3.0.1.1_Containerization",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "1ec63441"
+                          }
+                      ],
+    "release":  "R26.0.0.1.1",
+    "appName":  "BNPP_CSC_SO"
+}
