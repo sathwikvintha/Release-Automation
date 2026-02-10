@@ -1,0 +1,4 @@
+RELEASE_VERSION=R26.1.0.4
+BASE_FOLDER=C:\Users\Chathurya V\Desktop\release automation
+FO_BASE_PATH=CR : Documents > From_ORACLE > CR Release
+SIGN_OFF_NAME=User1
