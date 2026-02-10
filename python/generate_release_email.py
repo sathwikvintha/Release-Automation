@@ -1,11 +1,31 @@
 import os
 import re
 import textwrap
+import logging
+
+# =========================
+# LOGGING SETUP
+# =========================
+LOG_DIR = os.path.join("..", "logs")
+LOG_FILE = os.path.join(LOG_DIR, "release_email_generator.log")
+
+if not os.path.exists(LOG_DIR):
+    raise Exception(f"Logs directory not found at {LOG_DIR}. Expected it to be pre-created.")
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler(LOG_FILE, encoding="utf-8"),
+        logging.StreamHandler()   # live console logging
+    ]
+)
+
+logging.info("========== Release Email Generator Started ==========")
 
 # =========================
 # TABLE SETTINGS
 # =========================
-
 COL1_WIDTH = 40
 COL2_WIDTH = 70
 
@@ -17,18 +37,19 @@ SECURITY_NOTE = (
     "upcoming releases."
 )
 
-SECURITY_KEYWORDS = [
-    "Malware",
-    "OSCS",
-    "STaaS"
-]
+SECURITY_KEYWORDS = ["Malware", "OSCS", "STaaS"]
 
 # =========================
 # LOAD CONFIG
 # =========================
-
 def load_config(path):
     cfg = {}
+    logging.info(f"Loading email config from {path}")
+
+    if not os.path.exists(path):
+        logging.error(f"Email config file not found: {path}")
+        raise FileNotFoundError(f"Email config file not found: {path}")
+
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
@@ -36,31 +57,27 @@ def load_config(path):
                 continue
             key, value = line.split("=", 1)
             cfg[key.strip()] = value.strip()
-    return cfg
 
+    logging.info("Email config loaded successfully")
+    return cfg
 
 # =========================
 # HELPERS
 # =========================
-
 def scan_pgp_files(folder):
-    return sorted(
+    logging.info(f"Scanning PGP files in folder: {folder}")
+    files = sorted(
         f for f in os.listdir(folder)
         if os.path.isfile(os.path.join(folder, f)) and f.lower().endswith(".pgp")
     )
+    logging.info(f"Found {len(files)} PGP files")
+    return files
 
 
 def derive_left_label(filename, release_version):
     name = filename.replace(release_version + "_", "").replace(".pgp", "")
-
-    # Add spaces before capital letters (DBExecution → DB Execution)
     name = re.sub(r"([a-z])([A-Z])", r"\1 \2", name)
-
-    # Normalize common acronyms
-    name = name.replace("DB ", "DB ")
-    name = name.replace("UX", "UX")
-    name = name.replace("API", "API")
-
+    name = name.replace("DB ", "DB ").replace("UX", "UX").replace("API", "API")
     return name.strip()
 
 
@@ -83,11 +100,9 @@ def format_row(col1, col2):
         )
     return "".join(lines)
 
-
 # =========================
 # MAIN
 # =========================
-
 def generate():
     config = load_config("email_config.txt")
 
@@ -96,8 +111,13 @@ def generate():
     fo_base = config["FO_BASE_PATH"]
     sign_off = config.get("SIGN_OFF_NAME", "")
 
+    logging.info(
+        f"Inputs | Release={release} | BaseFolder={base_folder} | FOPath={fo_base}"
+    )
+
     release_folder = os.path.join(base_folder, f"release_{release}")
     if not os.path.exists(release_folder):
+        logging.error(f"Release folder not found: {release_folder}")
         raise FileNotFoundError(f"Release folder not found: {release_folder}")
 
     pgp_files = scan_pgp_files(release_folder)
@@ -121,6 +141,7 @@ def generate():
         value = f"{fo_base} > {release} > FO > {file}"
 
         if needs_security_note(label):
+            logging.info(f"Security note added for file: {file}")
             value += " " + SECURITY_NOTE
 
         output.append(format_row(label, value))
@@ -134,8 +155,16 @@ def generate():
     with open(out_file, "w", encoding="utf-8") as f:
         f.writelines(output)
 
+    logging.info(f"Release email generated successfully: {out_file}")
     print(f" Release email generated with ALL PGP files: {out_file}")
 
-
+# =========================
+# ENTRY POINT
+# =========================
 if __name__ == "__main__":
-    generate()
+    try:
+        generate()
+        logging.info("========== Release Email Generator Completed ==========")
+    except Exception:
+        logging.exception("Release email generation failed")
+        raise
