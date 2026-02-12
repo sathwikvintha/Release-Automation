@@ -74,6 +74,15 @@ powershell -ExecutionPolicy Bypass `
   -AppName $RemoteAppName `
   -ReleaseVersion $RemoteReleaseVersion
 
+
+# -------- STEP 3.7: Remote STaaS Scan --------
+Write-Host "`n[STEP 3.7] Remote STaaS Report Generation"
+
+powershell -ExecutionPolicy Bypass `
+  -File ".\remote\run_remote_staas.ps1" `
+  -ReleaseVersion "26.1.0.4"
+
+
 # --------------------------------------------------
 # STEP 4: ZIP + PGP (UNCHANGED)
 # --------------------------------------------------
