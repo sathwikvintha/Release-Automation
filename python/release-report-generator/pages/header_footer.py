@@ -11,8 +11,8 @@ def add_header(section):
     run.font.size = Pt(11)
 
     table = header.add_table(1, 2, Inches(6))
-    table.cell(0, 0).paragraphs[0].add_run().add_picture(BNP_LOGO, width=Inches(3))
-    table.cell(0, 1).paragraphs[0].add_run().add_picture(ORACLE_LOGO, width=Inches(2))
+    table.cell(0, 0).paragraphs[0].add_run().add_picture(str(BNP_LOGO), width=Inches(3))
+    table.cell(0, 1).paragraphs[0].add_run().add_picture(str(ORACLE_LOGO), width=Inches(2))
     table.cell(0, 1).paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
 
     sep = header.add_paragraph()
@@ -31,7 +31,7 @@ def add_footer(section, doc_name):
 
     fp = footer.paragraphs[0]
     fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    fp.add_run().add_picture(FOOTER_LINE, width=usable_width)
+    fp.add_run().add_picture(str(FOOTER_LINE), width=usable_width)
 
     p = footer.add_paragraph()
     p.paragraph_format.space_after = Pt(0)

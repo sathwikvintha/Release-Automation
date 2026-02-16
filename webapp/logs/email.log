@@ -1,0 +1,10 @@
+======================================
+   RELEASE AUTOMATION ENTRY POINT     
+======================================
+
+[STEP 5] Release Email
+Traceback (most recent call last):
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\generate_release_email.py", line 13, in <module>
+    raise Exception(f"Logs directory not found at {LOG_DIR}. Expected it to be pre-created.")
+Exception: Logs directory not found at ..\logs. Expected it to be pre-created.
+Release Email step failed.

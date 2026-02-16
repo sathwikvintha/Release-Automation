@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+}
+
+.title {
+    margin-bottom: 30px;
+}
+
+.layout {
+    display: flex;
+}
+
+.main {
+    flex: 1;
+    padding: 40px;
+}
+
+.pipeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+button {
+    margin: 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #1677ff;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #0f5ed7;
+}
+
+.status {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* LOG PANEL */
+.logs-panel {
+    width: 40%;
+    background: #0c0c0c;
+    color: #00ff88;
+    padding: 20px;
+    display: none;
+    overflow-y: auto;
+}
+
+/* MODALS */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: white;
+    width: 480px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-box input,
+.modal-box select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.primary {
+    background: #28a745;
+}
+
+.primary:hover {
+    background: #1e7e34;
+}
+
+.icon {
+    width: 60px;
+    margin-bottom: 15px;
+}

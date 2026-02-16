@@ -1,6 +1,12 @@
 param (
     [string]$AppName,
-    [string]$ReleaseVersion
+    [string]$ReleaseVersion,
+    [string]$OverrideMode,
+    [string]$WorkingDirOverride,
+    [string]$OscsDirOverride,
+    [string]$SharedLibsOverride,
+    [string]$MavenRepoOverride,
+    [string]$SonarKeyOverride
 )
 
 # ================= LOGGING SETUP =================
@@ -24,74 +30,90 @@ function Write-Log {
 
 Write-Log "========== Remote OSCS + Sonar Execution Started =========="
 
+# ================= VALIDATION =================
+if (-not $AppName -or -not $ReleaseVersion) {
+    Write-Log "AppName or ReleaseVersion missing." "ERROR"
+    exit 1
+}
+
 # ================= CONFIG =================
 $remoteHost = "oracle-server"
 $remoteScript = "/scratch/full/path/run_oscs_sonar_generic.sh"
 $remoteReportBase = "/scratch/softwares_2/Reports-ALL"
+# ================= LOCAL OUTPUT STRUCTURE =================
 
-$localReleaseFolder = "..\release_R$ReleaseVersion\security-reports"
+$projectRoot = Resolve-Path "$PSScriptRoot\.."
 
-New-Item -ItemType Directory -Force $localReleaseFolder | Out-Null
-Write-Log "Local security report folder ensured at $localReleaseFolder"
+$baseOutput = Join-Path $projectRoot "Report-output"
+$securityBase = Join-Path $baseOutput "Sonar_OSCS_Malware_Reports"
 
+# Create base if not exists
+New-Item -ItemType Directory -Force -Path $securityBase | Out-Null
+
+# Create version folder
+$versionFolder = Join-Path $securityBase $ReleaseVersion
+New-Item -ItemType Directory -Force -Path $versionFolder | Out-Null
+
+# Create application folder inside version
+$appFolder = Join-Path $versionFolder $AppName
+New-Item -ItemType Directory -Force -Path $appFolder | Out-Null
+
+$localReleaseFolder = $appFolder
+
+Write-Host "DEBUG -> Final Local Path: $localReleaseFolder"
 Write-Log "Application: $AppName"
 Write-Log "Release Version: $ReleaseVersion"
+Write-Host "DEBUG -> ReleaseVersion = [$ReleaseVersion]"
+Write-Host "DEBUG -> AppName = [$AppName]"
+Write-Log "Local security folder: $localReleaseFolder"
 
-# ---------------------------------------
-# Override Prompt
-# ---------------------------------------
-
-$override = Read-Host "Do you want to override server paths? (YES/NO)"
-Write-Log "Override selection: $override"
-
-$exportCommands = ""
-
-if ($override -eq "YES") {
-
-    $workingDir = Read-Host "Enter WORKING_DIR override (or press Enter to skip)"
-    $oscsDir = Read-Host "Enter OSCS_DIR override (or press Enter to skip)"
-    $sharedLibs = Read-Host "Enter SHARED_LIBS override (or press Enter to skip)"
-    $mavenRepo = Read-Host "Enter MAVEN_REPO override (or press Enter to skip)"
-    $sonarKey = Read-Host "Enter SONAR_KEY override (or press Enter to skip)"
-
-    if ($workingDir) { 
-        $exportCommands += "export WORKING_DIR_OVERRIDE='$workingDir'; "
-        Write-Log "WORKING_DIR override applied"
-    }
-    if ($oscsDir) { 
-        $exportCommands += "export OSCS_DIR_OVERRIDE='$oscsDir'; "
-        Write-Log "OSCS_DIR override applied"
-    }
-    if ($sharedLibs) { 
-        $exportCommands += "export SHARED_LIBS_OVERRIDE='$sharedLibs'; "
-        Write-Log "SHARED_LIBS override applied"
-    }
-    if ($mavenRepo) { 
-        $exportCommands += "export MAVEN_REPO_OVERRIDE='$mavenRepo'; "
-        Write-Log "MAVEN_REPO override applied"
-    }
-    if ($sonarKey) { 
-        $exportCommands += "export SONAR_KEY_OVERRIDE='$sonarKey'; "
-        Write-Log "SONAR_KEY override applied"
-    }
-}
-
-# ---------------------------------------
-# Execute Remote Script
-# ---------------------------------------
-
+# ================= SSH EXECUTION =================
 Write-Log "Executing remote security script..."
 
-ssh $remoteHost "$exportCommands $remoteScript $AppName $ReleaseVersion"
+$sshCommand = "$exportCommands $remoteScript $AppName $ReleaseVersion"
 
-if ($LASTEXITCODE -ne 0) {
+Write-Log "Starting SSH execution..."
+
+$psi = New-Object System.Diagnostics.ProcessStartInfo
+$psi.FileName = "ssh"
+$psi.Arguments = "-tt $remoteHost `"$sshCommand`""
+$psi.RedirectStandardOutput = $true
+$psi.RedirectStandardError = $true
+$psi.UseShellExecute = $false
+$psi.CreateNoWindow = $true
+
+$process = New-Object System.Diagnostics.Process
+$process.StartInfo = $psi
+$process.Start() | Out-Null
+
+# Stream stdout LIVE
+while (-not $process.HasExited) {
+
+    while (-not $process.StandardOutput.EndOfStream) {
+        $line = $process.StandardOutput.ReadLine()
+        Write-Host $line
+        Add-Content -Path $LOG_FILE -Value $line
+    }
+
+    Start-Sleep -Milliseconds 200
+}
+
+# Capture remaining lines
+while (-not $process.StandardOutput.EndOfStream) {
+    $line = $process.StandardOutput.ReadLine()
+    Write-Host $line
+    Add-Content -Path $LOG_FILE -Value $line
+}
+
+$process.WaitForExit()
+
+if ($process.ExitCode -ne 0) {
     Write-Log "Remote execution failed." "ERROR"
     exit 1
 }
 
-Write-Log "Remote execution completed successfully."
-
-Write-Log "Waiting for automation completion marker..."
+# ================= WAIT FOR MARKER =================
+Write-Log "Waiting for completion marker..."
 
 $remoteMarker = "$remoteReportBase/$ReleaseVersion/$AppName/automation_complete.marker"
 
@@ -104,14 +126,43 @@ while ($true) {
     Start-Sleep -Seconds 10
 }
 
-Write-Log "Copying security reports locally..."
+# ================= COPY ONLY LATEST REPORTS =================
+Write-Log "Detecting latest report folders on server..."
 
-scp -r "${remoteHost}:$remoteReportBase/$ReleaseVersion/$AppName/*" $localReleaseFolder
+$latestSonar = ssh $remoteHost "ls -td $remoteReportBase/$ReleaseVersion/$AppName/Sonar_* 2>/dev/null | head -1"
+$latestOSCS = ssh $remoteHost "ls -td $remoteReportBase/$ReleaseVersion/$AppName/OSCS_* 2>/dev/null | head -1"
+$latestMalware = ssh $remoteHost "ls -td $remoteReportBase/$ReleaseVersion/$AppName/Malware_* 2>/dev/null | head -1"
 
-if ($LASTEXITCODE -ne 0) {
-    Write-Log "Failed to copy security reports." "ERROR"
+if (-not $latestSonar -or -not $latestOSCS -or -not $latestMalware) {
+    Write-Log "Could not detect latest report folders." "ERROR"
     exit 1
 }
+
+# Extract timestamp
+$timestamp = ($latestSonar -split "_")[-1]
+
+Write-Log "Latest run timestamp detected: $timestamp"
+
+# Create clean timestamp folder locally
+$localTimestampFolder = Join-Path $localReleaseFolder $timestamp
+New-Item -ItemType Directory -Force -Path $localTimestampFolder | Out-Null
+
+Write-Log "Copying latest Sonar report..."
+scp -r "${remoteHost}:$latestSonar" (Join-Path $localTimestampFolder "Sonar")
+
+Write-Log "Copying latest OSCS report..."
+scp -r "${remoteHost}:$latestOSCS" (Join-Path $localTimestampFolder "OSCS")
+
+Write-Log "Copying latest Malware report..."
+scp -r "${remoteHost}:$latestMalware" (Join-Path $localTimestampFolder "Malware")
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Log "Failed to copy latest reports." "ERROR"
+    exit 1
+}
+
+Write-Log "Reports copied successfully to $localTimestampFolder"
+
 
 Write-Log "Security reports copied successfully."
 Write-Log "========== Remote OSCS + Sonar Execution Completed =========="

@@ -1,0 +1,23 @@
+==============================================
+  Release Deployment Document Generator
+==============================================
+
+Locating release markers...
+Base Commit   : d3dceae8
+Target Commit : 1deafdfb
+Extracting commits between releases...
+Out-File : Cannot validate argument on parameter 'Encoding'. The argument "utf8NoBOM" does not belong to the set 
+"unknown,string,unicode,bigendianunicode,utf8,utf7,utf32,ascii,default,oem" specified by the ValidateSet attribute. Supply an 
+argument that is in the set and then try the command again.
+At C:\Users\Sathwik Vintha\Desktop\Release-Automation\powershell\Generate-CommitSummary.ps1:224 char:79
++ ... rtTo-Json -Depth 6 | Out-File -FilePath $JsonFile -Encoding utf8NoBOM
++                                                                 ~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Out-File], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationError,Microsoft.PowerShell.Commands.OutFileCommand
+ 
+
+==============================================
+ Release Deployment Details Generated
+ TXT  : C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files\R26.0.10_ORM Build Properties_DeploymentDetails.txt
+ JSON : C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files\R26.0.10_ORM Build Properties_DeploymentDetails.json
+==============================================

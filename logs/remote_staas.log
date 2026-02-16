@@ -1,0 +1,8 @@
+[2026-02-13 11:54:29] [INFO] ========== Remote STaaS Execution Started ==========
+[2026-02-13 11:54:29] [INFO] Created local folder: .\Report-output\StaaS Report
+[2026-02-13 11:54:29] [INFO] Connecting to remote host: oracle-server
+[2026-02-13 11:54:29] [INFO] Executing STaaS script on server...
+[2026-02-13 21:02:31] [INFO] ========== Remote STaaS Execution Started ==========
+[2026-02-13 21:02:31] [INFO] Connecting to remote host: oracle-server
+[2026-02-13 21:02:31] [INFO] Executing STaaS script on server...
+[2026-02-13 21:04:40] [ERROR] STaaS execution failed on remote server.

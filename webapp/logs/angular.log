@@ -1,0 +1,22 @@
+======================================
+   RELEASE AUTOMATION ENTRY POINT     
+======================================
+
+[STEP 1] Jenkins Angular Build & Push Dist
+======================================
+   JENKINS ANGULAR BUILD STARTED     
+======================================
+Fetching Jenkins crumb...
+Triggering Angular Build...
+
+Monitoring Build Number: 35
+Build Completed with Status: SUCCESS
+Triggering Push Dist...
+
+Monitoring Build Number: 17
+Build Completed with Status: SUCCESS
+Jenkins Angular Pipeline Completed Successfully!
+Angular step completed successfully.
+======================================
+   RELEASE AUTOMATION COMPLETED          
+======================================

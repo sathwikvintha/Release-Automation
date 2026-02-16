@@ -1,0 +1,33 @@
+[2026-02-12 16:21:30] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-12 16:21:35] [INFO] Inputs | Repo=. | Base=. | Target=. | App=. | Jira=.
+[2026-02-12 16:21:35] [INFO] Validated git repository successfully
+[2026-02-12 16:21:35] [INFO] Searching for release marker commits
+[2026-02-12 16:21:35] [ERROR] Release marker not found | Base=. | Target=.
+[2026-02-12 18:03:38] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-12 18:03:38] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM Build Properties | Jira=R26.0.10
+[2026-02-12 18:03:39] [INFO] Validated git repository successfully
+[2026-02-12 18:03:39] [INFO] Searching for release marker commits
+[2026-02-12 18:03:39] [INFO] Found release markers | BaseCommit=d3dceae8 | TargetCommit=1deafdfb
+[2026-02-12 18:03:39] [INFO] Extracting commits between d3dceae8 and 1deafdfb
+[2026-02-12 18:03:40] [INFO] Commit processing and classification completed
+[2026-02-12 18:03:40] [INFO] Created output folder: ..\python\release-report-generator\json_files
+[2026-02-12 18:03:40] [INFO] Generated output files | TXT=..\python\release-report-generator\json_files\R26.0.10_ORM Build Properties_DeploymentDetails.txt | JSON=..\python\release-report-generator\json_files\R26.0.10_ORM Build Properties_DeploymentDetails.json
+[2026-02-12 18:03:40] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-12 18:12:06] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-12 18:12:06] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM Build Properties | Jira=R26.0.10
+[2026-02-12 18:12:06] [INFO] Validated git repository successfully
+[2026-02-12 18:12:06] [INFO] Searching for release marker commits
+[2026-02-12 18:12:07] [INFO] Found release markers | BaseCommit=d3dceae8 | TargetCommit=1deafdfb
+[2026-02-12 18:12:07] [INFO] Extracting commits between d3dceae8 and 1deafdfb
+[2026-02-12 18:12:07] [INFO] Commit processing and classification completed
+[2026-02-12 18:12:07] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files\R26.0.10_ORM Build Properties_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files\R26.0.10_ORM Build Properties_DeploymentDetails.json
+[2026-02-12 18:12:07] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-14 10:20:38] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-14 10:20:38] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM Build Properties | Jira=R26.0.10
+[2026-02-14 10:20:38] [INFO] Validated git repository successfully
+[2026-02-14 10:20:38] [INFO] Searching for release marker commits
+[2026-02-14 10:20:39] [INFO] Found release markers | BaseCommit=d3dceae8 | TargetCommit=1deafdfb
+[2026-02-14 10:20:39] [INFO] Extracting commits between d3dceae8 and 1deafdfb
+[2026-02-14 10:20:39] [INFO] Commit processing and classification completed
+[2026-02-14 10:20:39] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files\R26.0.10_ORM Build Properties_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files\R26.0.10_ORM Build Properties_DeploymentDetails.json
+[2026-02-14 10:20:39] [INFO] ========== Deployment Document Generator Completed ==========

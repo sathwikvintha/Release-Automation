@@ -1,0 +1,14 @@
+======================================
+   RELEASE AUTOMATION ENTRY POINT     
+======================================
+Invalid or missing Step parameter.
+Valid steps:
+ angular
+ incrementals
+ commit
+ report
+ attach
+ security
+ staas
+ zip
+ email

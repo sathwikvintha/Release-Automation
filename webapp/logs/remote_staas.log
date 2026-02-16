@@ -1,0 +1,16 @@
+[2026-02-12 11:56:59] [INFO] ========== Remote STaaS Execution Started ==========
+[2026-02-12 11:56:59] [INFO] Created local folder: .\Report-output\StaaS Report
+[2026-02-12 11:56:59] [INFO] Connecting to remote host: oracle-server
+[2026-02-12 11:56:59] [INFO] Executing STaaS script on server...
+[2026-02-12 11:57:20] [ERROR] STaaS execution failed on remote server.
+[2026-02-13 21:34:03] ========== Remote STaaS Execution Started ==========
+[2026-02-13 21:34:03] Local folder created: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\StaaS_Reports\\
+[2026-02-13 21:34:03] Executing STaaS scan on server...
+[2026-02-13 21:34:03] STaaS execution failed.
+[2026-02-13 21:37:58] ========== Remote STaaS Execution Started ==========
+[2026-02-13 21:37:58] Local folder created: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\StaaS_Reports\\
+[2026-02-13 21:37:58] Executing STaaS scan on server...
+[2026-02-13 21:37:59] STaaS execution failed.
+[2026-02-13 21:39:32] ========== Remote STaaS Execution Started ==========
+[2026-02-13 21:39:32] Local folder created: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\StaaS_Reports\skomkar\BnpOct2025
+[2026-02-13 21:39:32] Executing STaaS scan on server...

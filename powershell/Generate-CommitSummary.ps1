@@ -1,12 +1,28 @@
+param(
+    [string]$RepoPath,
+    [string]$BaseRelease,
+    [string]$TargetRelease,
+    [string]$OutputFolder,
+    [string]$JiraRef,
+    [string]$AppName
+)
+
+if (-not $RepoPath -or -not $BaseRelease -or -not $TargetRelease -or -not $OutputFolder -or -not $JiraRef -or -not $AppName) {
+    Write-Log "Missing required parameters." "ERROR"
+    Write-Error "All parameters must be passed from UI."
+    exit 1
+}
+
 # =================================================
-# LOGGING SETUP (REUSE EXISTING LOGS FOLDER)
+# LOGGING SETUP (PATH SAFE)
 # =================================================
-$LOG_DIR = "..\logs"
+$SCRIPT_DIR = Split-Path -Parent $MyInvocation.MyCommand.Path
+$PROJECT_ROOT = Split-Path -Parent $SCRIPT_DIR
+$LOG_DIR = Join-Path $PROJECT_ROOT "logs"
 $LOG_FILE = Join-Path $LOG_DIR "deployment_doc_generator.log"
 
 if (-not (Test-Path $LOG_DIR)) {
-    Write-Error "Logs directory not found at $LOG_DIR. Expected it to be pre-created."
-    exit 1
+    New-Item -ItemType Directory -Path $LOG_DIR | Out-Null
 }
 
 function Write-Log {
@@ -19,6 +35,7 @@ function Write-Log {
     Add-Content -Path $LOG_FILE -Value $entry
 }
 
+
 Write-Log "========== Deployment Document Generator Started =========="
 
 # =================================================
@@ -29,17 +46,13 @@ Write-Host "  Release Deployment Document Generator" -ForegroundColor Cyan
 Write-Host "==============================================" -ForegroundColor Cyan
 Write-Host ""
 
-# =================================================
-# USER INPUTS
-# =================================================
-$RepoPath = Read-Host "Enter local repository path"
-$BaseRelease = Read-Host "Enter BASE Release (e.g. R25.3.0.1.2)"
-$TargetRelease = Read-Host "Enter TARGET Release (e.g. R26.0.0.1.1)"
-$OutputFolder = Read-Host "Enter output folder path"
-$JiraRef = Read-Host "Enter Jira / Release reference"
-$AppName = Read-Host "Enter Application name"
-
 Write-Log "Inputs | Repo=$RepoPath | Base=$BaseRelease | Target=$TargetRelease | App=$AppName | Jira=$JiraRef"
+
+if (-not $OutputFolder) {
+    Write-Log "Output folder not specified." "ERROR"
+    Write-Error "Output folder must be specified."
+    exit 1
+}
 
 # =================================================
 # VALIDATION: REPOSITORY
@@ -208,7 +221,7 @@ $TxtFile = Join-Path $OutputFolder "$JiraRef`_$AppName`_DeploymentDetails.txt"
 $JsonFile = Join-Path $OutputFolder "$JiraRef`_$AppName`_DeploymentDetails.json"
 
 Set-Content -Path $TxtFile  -Value $TxtOutput -Encoding UTF8
-$FinalJson | ConvertTo-Json -Depth 6 | Set-Content -Path $JsonFile -Encoding UTF8
+$FinalJson | ConvertTo-Json -Depth 6 | Out-File -FilePath $JsonFile -Encoding utf8NoBOM
 
 Write-Log "Generated output files | TXT=$TxtFile | JSON=$JsonFile"
 

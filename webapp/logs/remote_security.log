@@ -1,0 +1,21 @@
+[2026-02-12 11:57:26] [INFO] ========== Remote OSCS + Sonar Execution Started ==========
+[2026-02-12 11:57:26] [INFO] Local security report folder ensured at ..\release_R\security-reports
+[2026-02-12 11:57:26] [INFO] Application: 
+[2026-02-12 11:57:26] [INFO] Release Version: 
+[2026-02-12 13:15:43] [INFO] ========== Remote OSCS + Sonar Execution Started ==========
+[2026-02-12 13:15:43] [ERROR] AppName or ReleaseVersion missing.
+[2026-02-12 13:15:47] [INFO] ========== Remote OSCS + Sonar Execution Started ==========
+[2026-02-12 13:15:47] [ERROR] AppName or ReleaseVersion missing.
+[2026-02-13 13:48:05] [INFO] ========== Remote OSCS + Sonar Execution Started ==========
+[2026-02-13 13:48:05] [INFO] Application: ORM
+[2026-02-13 13:48:05] [INFO] Release Version: 25.3
+[2026-02-13 13:48:05] [INFO] Local security folder: ..\release_R25.3\security-reports
+[2026-02-13 13:48:05] [INFO] Executing remote security script...
+System.Management.Automation.RemoteException
+[2026-02-13 13:53:02] [ERROR] Remote execution failed.
+[2026-02-13 14:10:59] [INFO] ========== Remote OSCS + Sonar Execution Started ==========
+[2026-02-13 14:10:59] [INFO] Application: ORM
+[2026-02-13 14:10:59] [INFO] Release Version: 25.3
+[2026-02-13 14:10:59] [INFO] Local security folder: ..\release_R25.3\security-reports
+[2026-02-13 14:10:59] [INFO] Executing remote security script...
+[2026-02-13 14:10:59] [INFO] Starting SSH execution...

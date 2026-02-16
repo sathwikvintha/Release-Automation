@@ -1,0 +1,25 @@
+======================================
+   RELEASE AUTOMATION ENTRY POINT     
+======================================
+
+[STEP 4] ZIP & PGP Encryption
+2026-02-14 15:35:29,656 [INFO] ========== ZIP + PGP Release Automation Started ==========
+2026-02-14 15:35:29,657 [INFO] Release config loaded successfully
+2026-02-14 15:35:29,657 [INFO] Inputs | Release=R26.1.0.4 | BaseDir=release_R26.1.0.4 | PGPKey=9318AEE55FB325E86D575D4FAD7DC9E10C293516
+2026-02-14 15:35:29,657 [ERROR] Base directory not found: release_R26.1.0.4
+2026-02-14 15:35:29,657 [ERROR] Release automation failed
+Traceback (most recent call last):
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 123, in <module>
+    process_release()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 103, in process_release
+    raise Exception(f"Base directory not found: {BASE_DIR}")
+Exception: Base directory not found: release_R26.1.0.4
+Traceback (most recent call last):
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 123, in <module>
+    process_release()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 103, in process_release
+    raise Exception(f"Base directory not found: {BASE_DIR}")
+Exception: Base directory not found: release_R26.1.0.4
+ZIP + PGP step failed.

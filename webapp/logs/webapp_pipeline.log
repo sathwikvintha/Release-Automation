@@ -1,0 +1,19 @@
+
+
+========== PIPELINE STARTED ==========
+
+
+===== STARTING: Angular Release =====
+
+[2026-02-12 13:05:16] [INFO] ========== Angular Release Automation Started ==========
+[2026-02-12 13:05:16] [INFO] Loading config from ..\config\angular_release_config.txt
+[2026-02-12 13:05:16] [INFO] Release Version: R26.1.0.4
+[2026-02-12 13:05:16] [INFO] Target Branch: ST
+[2026-02-12 13:05:16] [INFO] Validating Jenkins dist zip at C:\Jenkins\artifacts\dist.zip
+[2026-02-12 13:05:16] [ERROR] Jenkins dist.zip not found at C:\Jenkins\artifacts\dist.zip
+
+
+❌ FAILED: Angular Release
+
+========== PIPELINE FAILED ==========
+
