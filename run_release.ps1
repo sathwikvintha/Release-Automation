@@ -54,11 +54,11 @@ switch ($Step) {
     Write-Host "`n[STEP 2] Incrementals & CodeDiff"
 
     powershell -ExecutionPolicy Bypass `
-      -File ".\powershell\Generate-Incrementals.ps1" `
+      -File ".\powershell\Generate-Incrementals-SourceCode-CodeDiff.ps1" `
       -RepoPath $RepoPath `
-      -BaseVersion $BaseVersion `
-      -TargetVersion $TargetVersion `
-      -ReleaseFolderPath $ReleaseFolder `
+      -BaseRelease $BaseVersion `
+      -TargetRelease $TargetVersion `
+      -OutputFolder $ReleaseFolder `
       -JiraRef $TargetVersion `
       -AppName $AppName
 

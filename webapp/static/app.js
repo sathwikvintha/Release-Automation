@@ -9,6 +9,9 @@ function runStep(step, payload = {}) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
     });
+
+    // Auto-open logs when step starts
+    showLogs(step);
 }
 
 /* ================= LOG PANEL ================= */
@@ -78,6 +81,11 @@ function openSecurityModal() {
     document.getElementById("securityModal").style.display = "flex";
 }
 
+/*  Incrementals Modal */
+function openIncrementalsModal() {
+    document.getElementById("incrementalsModal").style.display = "flex";
+}
+
 function closeModal(id) {
     document.getElementById(id).style.display = "none";
 }
@@ -124,40 +132,21 @@ function submitSecurity() {
     });
 
     closeModal("securityModal");
+    showLogs("security");
 }
 
-function submitStaas() {
+/*  Incrementals Submit */
+function submitIncrementals() {
 
-    fetch("/run/staas", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-
-            release: document.getElementById("staasRelease").value,
-            app: document.getElementById("staasApp").value,
-            username: document.getElementById("staasServerUser").value,
-            password: document.getElementById("staasServerPass").value,
-
-            title: document.getElementById("staasTitle").value,
-            url: document.getElementById("staasUrl").value,
-            version: document.getElementById("staasVersion").value,
-            groupId: document.getElementById("staasGroupId").value,
-            emails: document.getElementById("staasEmails").value,
-            loginType: document.getElementById("staasLoginType").value,
-            appUsername: document.getElementById("staasUsername").value,
-            appPassword: document.getElementById("staasPassword").value,
-            webinspect: document.getElementById("staasWebInspect").value,
-            testType: document.getElementById("staasTestType").value,
-            auth: document.getElementById("staasAuth").value,
-            addUrlsOn: document.getElementById("staasAddUrlsOn").value,
-            addUrl: document.getElementById("staasAddUrl").value
-
-        })
+    runStep("incrementals", {
+        RepoPath: document.getElementById("incRepoPath").value,
+        AppName: document.getElementById("incAppName").value,
+        BaseVersion: document.getElementById("incBaseRelease").value,
+        TargetVersion: document.getElementById("incTargetRelease").value,
+        JiraRef: document.getElementById("incJiraRef").value
     });
 
-    closeModal("staasModal");
-
-    showLogs("staas");  // THIS makes logs open automatically
+    closeModal("incrementalsModal");
 }
 
 function submitAngular() {
@@ -175,6 +164,5 @@ function submitAngular() {
     });
 
     closeModal("angularModal");
-
     showLogs("angular");
 }

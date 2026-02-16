@@ -1,0 +1,8 @@
+[2026-02-12 17:56:59] [INFO] ========== Remote OSCS + Sonar Execution Started ==========
+[2026-02-12 17:56:59] [INFO] Local security report folder ensured at ..\release_R25.3\security-reports
+[2026-02-12 17:56:59] [INFO] Application: ORM
+[2026-02-12 17:56:59] [INFO] Release Version: 25.3
+[2026-02-13 11:39:45] [INFO] ========== Remote OSCS + Sonar Execution Started ==========
+[2026-02-13 11:39:45] [INFO] Local security report folder ensured at ..\release_RR25.3\security-reports
+[2026-02-13 11:39:45] [INFO] Application: ORM
+[2026-02-13 11:39:45] [INFO] Release Version: R25.3

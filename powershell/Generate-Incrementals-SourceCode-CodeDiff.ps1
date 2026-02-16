@@ -3,37 +3,74 @@ param(
     [string]$RepoPath,
 
     [Parameter(Mandatory=$true)]
-    [string]$BaseCommit,
+    [string]$BaseRelease,
 
-    [string]$TargetCommit = "HEAD",
+    [Parameter(Mandatory=$true)]
+    [string]$TargetRelease,
+
+    [Parameter(Mandatory=$true)]
+    [string]$OutputFolder,
 
     [Parameter(Mandatory=$true)]
     [string]$JiraRef,
 
     [Parameter(Mandatory=$true)]
-    [string]$ReleaseFolderPath,
-
-    [Parameter(Mandatory=$true)]
     [string]$AppName
 )
 
-Set-Location $RepoPath
-
-git cat-file -t $BaseCommit 2>$null
-if ($LASTEXITCODE -ne 0) {
-    Write-Error "Base commit $BaseCommit does not exist in this repo"
+# =================================================
+# VALIDATION
+# =================================================
+if (-not (Test-Path $RepoPath)) {
+    Write-Error "Repository path does not exist."
     exit 1
 }
 
+Set-Location $RepoPath
+
+git rev-parse --is-inside-work-tree *> $null
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Not a valid git repository."
+    exit 1
+}
+
+# =================================================
+# LOCATE RELEASE MARKER COMMITS (STANDARDIZED LOGIC)
+# =================================================
+Write-Host "Locating release markers..." -ForegroundColor Yellow
+
+$BaseCommit = git log --oneline --grep="build.properties -> $BaseRelease" -n 1 |
+ForEach-Object { ($_ -split ' ')[0] }
+
+$TargetCommit = git log --oneline --grep="build.properties -> $TargetRelease" -n 1 |
+ForEach-Object { ($_ -split ' ')[0] }
+
+if (-not $BaseCommit -or -not $TargetCommit) {
+    Write-Error "Base or Target release marker not found."
+    exit 1
+}
+
+Write-Host "Base Commit   : $BaseCommit"   -ForegroundColor Green
+Write-Host "Target Commit : $TargetCommit" -ForegroundColor Green
+
+# =================================================
+# GENERATE DIFF
+# =================================================
 $diff = git diff --name-status "$BaseCommit..$TargetCommit"
 
 if (-not $diff) {
-    Write-Host "No changes found between $BaseCommit and $TargetCommit"
+    Write-Host "No changes found between releases."
     exit 0
 }
 
+# =================================================
+# PREPARE OUTPUT STRUCTURE
+# =================================================
+if (-not (Test-Path $OutputFolder)) {
+    New-Item -ItemType Directory -Path $OutputFolder | Out-Null
+}
 
-$incrementalsFolder = Join-Path $ReleaseFolderPath ($JiraRef + "_Incrementals")
+$incrementalsFolder = Join-Path $OutputFolder ($JiraRef + "_Incrementals")
 
 if (-not (Test-Path $incrementalsFolder)) {
     New-Item -ItemType Directory -Path $incrementalsFolder | Out-Null
@@ -41,34 +78,27 @@ if (-not (Test-Path $incrementalsFolder)) {
 
 $outputFile = Join-Path $incrementalsFolder ($JiraRef + "_Incrementals.csv")
 
-$SourceExportPath = Join-Path $ReleaseFolderPath ($JiraRef + "_" + $AppName + "_SourceCode")
+$SourceExportPath = Join-Path $OutputFolder ($JiraRef + "_" + $AppName + "_SourceCode")
+$CodeDiffPath = Join-Path $OutputFolder ($JiraRef + "_" + $AppName + "_CodeDiff")
 
-$CodeDiffPath = Join-Path $ReleaseFolderPath ($JiraRef + "_" + $AppName + "_CodeDiff")
-
-
-#Incrementals
+# =================================================
+# BUILD INCREMENTALS CSV
+# =================================================
 $result = @()
 $counter = 1
 
 foreach ($line in $diff) {
+
     $parts = $line -split "`t"
     $statusCode = $parts[0]
     $fileName = $parts[-1]
 
-    if ($statusCode -eq "A") {
-        $status = "Added"
-    }
-    elseif ($statusCode -eq "M") {
-        $status = "Modified"
-    }
-    elseif ($statusCode -eq "D") {
-        $status = "Deleted"
-    }
-    elseif ($statusCode.StartsWith("R")) {
-        $status = "Renamed"
-    }
-    else {
-        $status = "Changed"
+    switch -Wildcard ($statusCode) {
+        "A" { $status = "Added" }
+        "M" { $status = "Modified" }
+        "D" { $status = "Deleted" }
+        "R*" { $status = "Renamed" }
+        default { $status = "Changed" }
     }
 
     $result += [PSCustomObject]@{
@@ -83,41 +113,51 @@ foreach ($line in $diff) {
 
 $result | Export-Csv $outputFile -NoTypeInformation
 
-#Extraction of Source Code
-if ($SourceExportPath) {
+# =================================================
+# EXTRACT SOURCE FILES
+# =================================================
+if (-not (Test-Path $SourceExportPath)) {
+    New-Item -ItemType Directory -Path $SourceExportPath | Out-Null
+}
 
-    if (-not (Test-Path $SourceExportPath)) {
-        New-Item -ItemType Directory -Path $SourceExportPath | Out-Null
-    }
+foreach ($row in $result) {
 
-    foreach ($row in $result) {
+    if ($row.Status -in @("Added", "Modified", "Renamed")) {
 
-        if ($row.Status -in @("Added", "Modified", "Renamed")) {
+        $sourceFile = Join-Path $RepoPath $row."File Name"
+        $destFile = Join-Path $SourceExportPath $row."File Name"
 
-            $sourceFile = Join-Path $RepoPath $row."File Name"
-            $destFile = Join-Path $SourceExportPath $row."File Name"
+        $destDir = Split-Path $destFile
+        if (-not (Test-Path $destDir)) {
+            New-Item -ItemType Directory -Path $destDir -Force | Out-Null
+        }
 
-            $destDir = Split-Path $destFile
-            if (-not (Test-Path $destDir)) {
-                New-Item -ItemType Directory -Path $destDir -Force | Out-Null
-            }
-
+        if (Test-Path $sourceFile) {
             Copy-Item $sourceFile $destFile -Force
         }
     }
 }
 
-#CodeDiff
-if ($CodeDiffPath) {
-
-    if (-not (Test-Path $CodeDiffPath)) {
-        New-Item -ItemType Directory -Path $CodeDiffPath | Out-Null
-    }
-
-    $diffFile = Join-Path $CodeDiffPath ($JiraRef + "_" + $AppName + "_CodeDiff.diff")
-
-    git -C $RepoPath diff $BaseCommit $TargetCommit `
-        --no-color `
-        --patch `
-    | Out-File -FilePath $diffFile -Encoding UTF8
+# =================================================
+# GENERATE CODE DIFF FILE
+# =================================================
+if (-not (Test-Path $CodeDiffPath)) {
+    New-Item -ItemType Directory -Path $CodeDiffPath | Out-Null
 }
+
+$diffFile = Join-Path $CodeDiffPath ($JiraRef + "_" + $AppName + "_CodeDiff.diff")
+
+git diff $BaseCommit $TargetCommit `
+    --no-color `
+    --patch `
+| Out-File -FilePath $diffFile -Encoding UTF8
+
+# =================================================
+# DONE
+# =================================================
+Write-Host ""
+Write-Host "==============================================" -ForegroundColor Green
+Write-Host " Incrementals & CodeDiff Generated Successfully"
+Write-Host " CSV  : $outputFile"
+Write-Host " DIFF : $diffFile"
+Write-Host "==============================================" -ForegroundColor Green

@@ -9,11 +9,11 @@
 Fetching Jenkins crumb...
 Triggering Angular Build...
 
-Monitoring Build Number: 35
+Monitoring Build Number: 36
 Build Completed with Status: SUCCESS
 Triggering Push Dist...
 
-Monitoring Build Number: 17
+Monitoring Build Number: 18
 Build Completed with Status: SUCCESS
 Jenkins Angular Pipeline Completed Successfully!
 Angular step completed successfully.

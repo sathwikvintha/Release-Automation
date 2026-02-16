@@ -1,6 +1,18 @@
-The argument '..\powershell\Generate-Incrementals.ps1' to the -File parameter does not exist. Provide the path to an existing '.ps1' file as an argument to the -File parameter.
-Windows PowerShell
-Copyright (C) Microsoft Corporation. All rights reserved.
+======================================
+   RELEASE AUTOMATION ENTRY POINT     
+======================================
 
-Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+[STEP 2] Incrementals & CodeDiff
+Locating release markers...
+Base Commit   : 13a4f4c8
+Target Commit : 1deafdfb
 
+==============================================
+ Incrementals & CodeDiff Generated Successfully
+ CSV  : .\release_R26.0.0.1.2\R26.0.0.1.2_Incrementals\R26.0.0.1.2_Incrementals.csv
+ DIFF : .\release_R26.0.0.1.2\R26.0.0.1.2_bnpp_fo_orm_CodeDiff\R26.0.0.1.2_bnpp_fo_orm_CodeDiff.diff
+==============================================
+Incrementals step completed successfully.
+======================================
+   RELEASE AUTOMATION COMPLETED          
+======================================
