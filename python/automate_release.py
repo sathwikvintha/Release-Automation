@@ -2,69 +2,93 @@ import os
 import subprocess
 import shutil
 import logging
-from datetime import datetime
+import sys
 
-# ================= LOGGING SETUP =================
-LOG_DIR = os.path.join("..", "logs")
-LOG_FILE = os.path.join(LOG_DIR, "zip_pgp_release.log")
+# ============================================================
+# ARGUMENTS (called from pipeline runner)
+# ============================================================
 
-if not os.path.exists(LOG_DIR):
-    raise Exception(f"Logs directory not found at {LOG_DIR}. Expected it to be pre-created.")
+if len(sys.argv) != 3:
+    print("Usage: python automate_release.py <RELEASE_VERSION> <BASE_DIR>")
+    sys.exit(1)
+
+RELEASE_VERSION = sys.argv[1]
+BASE_DIR = sys.argv[2]
+
+# ============================================================
+# PROJECT PATH RESOLUTION
+# ============================================================
+
+BASE_PROJECT_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..")
+)
+
+# 🔐 Public key inside project
+KEY_PATH = os.path.join(BASE_PROJECT_DIR, "keys", "pub.asc")
+
+# 🔐 FULL fingerprint of company public key
+EXPECTED_FINGERPRINT = "EDB4C925F8083BAA9ED9B829FE700299AAED2302"
+
+# ============================================================
+# LOGGING SETUP
+# ============================================================
+
+LOG_DIR = os.path.join(BASE_PROJECT_DIR, "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+LOG_FILE = os.path.join(LOG_DIR, "zip.log")
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
         logging.FileHandler(LOG_FILE, encoding="utf-8"),
-        logging.StreamHandler()  # keeps console output live
+        logging.StreamHandler()
     ]
 )
 
 logging.info("========== ZIP + PGP Release Automation Started ==========")
+logging.info(f"Release Version: {RELEASE_VERSION}")
+logging.info(f"Base Directory: {BASE_DIR}")
 
-# ================= CONFIG LOADER =================
-def load_release_config(file_path="release_config.txt"):
-    config = {}
+# ============================================================
+# PGP KEY IMPORT
+# ============================================================
 
-    if not os.path.exists(file_path):
-        logging.error(f"Config file not found: {file_path}")
-        raise Exception(f"Config file not found: {file_path}")
+def import_public_key():
+    if not os.path.exists(KEY_PATH):
+        raise Exception(f"Public key file not found at {KEY_PATH}")
 
-    with open(file_path, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            if "=" in line:
-                key, value = line.split("=", 1)
-                config[key.strip()] = value.strip()
+    logging.info("Importing company public key...")
 
-    required_keys = ["RELEASE_VERSION", "BASE_DIR", "PGP_PUBLIC_KEY"]
-    for key in required_keys:
-        if key not in config:
-            logging.error(f"Missing required config key: {key}")
-            raise Exception(f"Missing required config key: {key}")
+    subprocess.run(
+        ["gpg", "--batch", "--yes", "--import", KEY_PATH],
+        check=True
+    )
 
-    logging.info("Release config loaded successfully")
-    return config
+def validate_key():
+    logging.info("Validating public key fingerprint...")
 
+    result = subprocess.run(
+        ["gpg", "--list-keys", "--with-colons"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=True
+    )
 
-# ================= LOAD CONFIG =================
-config = load_release_config()
+    if EXPECTED_FINGERPRINT not in result.stdout:
+        raise Exception("Expected public key fingerprint not found in keyring.")
 
-RELEASE_VERSION = config["RELEASE_VERSION"]
-BASE_DIR = config["BASE_DIR"]
-PGP_PUBLIC_KEY = config["PGP_PUBLIC_KEY"]
+    logging.info("Public key validated successfully.")
 
-logging.info(
-    f"Inputs | Release={RELEASE_VERSION} | BaseDir={BASE_DIR} | PGPKey={PGP_PUBLIC_KEY}"
-)
-
-# ==============================================
+# ============================================================
+# ZIP FUNCTION
+# ============================================================
 
 def zip_folder(folder_path):
     zip_path = f"{folder_path}.zip"
-    print(f" Zipping: {folder_path}")
+
     logging.info(f"Zipping folder: {folder_path}")
 
     shutil.make_archive(folder_path, "zip", folder_path)
@@ -72,11 +96,14 @@ def zip_folder(folder_path):
     logging.info(f"ZIP created: {zip_path}")
     return zip_path
 
+# ============================================================
+# ENCRYPT FUNCTION
+# ============================================================
 
 def pgp_encrypt(zip_file):
     pgp_file = zip_file.replace(".zip", ".pgp")
-    print(f" Encrypting: {zip_file}")
-    logging.info(f"Encrypting ZIP using PGP: {zip_file}")
+
+    logging.info(f"Encrypting ZIP: {zip_file}")
 
     subprocess.run(
         [
@@ -87,7 +114,7 @@ def pgp_encrypt(zip_file):
             "--armor",
             "--output", pgp_file,
             "--encrypt",
-            "--recipient", PGP_PUBLIC_KEY,
+            "--recipient", EXPECTED_FINGERPRINT,
             zip_file
         ],
         check=True
@@ -96,32 +123,42 @@ def pgp_encrypt(zip_file):
     logging.info(f"PGP encryption completed: {pgp_file}")
     return pgp_file
 
+# ============================================================
+# MAIN PROCESS
+# ============================================================
 
 def process_release():
+
     if not os.path.exists(BASE_DIR):
-        logging.error(f"Base directory not found: {BASE_DIR}")
         raise Exception(f"Base directory not found: {BASE_DIR}")
 
-    print(f"\n Processing release: {RELEASE_VERSION}\n")
-    logging.info(f"Processing release: {RELEASE_VERSION}")
+    # Step 1: Import key automatically
+    import_public_key()
+
+    # Step 2: Validate fingerprint
+    validate_key()
+
+    logging.info(f"Processing release folders inside: {BASE_DIR}")
 
     for item in os.listdir(BASE_DIR):
         item_path = os.path.join(BASE_DIR, item)
 
-        # Only zip + encrypt directories
+        # Only process directories
         if os.path.isdir(item_path):
             logging.info(f"Processing directory: {item_path}")
             zip_file = zip_folder(item_path)
             pgp_encrypt(zip_file)
 
-    print("\n ALL FOLDERS ZIPPED AND PGP ENCRYPTED SUCCESSFULLY")
-    logging.info("All folders zipped and PGP encrypted successfully")
+    logging.info("All folders zipped and encrypted successfully.")
 
+# ============================================================
+# ENTRY POINT
+# ============================================================
 
 if __name__ == "__main__":
     try:
         process_release()
-        logging.info("========== ZIP + PGP Release Automation Completed ==========")
+        logging.info("========== ZIP + PGP Completed Successfully ==========")
     except Exception as e:
-        logging.exception("Release automation failed")
-        raise
+        logging.exception("ZIP + PGP Failed")
+        sys.exit(1)

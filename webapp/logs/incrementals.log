@@ -1,18 +1,21 @@
+DEBUG Received OutputFolder: C:\Users\Chathurya V\Desktop\model_release automation\incrementals
 ======================================
    RELEASE AUTOMATION ENTRY POINT     
 ======================================
+Using Release Folder: C:\Users\Chathurya V\Desktop\model_release automation\incrementals
 
 [STEP 2] Incrementals & CodeDiff
+DEBUG Incrementals OutputFolder: C:\Users\Chathurya V\Desktop\model_release automation\incrementals
 Locating release markers...
-Base Commit   : 13a4f4c8
-Target Commit : 1deafdfb
+Base Commit   : d3dceae8
+Target Commit : 13a4f4c8
 
 ==============================================
  Incrementals & CodeDiff Generated Successfully
- CSV  : .\release_R26.0.0.1.2\R26.0.0.1.2_Incrementals\R26.0.0.1.2_Incrementals.csv
- DIFF : .\release_R26.0.0.1.2\R26.0.0.1.2_bnpp_fo_orm_CodeDiff\R26.0.0.1.2_bnpp_fo_orm_CodeDiff.diff
+ CSV  : C:\Users\Chathurya V\Desktop\model_release automation\incrementals\R26.1.0.5_Incrementals\R26.1.0.5_Incrementals.csv
+ DIFF : C:\Users\Chathurya V\Desktop\model_release automation\incrementals\R26.1.0.5_bnpp_fo_orm_CodeDiff\R26.1.0.5_bnpp_fo_orm_CodeDiff.diff
 ==============================================
 Incrementals step completed successfully.
 ======================================
-   RELEASE AUTOMATION COMPLETED          
+   RELEASE AUTOMATION COMPLETED      
 ======================================

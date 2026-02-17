@@ -2,9 +2,6 @@
 2026-02-17 14:12:54,016 [INFO] Release Version: R26.1.0.4
 2026-02-17 14:12:54,016 [INFO] Base Directory: C:\Users\Chathurya V\Desktop\model_release automation\release_R26.1.0.4
 2026-02-17 14:12:54,016 [INFO] Importing company public key...
-gpg: key FE700299AAED2302: public key "bnpp" imported
-gpg: Total number processed: 1
-gpg:               imported: 1
 2026-02-17 14:13:02,137 [INFO] Validating public key fingerprint...
 2026-02-17 14:13:02,260 [INFO] Public key validated successfully.
 2026-02-17 14:13:02,261 [INFO] Processing release folders inside: C:\Users\Chathurya V\Desktop\model_release automation\release_R26.1.0.4

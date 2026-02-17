@@ -8,8 +8,10 @@ param(
   [string]$BaseVersion = "R25.3.0.1.2",
   [string]$TargetVersion = "R26.1.0.4",
   [string]$RepoPath = "C:\Codebases\bnpp_csc_so_ST",
-  [string]$AppName = "BNPP_CSC_SO"
+  [string]$AppName = "BNPP_CSC_SO",
+  [string]$OutputFolder   
 )
+Write-Host "DEBUG Received OutputFolder: $OutputFolder" -ForegroundColor Yellow
 
 $ScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $ScriptRoot
@@ -18,14 +20,32 @@ Write-Host "======================================"
 Write-Host "   RELEASE AUTOMATION ENTRY POINT     "
 Write-Host "======================================"
 
-# Derived release folder
-$ReleaseFolder = ".\release_$TargetVersion"
-# -----------------------------------------
-# STEP CONTROLLER (UI Friendly)
-# -----------------------------------------
+# =================================================
+# SAFE RELEASE FOLDER HANDLING (Backward Compatible)
+# =================================================
+
+if (-not $OutputFolder -or $OutputFolder -eq "") {
+    $ReleaseFolder = ".\release_$TargetVersion"
+} else {
+    $ReleaseFolder = $OutputFolder
+}
+
+# Ensure folder exists
+if (-not (Test-Path $ReleaseFolder)) {
+    New-Item -ItemType Directory -Path $ReleaseFolder -Force | Out-Null
+}
+
+Write-Host "Using Release Folder: $ReleaseFolder" -ForegroundColor Cyan
+
+# =================================================
+# STEP CONTROLLER
+# =================================================
 
 switch ($Step) {
 
+  # =================================================
+  # STEP 1 - ANGULAR
+  # =================================================
   "angular" {
 
     Write-Host "`n[STEP 1] Jenkins Angular Build & Push Dist"
@@ -49,6 +69,9 @@ switch ($Step) {
     Write-Host "Angular step completed successfully."
   }
 
+  # =================================================
+  # STEP 2 - INCREMENTALS
+  # =================================================
   "incrementals" {
 
     Write-Host "`n[STEP 2] Incrementals & CodeDiff"
@@ -70,13 +93,15 @@ switch ($Step) {
     Write-Host "Incrementals step completed successfully."
   }
 
+  # =================================================
+  # STEP 3 - COMMIT SUMMARY
+  # =================================================
   "commit" {
 
     Write-Host "`n[STEP 3] Commit Summary"
 
     powershell -ExecutionPolicy Bypass `
-      Write-Host "Calling Commit Summary Script from: $(Resolve-Path '.\powershell\Generate-CommitSummary.ps1')"
-    -File ".\powershell\Generate-CommitSummary.ps1" `
+      -File ".\powershell\Generate-CommitSummary.ps1" `
       -RepoPath $RepoPath `
       -BaseRelease $BaseVersion `
       -TargetRelease $TargetVersion `
@@ -92,6 +117,9 @@ switch ($Step) {
     Write-Host "Commit Summary completed successfully."
   }
 
+  # =================================================
+  # STEP 3.5 - REPORT
+  # =================================================
   "report" {
 
     Write-Host "`n[STEP 3.5] Release Report Generation"
@@ -110,6 +138,9 @@ switch ($Step) {
     Write-Host "Release Report generated successfully."
   }
 
+  # =================================================
+  # STEP 3.6 - ATTACH REPORT
+  # =================================================
   "attach" {
 
     Write-Host "`n[STEP 3.6] Attaching Release Report"
@@ -121,15 +152,12 @@ switch ($Step) {
       "$ReleaseFolder\Report-output" `
       -Recurse -Force
 
-
-    if ($LASTEXITCODE -ne 0) {
-      Write-Host "Attach Report step failed."
-      exit 1
-    }
-
     Write-Host "Report attached successfully."
   }
 
+  # =================================================
+  # STEP 3.7 - SECURITY
+  # =================================================
   "security" {
 
     Write-Host "`n[STEP 3.7] Remote OSCS + Sonar Scan"
@@ -147,6 +175,9 @@ switch ($Step) {
     Write-Host "Remote Security completed successfully."
   }
 
+  # =================================================
+  # STEP 3.8 - STAAS
+  # =================================================
   "staas" {
 
     Write-Host "`n[STEP 3.8] Remote STaaS Report Generation"
@@ -162,13 +193,16 @@ switch ($Step) {
     Write-Host "Remote STaaS completed successfully."
   }
 
+  # =================================================
+  # STEP 4 - ZIP
+  # =================================================
   "zip" {
 
     Write-Host "`n[STEP 4] ZIP & PGP Encryption"
 
-    Push-Location config
-    python "..\python\automate_release.py"
-    Pop-Location
+    python ".\python\automate_release.py" `
+        $TargetVersion `
+        $ReleaseFolder
 
     if ($LASTEXITCODE -ne 0) {
       Write-Host "ZIP + PGP step failed."
@@ -178,6 +212,9 @@ switch ($Step) {
     Write-Host "ZIP + PGP completed successfully."
   }
 
+  # =================================================
+  # STEP 5 - EMAIL
+  # =================================================
   "email" {
 
     Write-Host "`n[STEP 5] Release Email"
@@ -195,20 +232,10 @@ switch ($Step) {
   default {
 
     Write-Host "Invalid or missing Step parameter."
-    Write-Host "Valid steps:"
-    Write-Host " angular"
-    Write-Host " incrementals"
-    Write-Host " commit"
-    Write-Host " report"
-    Write-Host " attach"
-    Write-Host " security"
-    Write-Host " staas"
-    Write-Host " zip"
-    Write-Host " email"
     exit 1
   }
 }
 
 Write-Host "======================================"
-Write-Host "   RELEASE AUTOMATION COMPLETED          "
+Write-Host "   RELEASE AUTOMATION COMPLETED      "
 Write-Host "======================================"

@@ -8,219 +8,234 @@
 
 <body>
 
-    <div class="layout">
+<div class="layout">
 
-        <!-- MAIN CONTENT -->
-        <div class="main">
-            <h1 class="title">🚀 Release Automation Pipeline</h1>
+<div class="main">
+<h1 class="title">🚀 Release Automation Pipeline</h1>
 
-            <div class="pipeline">
+<div class="pipeline">
 
-                <!-- 1. Angular -->
-                <div class="card" id="angular">
-                    <div class="step-number">1</div>
-                    <img src="/static/icons/angular.png" class="icon">
-                    <h3>Angular Release</h3>
-                    <div class="btn-group">
-                        <button onclick="openAngularModal()">Run</button>
-                        <button onclick="showLogs('angular')" class="secondary">Logs</button>
-                    </div>
-                    <span class="status"></span>
-                </div>
-
-                <!-- 2. Incrementals -->
-                <div class="card" id="incrementals">
-                    <div class="step-number">2</div>
-                    <img src="/static/icons/incrementals.png" class="icon">
-                    <h3>Incrementals</h3>
-                    <div class="btn-group">
-                        <button onclick="openIncrementalsModal()">Run</button>
-                        <button onclick="showLogs('incrementals')" class="secondary">Logs</button>
-                    </div>
-                    <span class="status"></span>
-                </div>
-
-                <!-- 3. Commit Summary -->
-                <div class="card" id="commit">
-                    <div class="step-number">3</div>
-                    <img src="/static/icons/git.png" class="icon">
-                    <h3>Commit Summary</h3>
-                    <div class="btn-group">
-                        <button onclick="openCommitModal()">Run</button>
-                        <button onclick="showLogs('commit')" class="secondary">Logs</button>
-                    </div>
-                    <span class="status"></span>
-                </div>
-
-                <!-- 4. Release Report -->
-                <div class="card" id="report">
-                    <div class="step-number">4</div>
-                    <img src="/static/icons/report.png" class="icon">
-                    <h3>Release Report</h3>
-                    <div class="btn-group">
-                        <button onclick="openReportModal()">Run</button>
-                        <button onclick="showLogs('report')" class="secondary">Logs</button>
-                    </div>
-                    <span class="status"></span>
-                </div>
-
-                <!-- 5. Remote Security -->
-                <div class="card" id="security">
-                    <div class="step-number">5</div>
-                    <img src="/static/icons/security.png" class="icon">
-                    <h3>Remote Security</h3>
-                    <div class="btn-group">
-                        <button onclick="openSecurityModal()">Run</button>
-                        <button onclick="showLogs('security')" class="secondary">Logs</button>
-                    </div>
-                    <span class="status"></span>
-                </div>
-
-                <!-- 6. Remote STaaS -->
-                <div class="card" id="staas">
-                    <div class="step-number">6</div>
-                    <img src="/static/icons/staas.png" class="icon">
-                    <h3>Remote STaaS</h3>
-                    <div class="btn-group">
-                        <button onclick="window.location.href='/staas'">Run</button>
-                        <button onclick="showLogs('staas')" class="secondary">Logs</button>
-                    </div>
-                    <span class="status"></span>
-                </div>
-
-                <!-- 7. ZIP + PGP -->
-                <div class="card" id="zip">
-                    <div class="step-number">7</div>
-                    <img src="/static/icons/zip.png" class="icon">
-                    <h3>ZIP + PGP</h3>
-                    <div class="btn-group">
-                        <button onclick="runStep('zip')">Run</button>
-                        <button onclick="showLogs('zip')" class="secondary">Logs</button>
-                    </div>
-                    <span class="status"></span>
-                </div>
-
-                <!-- 8. Release Email -->
-                <div class="card" id="email">
-                    <div class="step-number">8</div>
-                    <img src="/static/icons/email.png" class="icon">
-                    <h3>Release Email</h3>
-                    <div class="btn-group">
-                        <button onclick="runStep('email')">Run</button>
-                        <button onclick="showLogs('email')" class="secondary">Logs</button>
-                    </div>
-                    <span class="status"></span>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- LOG PANEL -->
-        <div class="logs-panel" id="logsPanel">
-            <h2 id="logTitle">Logs</h2>
-            <pre id="logsBox"></pre>
-            <button onclick="closeLogs()">Close</button>
-        </div>
-
+<!-- 1 Angular -->
+<div class="card" id="angular">
+    <div class="step-number">1</div>
+    <img src="/static/icons/angular.png" class="icon">
+    <h3>Angular Release</h3>
+    <div class="btn-group">
+        <button onclick="openAngularModal()">Run</button>
+        <button onclick="showLogs('angular')" class="secondary">Logs</button>
     </div>
-
-    <!-- ================= MODALS ================= -->
-
-    <!-- Angular Modal -->
-    <div class="modal-overlay" id="angularModal">
-        <div class="modal-box">
-            <h2>Jenkins Angular Build</h2>
-
-            <input id="angReleaseVersion" placeholder="Full Release Version (R26.1.0.4)">
-            <input id="angRemoteRelease" placeholder="Remote Release Version (26.1)">
-            <input id="angRemoteApp" placeholder="Application (ORM/SO/INTAPI/MARKETING)">
-            <input id="angJenkinsUser" placeholder="Jenkins Username">
-            <input id="angJenkinsToken" type="password" placeholder="Jenkins API Token">
-
-            <div class="modal-buttons">
-                <button class="primary" onclick="submitAngular()">Run</button>
-                <button onclick="closeModal('angularModal')">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Incrementals Modal -->
-    <div class="modal-overlay" id="incrementalsModal">
-    <div class="modal-box">
-        <h2>Incrementals Inputs</h2>
-
-        <input id="incRepoPath" placeholder="Repository Path (C:\Codebases\bnpp_csc_so_ST)">
-        <input id="incAppName" placeholder="Application Name (BNPP_CSC_SO)">
-        <input id="incBaseRelease" placeholder="Base Release (R25.3.0.1.2)">
-        <input id="incTargetRelease" placeholder="Target Release (R26.1.0.4)">
-        <input id="incJiraRef" placeholder="Jira / Release Reference">
-
-        <div class="modal-buttons">
-            <button class="primary" onclick="submitIncrementals()">Run</button>
-            <button onclick="closeModal('incrementalsModal')">Cancel</button>
-        </div>
-    </div>
+    <span class="status"></span>
 </div>
 
-    <!-- Commit Modal -->
-    <div class="modal-overlay" id="commitModal">
-        <div class="modal-box">
-            <h2>Commit Summary Inputs</h2>
-
-            <input id="repoPath" placeholder="Repository Path">
-            <input id="baseRelease" placeholder="Base Release (R25.3.0.1.2)">
-            <input id="targetRelease" placeholder="Target Release (R26.1.0.4)">
-            <input id="jiraRef" placeholder="Jira / Release Reference">
-            <input id="appName" placeholder="Application Name">
-
-            <div class="modal-buttons">
-                <button class="primary" onclick="submitCommit()">Submit</button>
-                <button onclick="closeModal('commitModal')">Cancel</button>
-            </div>
-        </div>
+<!-- 2 Incrementals -->
+<div class="card" id="incrementals">
+    <div class="step-number">2</div>
+    <img src="/static/icons/incrementals.png" class="icon">
+    <h3>Incrementals</h3>
+    <div class="btn-group">
+        <button onclick="openIncrementalsModal()">Run</button>
+        <button onclick="showLogs('incrementals')" class="secondary">Logs</button>
     </div>
+    <span class="status"></span>
+</div>
 
-    <!-- Report Modal -->
-    <div class="modal-overlay" id="reportModal">
-        <div class="modal-box">
-            <h2>Generate Release Report</h2>
-
-            <input id="jsonFile" placeholder="JSON File Name">
-            <input id="docTitle" placeholder="Document Title">
-            <input id="releaseNumber" placeholder="Release Number">
-            <input id="subtitle" placeholder="Sub Title">
-            <input id="versionNumber" placeholder="Version Number">
-            <input id="versionDate" placeholder="Version Date">
-
-            <div class="modal-buttons">
-                <button class="primary" onclick="submitReport()">Generate</button>
-                <button onclick="closeModal('reportModal')">Cancel</button>
-            </div>
-        </div>
+<!-- 3 Commit -->
+<div class="card" id="commit">
+    <div class="step-number">3</div>
+    <img src="/static/icons/git.png" class="icon">
+    <h3>Commit Summary</h3>
+    <div class="btn-group">
+        <button onclick="openCommitModal()">Run</button>
+        <button onclick="showLogs('commit')" class="secondary">Logs</button>
     </div>
+    <span class="status"></span>
+</div>
 
-    <!-- Security Modal -->
-    <div class="modal-overlay" id="securityModal">
-        <div class="modal-box">
-            <h2>Remote Security Inputs</h2>
-
-            <input id="secRelease" placeholder="Remote Release Version">
-            <select id="secApp">
-                <option value="ORM">ORM</option>
-                <option value="SO">SO</option>
-                <option value="INTAPI">INTAPI</option>
-                <option value="MARKETING">MARKETING</option>
-            </select>
-            <input id="secUsername" placeholder="Server Username">
-            <input id="secPassword" type="password" placeholder="Server Password">
-
-            <div class="modal-buttons">
-                <button class="primary" onclick="submitSecurity()">Run</button>
-                <button onclick="closeModal('securityModal')">Cancel</button>
-            </div>
-        </div>
+<!-- 4 Report -->
+<div class="card" id="report">
+    <div class="step-number">4</div>
+    <img src="/static/icons/report.png" class="icon">
+    <h3>Release Report</h3>
+    <div class="btn-group">
+        <button onclick="openReportModal()">Run</button>
+        <button onclick="showLogs('report')" class="secondary">Logs</button>
     </div>
+    <span class="status"></span>
+</div>
 
-    <script src="/static/app.js"></script>
+<!-- 5 Security -->
+<div class="card" id="security">
+    <div class="step-number">5</div>
+    <img src="/static/icons/security.png" class="icon">
+    <h3>Remote Security</h3>
+    <div class="btn-group">
+        <button onclick="openSecurityModal()">Run</button>
+        <button onclick="showLogs('security')" class="secondary">Logs</button>
+    </div>
+    <span class="status"></span>
+</div>
+
+<!-- 6 STaaS -->
+<div class="card" id="staas">
+    <div class="step-number">6</div>
+    <img src="/static/icons/staas.png" class="icon">
+    <h3>Remote STaaS</h3>
+    <div class="btn-group">
+        <button onclick="window.location.href='/staas'">Run</button>
+        <button onclick="showLogs('staas')" class="secondary">Logs</button>
+    </div>
+    <span class="status"></span>
+</div>
+
+<!-- 7 ZIP -->
+<div class="card" id="zip">
+    <div class="step-number">7</div>
+    <img src="/static/icons/zip.png" class="icon">
+    <h3>ZIP + PGP</h3>
+    <div class="btn-group">
+        <button onclick="openZipModal()">Run</button>
+        <button onclick="showLogs('zip')" class="secondary">Logs</button>
+    </div>
+    <span class="status"></span>
+</div>
+
+<!-- 8 Email -->
+<div class="card" id="email">
+    <div class="step-number">8</div>
+    <img src="/static/icons/email.png" class="icon">
+    <h3>Release Email</h3>
+    <div class="btn-group">
+        <button onclick="openEmailModal()">Run</button>
+        <button onclick="showLogs('email')" class="secondary">Logs</button>
+    </div>
+    <span class="status"></span>
+</div>
+
+</div>
+</div>
+
+<!-- Logs Panel -->
+<div class="logs-panel" id="logsPanel">
+<h2 id="logTitle">Logs</h2>
+<pre id="logsBox"></pre>
+<button onclick="closeLogs()">Close</button>
+</div>
+
+</div>
+
+<!-- ================= MODALS ================= -->
+
+<!-- Angular Modal -->
+<div class="modal-overlay" id="angularModal">
+<div class="modal-box">
+<h2>Angular Inputs</h2>
+<input id="angReleaseVersion" placeholder="Full Release Version">
+<input id="angRemoteRelease" placeholder="Remote Release Version">
+<input id="angRemoteApp" placeholder="Application">
+<input id="angJenkinsUser" placeholder="Jenkins Username">
+<input id="angJenkinsToken" type="password" placeholder="Jenkins Token">
+<div class="modal-buttons">
+<button class="primary" onclick="submitAngular()">Run</button>
+<button onclick="closeModal('angularModal')">Cancel</button>
+</div>
+</div>
+</div>
+
+<!-- Incrementals Modal -->
+<div class="modal-overlay" id="incrementalsModal">
+<div class="modal-box">
+<h2>Incrementals Inputs</h2>
+<input id="incRepoPath" placeholder="Repository Path">
+<input id="incAppName" placeholder="Application Name">
+<input id="incBaseRelease" placeholder="Base Release">
+<input id="incTargetRelease" placeholder="Target Release">
+<input id="incOutputFolder" placeholder="Output Folder Path">
+<input id="incJiraRef" placeholder="Jira Reference">
+<div class="modal-buttons">
+<button class="primary" onclick="submitIncrementals()">Run</button>
+<button onclick="closeModal('incrementalsModal')">Cancel</button>
+</div>
+</div>
+</div>
+
+<!-- Commit Modal -->
+<div class="modal-overlay" id="commitModal">
+<div class="modal-box">
+<h2>Commit Inputs</h2>
+<input id="repoPath" placeholder="Repository Path">
+<input id="baseRelease" placeholder="Base Release">
+<input id="targetRelease" placeholder="Target Release">
+<input id="jiraRef" placeholder="Jira Reference">
+<input id="appName" placeholder="Application Name">
+<div class="modal-buttons">
+<button class="primary" onclick="submitCommit()">Run</button>
+<button onclick="closeModal('commitModal')">Cancel</button>
+</div>
+</div>
+</div>
+
+<!-- Report Modal -->
+<div class="modal-overlay" id="reportModal">
+<div class="modal-box">
+<h2>Report Inputs</h2>
+<input id="jsonFile" placeholder="JSON File">
+<input id="docTitle" placeholder="Title">
+<input id="releaseNumber" placeholder="Release">
+<input id="subtitle" placeholder="Subtitle">
+<input id="versionNumber" placeholder="Version">
+<input id="versionDate" placeholder="Date">
+<div class="modal-buttons">
+<button class="primary" onclick="submitReport()">Run</button>
+<button onclick="closeModal('reportModal')">Cancel</button>
+</div>
+</div>
+</div>
+
+<!-- Security Modal -->
+<div class="modal-overlay" id="securityModal">
+<div class="modal-box">
+<h2>Security Inputs</h2>
+<input id="secRelease" placeholder="Remote Release Version">
+<input id="secApp" placeholder="Application">
+<input id="secUsername" placeholder="Username">
+<input id="secPassword" type="password" placeholder="Password">
+<div class="modal-buttons">
+<button class="primary" onclick="submitSecurity()">Run</button>
+<button onclick="closeModal('securityModal')">Cancel</button>
+</div>
+</div>
+</div>
+
+<!-- ZIP Modal -->
+<div class="modal-overlay" id="zipModal">
+<div class="modal-box">
+<h2>ZIP + PGP Inputs</h2>
+<input id="zipReleaseVersion" placeholder="Release Version">
+<input id="zipBaseDir" placeholder="Base Directory Path">
+<div class="modal-buttons">
+<button class="primary" onclick="submitZip()">Run</button>
+<button onclick="closeModal('zipModal')">Cancel</button>
+</div>
+</div>
+</div>
+
+<!-- Email Modal -->
+<div class="modal-overlay" id="emailModal">
+<div class="modal-box">
+<h2>Email Inputs</h2>
+<input id="emailReleaseVersion" placeholder="Release Version">
+<input id="emailBaseFolder" placeholder="Base Folder Path">
+<input id="emailAppBasePath" placeholder="Application Base Path">
+<input id="emailOutputPath" placeholder="Output Location Path">
+<input id="emailSignOff" placeholder="Sign Off Name">
+<div class="modal-buttons">
+<button class="primary" onclick="submitEmail()">Run</button>
+<button onclick="closeModal('emailModal')">Cancel</button>
+</div>
+</div>
+</div>
+
+<script src="/static/app.js"></script>
+
 </body>
 </html>

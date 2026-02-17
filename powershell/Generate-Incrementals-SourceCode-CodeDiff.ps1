@@ -17,6 +17,7 @@ param(
     [Parameter(Mandatory=$true)]
     [string]$AppName
 )
+Write-Host "DEBUG Incrementals OutputFolder: $OutputFolder" -ForegroundColor Green
 
 # =================================================
 # VALIDATION

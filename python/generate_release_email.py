@@ -2,30 +2,64 @@ import os
 import re
 import textwrap
 import logging
+import sys
+from datetime import datetime
 
-# =========================
-# LOGGING SETUP
-# =========================
-LOG_DIR = os.path.join("..", "logs")
-LOG_FILE = os.path.join(LOG_DIR, "release_email_generator.log")
+# ============================================================
+# ARGUMENT VALIDATION
+# ============================================================
 
-if not os.path.exists(LOG_DIR):
-    raise Exception(f"Logs directory not found at {LOG_DIR}. Expected it to be pre-created.")
+if len(sys.argv) != 7:
+    print("Usage:")
+    print("python generate_release_email.py "
+          "<RELEASE_VERSION> "
+          "<BASE_FOLDER> "
+          "<APPLICATION_BASE_PATH> "
+          "<APP_NAME> "
+          "<SIGN_OFF_NAME> "
+          "<OUTPUT_DIR>")
+    sys.exit(1)
+
+RELEASE_VERSION = sys.argv[1].strip()
+BASE_FOLDER = os.path.normpath(sys.argv[2].strip())
+APPLICATION_BASE_PATH = sys.argv[3].strip()
+APP_NAME = sys.argv[4].strip()
+SIGN_OFF_NAME = sys.argv[5].strip()
+OUTPUT_DIR = os.path.normpath(sys.argv[6].strip())
+
+# ============================================================
+# PROJECT PATH RESOLUTION
+# ============================================================
+
+BASE_PROJECT_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "../../")
+)
+
+LOG_DIR = os.path.join(BASE_PROJECT_DIR, "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+LOG_FILE = os.path.join(LOG_DIR, "release_email.log")
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
         logging.FileHandler(LOG_FILE, encoding="utf-8"),
-        logging.StreamHandler()   # live console logging
+        logging.StreamHandler()
     ]
 )
 
 logging.info("========== Release Email Generator Started ==========")
+logging.info(f"Release: {RELEASE_VERSION}")
+logging.info(f"Base Folder: {BASE_FOLDER}")
+logging.info(f"Application Base Path: {APPLICATION_BASE_PATH}")
+logging.info(f"Application: {APP_NAME}")
+logging.info(f"Output Dir: {OUTPUT_DIR}")
 
-# =========================
+# ============================================================
 # TABLE SETTINGS
-# =========================
+# ============================================================
+
 COL1_WIDTH = 40
 COL2_WIDTH = 70
 
@@ -39,37 +73,24 @@ SECURITY_NOTE = (
 
 SECURITY_KEYWORDS = ["Malware", "OSCS", "STaaS"]
 
-# =========================
-# LOAD CONFIG
-# =========================
-def load_config(path):
-    cfg = {}
-    logging.info(f"Loading email config from {path}")
-
-    if not os.path.exists(path):
-        logging.error(f"Email config file not found: {path}")
-        raise FileNotFoundError(f"Email config file not found: {path}")
-
-    with open(path, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            key, value = line.split("=", 1)
-            cfg[key.strip()] = value.strip()
-
-    logging.info("Email config loaded successfully")
-    return cfg
-
-# =========================
+# ============================================================
 # HELPERS
-# =========================
+# ============================================================
+
 def scan_pgp_files(folder):
     logging.info(f"Scanning PGP files in folder: {folder}")
+
+    if not os.path.exists(folder):
+        raise FileNotFoundError(f"Release folder not found: {folder}")
+
     files = sorted(
         f for f in os.listdir(folder)
         if os.path.isfile(os.path.join(folder, f)) and f.lower().endswith(".pgp")
     )
+
+    if not files:
+        logging.warning("No PGP files found in release folder.")
+
     logging.info(f"Found {len(files)} PGP files")
     return files
 
@@ -77,7 +98,6 @@ def scan_pgp_files(folder):
 def derive_left_label(filename, release_version):
     name = filename.replace(release_version + "_", "").replace(".pgp", "")
     name = re.sub(r"([a-z])([A-Z])", r"\1 \2", name)
-    name = name.replace("DB ", "DB ").replace("UX", "UX").replace("API", "API")
     return name.strip()
 
 
@@ -90,58 +110,56 @@ def separator():
 
 
 def format_row(col1, col2):
-    wrapped = textwrap.wrap(col2, COL2_WIDTH) or [""]
+    wrapped = textwrap.wrap(col2, COL2_WIDTH - 2) or [""]
     lines = [
-        f"| {col1.ljust(COL1_WIDTH-2)}| {wrapped[0].ljust(COL2_WIDTH-2)}|\n"
+        f"| {col1.ljust(COL1_WIDTH - 2)}| {wrapped[0].ljust(COL2_WIDTH - 2)}|\n"
     ]
     for extra in wrapped[1:]:
         lines.append(
-            f"| {' '.ljust(COL1_WIDTH-2)}| {extra.ljust(COL2_WIDTH-2)}|\n"
+            f"| {' '.ljust(COL1_WIDTH - 2)}| {extra.ljust(COL2_WIDTH - 2)}|\n"
         )
     return "".join(lines)
 
-# =========================
+# ============================================================
 # MAIN
-# =========================
+# ============================================================
+
 def generate():
-    config = load_config("email_config.txt")
 
-    release = config["RELEASE_VERSION"]
-    base_folder = config["BASE_FOLDER"]
-    fo_base = config["FO_BASE_PATH"]
-    sign_off = config.get("SIGN_OFF_NAME", "")
-
-    logging.info(
-        f"Inputs | Release={release} | BaseFolder={base_folder} | FOPath={fo_base}"
-    )
-
-    release_folder = os.path.join(base_folder, f"release_{release}")
-    if not os.path.exists(release_folder):
-        logging.error(f"Release folder not found: {release_folder}")
-        raise FileNotFoundError(f"Release folder not found: {release_folder}")
+    # Detect whether BASE_FOLDER already points to release folder
+    if BASE_FOLDER.endswith(f"release_{RELEASE_VERSION}"):
+        release_folder = BASE_FOLDER
+    else:
+        release_folder = os.path.join(BASE_FOLDER, f"release_{RELEASE_VERSION}")
 
     pgp_files = scan_pgp_files(release_folder)
 
     output = []
 
-    # Email header
+    # Email Header
     output.append("Hi Team,\n\n")
     output.append(
-        f"Please find the artifacts below for release of {release}.\n"
+        f"Please find the artifacts below for release of {RELEASE_VERSION}.\n"
         "Artifacts to be uploaded on SECURE FILE SHARING APAC – BNP PARIBAS Collaboration.\n\n"
     )
 
-    # Table header
+    # Table Header
     output.append(separator())
     output.append(format_row("Item", "Details"))
     output.append(separator())
 
     for file in pgp_files:
-        label = derive_left_label(file, release)
-        value = f"{fo_base} > {release} > FO > {file}"
+
+        label = derive_left_label(file, RELEASE_VERSION)
+
+        value = (
+            f"{APPLICATION_BASE_PATH} > "
+            f"{RELEASE_VERSION} > "
+            f"{APP_NAME} > "
+            f"{file}"
+        )
 
         if needs_security_note(label):
-            logging.info(f"Security note added for file: {file}")
             value += " " + SECURITY_NOTE
 
         output.append(format_row(label, value))
@@ -149,22 +167,33 @@ def generate():
 
     # Sign-off
     output.append("\nRegards,\n")
-    output.append(sign_off + "\n")
+    output.append(SIGN_OFF_NAME + "\n")
 
-    out_file = f"Release_Email_{release}.txt"
+    # Ensure output directory exists
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    # Add timestamp to avoid overwriting
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    out_file = os.path.join(
+        OUTPUT_DIR,
+        f"Release_Email_{RELEASE_VERSION}_{timestamp}.txt"
+    )
+
     with open(out_file, "w", encoding="utf-8") as f:
         f.writelines(output)
 
     logging.info(f"Release email generated successfully: {out_file}")
-    print(f" Release email generated with ALL PGP files: {out_file}")
+    print(f"Release email generated successfully at: {out_file}")
 
-# =========================
+# ============================================================
 # ENTRY POINT
-# =========================
+# ============================================================
+
 if __name__ == "__main__":
     try:
         generate()
         logging.info("========== Release Email Generator Completed ==========")
-    except Exception:
+    except Exception as e:
         logging.exception("Release email generation failed")
-        raise
+        sys.exit(1)
