@@ -5,11 +5,13 @@ param(
   [string]$ReleaseVersion,
   [string]$JenkinsUser,
   [string]$JenkinsToken,
-  [string]$BaseVersion = "R25.3.0.1.2",
-  [string]$TargetVersion = "R26.1.0.4",
+  [string]$BaseRelease,
+  [string]$TargetRelease,
   [string]$RepoPath = "C:\Codebases\bnpp_csc_so_ST",
   [string]$AppName = "BNPP_CSC_SO",
-  [string]$OutputFolder   
+  [string]$OutputFolder,
+  [string]$AppVariant,
+  [string]$JiraRef
 )
 Write-Host "DEBUG Received OutputFolder: $OutputFolder" -ForegroundColor Yellow
 
@@ -25,14 +27,15 @@ Write-Host "======================================"
 # =================================================
 
 if (-not $OutputFolder -or $OutputFolder -eq "") {
-    $ReleaseFolder = ".\release_$TargetVersion"
-} else {
-    $ReleaseFolder = $OutputFolder
+  $ReleaseFolder = ".\release_$TargetRelease"
+}
+else {
+  $ReleaseFolder = $OutputFolder
 }
 
 # Ensure folder exists
 if (-not (Test-Path $ReleaseFolder)) {
-    New-Item -ItemType Directory -Path $ReleaseFolder -Force | Out-Null
+  New-Item -ItemType Directory -Path $ReleaseFolder -Force | Out-Null
 }
 
 Write-Host "Using Release Folder: $ReleaseFolder" -ForegroundColor Cyan
@@ -51,19 +54,19 @@ switch ($Step) {
     Write-Host "`n[STEP 1] Jenkins Angular Build & Push Dist"
 
     if (-not $ReleaseVersion -or -not $JenkinsUser -or -not $JenkinsToken) {
-        Write-Host "ERROR: Missing required Angular inputs."
-        exit 1
+      Write-Host "ERROR: Missing required Angular inputs."
+      exit 1
     }
 
     powershell -ExecutionPolicy Bypass `
-        -File ".\angular\jenkins_angular_release.ps1" `
-        -ReleaseVersion $ReleaseVersion `
-        -JenkinsUser $JenkinsUser `
-        -JenkinsToken $JenkinsToken
+      -File ".\angular\jenkins_angular_release.ps1" `
+      -ReleaseVersion $ReleaseVersion `
+      -JenkinsUser $JenkinsUser `
+      -JenkinsToken $JenkinsToken
 
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "Angular step failed."
-        exit 1
+      Write-Host "Angular step failed."
+      exit 1
     }
 
     Write-Host "Angular step completed successfully."
@@ -79,10 +82,10 @@ switch ($Step) {
     powershell -ExecutionPolicy Bypass `
       -File ".\powershell\Generate-Incrementals-SourceCode-CodeDiff.ps1" `
       -RepoPath $RepoPath `
-      -BaseRelease $BaseVersion `
-      -TargetRelease $TargetVersion `
+      -BaseRelease $BaseRelease `
+      -TargetRelease $TargetRelease `
       -OutputFolder $ReleaseFolder `
-      -JiraRef $TargetVersion `
+      -JiraRef $JiraRef `
       -AppName $AppName
 
     if ($LASTEXITCODE -ne 0) {
@@ -103,14 +106,15 @@ switch ($Step) {
     powershell -ExecutionPolicy Bypass `
       -File ".\powershell\Generate-CommitSummary.ps1" `
       -RepoPath $RepoPath `
-      -BaseRelease $BaseVersion `
-      -TargetRelease $TargetVersion `
+      -BaseRelease $BaseRelease `
+      -TargetRelease $TargetRelease `
       -OutputFolder $ReleaseFolder `
-      -JiraRef $TargetVersion `
-      -AppName $AppName
+      -JiraRef $JiraRef `
+      -AppName $AppName `
+      -AppVariant $AppVariant
 
     if ($LASTEXITCODE -ne 0) {
-      Write-Host "Commit Summary step failed."
+      Write-Host "Commit Summary step failed." 
       exit 1
     }
 
@@ -201,8 +205,8 @@ switch ($Step) {
     Write-Host "`n[STEP 4] ZIP & PGP Encryption"
 
     python ".\python\automate_release.py" `
-        $TargetVersion `
-        $ReleaseFolder
+      $TargetVersion `
+      $ReleaseFolder
 
     if ($LASTEXITCODE -ne 0) {
       Write-Host "ZIP + PGP step failed."

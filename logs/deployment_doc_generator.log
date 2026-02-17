@@ -92,3 +92,124 @@
 [2026-02-17 19:32:42] [INFO] Validated git repository successfully
 [2026-02-17 19:32:42] [INFO] Searching for release marker commits
 [2026-02-17 19:32:42] [ERROR] Release marker not found | Base=R26.1.0.8 | Target=R26.1.0.13
+[2026-02-17 20:45:28] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 20:45:28] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM Build Properties | Jira=R26.0.0.1.2
+[2026-02-17 20:45:28] [INFO] Validated git repository successfully
+[2026-02-17 20:45:28] [INFO] Searching for release marker commits
+[2026-02-17 20:45:28] [INFO] Found release markers | BaseCommit=d3dceae8 | TargetCommit=1deafdfb
+[2026-02-17 20:45:28] [INFO] Extracting commits between d3dceae8 and 1deafdfb
+[2026-02-17 20:45:29] [INFO] Commit processing and classification completed
+[2026-02-17 20:45:29] [INFO] Generated output files | TXT=.\release_R26.0.0.1.2\R26.0.0.1.2_ORM Build Properties_DeploymentDetails.txt | JSON=.\release_R26.0.0.1.2\R26.0.0.1.2_ORM Build Properties_DeploymentDetails.json
+[2026-02-17 20:45:29] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-17 20:47:16] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 20:47:16] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM Build Properties | Jira=R26.0.0.1.2
+[2026-02-17 20:47:16] [INFO] Validated git repository successfully
+[2026-02-17 20:47:16] [INFO] Searching for release marker commits
+[2026-02-17 20:47:17] [INFO] Found release markers | BaseCommit=d3dceae8 | TargetCommit=1deafdfb
+[2026-02-17 20:47:17] [INFO] Extracting commits between d3dceae8 and 1deafdfb
+[2026-02-17 20:47:17] [INFO] Commit processing and classification completed
+[2026-02-17 20:47:17] [INFO] Generated output files | TXT=.\release_R26.0.0.1.2\R26.0.0.1.2_ORM Build Properties_DeploymentDetails.txt | JSON=.\release_R26.0.0.1.2\R26.0.0.1.2_ORM Build Properties_DeploymentDetails.json
+[2026-02-17 20:47:17] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-17 22:53:42] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 22:53:42] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM | Jira=R26.0.0.1.2
+[2026-02-17 22:53:43] [INFO] Validated git repository successfully
+[2026-02-17 22:53:43] [INFO] Searching for release marker commits
+[2026-02-17 22:53:43] [INFO] Found release markers | BaseCommit=d3dceae8 | TargetCommit=1deafdfb
+[2026-02-17 22:53:43] [INFO] Extracting commits between d3dceae8 and 1deafdfb
+[2026-02-17 22:53:43] [INFO] Commit processing and classification completed
+[2026-02-17 22:53:44] [INFO] Generated output files | TXT=.\release_R26.0.0.1.2\R26.0.0.1.2_ORM_DeploymentDetails.txt | JSON=.\release_R26.0.0.1.2\R26.0.0.1.2_ORM_DeploymentDetails.json
+[2026-02-17 22:53:44] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-17 23:05:38] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 23:05:38] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM | Jira=R26.0.0.1.2
+[2026-02-17 23:05:39] [INFO] Validated git repository successfully
+[2026-02-17 23:05:39] [INFO] Searching for release marker commits
+[2026-02-17 23:05:39] [INFO] Found release markers | BaseCommit=d3dceae8 | TargetCommit=1deafdfb
+[2026-02-17 23:05:39] [INFO] Extracting commits between d3dceae8 and 1deafdfb
+[2026-02-17 23:05:40] [INFO] Commit processing and classification completed
+[2026-02-17 23:05:40] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM\R26.0.0.1.2\04_Reports\R26.0.0.1.2_ORM_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM\R26.0.0.1.2\04_Reports\R26.0.0.1.2_ORM_DeploymentDetails.json
+[2026-02-17 23:05:40] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-18 00:07:36] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 00:07:36] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 00:07:36] [INFO] Validated git repository successfully
+[2026-02-18 00:07:36] [INFO] Searching for release marker commits
+[2026-02-18 00:07:36] [ERROR] Release marker not found | Base=R25.3.0.1.2 | Target=R26.1.0.4
+[2026-02-18 00:11:03] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 00:11:03] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 00:11:03] [INFO] Validated git repository successfully
+[2026-02-18 00:11:03] [INFO] Searching for release marker commits
+[2026-02-18 00:11:04] [ERROR] Release marker not found | Base=R25.3.0.1.2 | Target=R26.1.0.4
+[2026-02-18 00:14:44] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 00:14:44] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 00:14:44] [INFO] Validated git repository successfully
+[2026-02-18 00:14:44] [INFO] Searching for release marker commits
+[2026-02-18 00:14:44] [INFO] Found release markers | BaseCommit=0a4cdbdd | TargetCommit=7685ce40
+[2026-02-18 00:14:44] [INFO] Extracting commits between 0a4cdbdd and 7685ce40
+[2026-02-18 00:14:44] [INFO] Commit processing and classification completed
+[2026-02-18 00:14:44] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.1.0.4\04_Reports\R26.1.0.4_ORM_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.1.0.4\04_Reports\R26.1.0.4_ORM_DeploymentDetails.json
+[2026-02-18 00:14:44] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-18 00:17:10] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 00:17:10] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 00:17:10] [INFO] Validated git repository successfully
+[2026-02-18 00:17:10] [INFO] Searching for release marker commits
+[2026-02-18 00:17:11] [INFO] Found release markers | BaseCommit=0a4cdbdd | TargetCommit=7685ce40
+[2026-02-18 00:17:11] [INFO] Extracting commits between 0a4cdbdd and 7685ce40
+[2026-02-18 00:17:11] [INFO] Commit processing and classification completed
+[2026-02-18 00:17:11] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.1.0.4\04_Reports\R26.1.0.4_ORM_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.1.0.4\04_Reports\R26.1.0.4_ORM_DeploymentDetails.json
+[2026-02-18 00:17:12] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-18 00:25:34] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 00:25:34] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 00:25:34] [INFO] Validated git repository successfully
+[2026-02-18 00:25:34] [INFO] Searching for release marker commits
+[2026-02-18 00:25:35] [INFO] Found release markers | BaseCommit=0a4cdbdd | TargetCommit=7685ce40
+[2026-02-18 00:25:35] [INFO] Extracting commits between 0a4cdbdd and 7685ce40
+[2026-02-18 00:25:36] [INFO] Commit processing and classification completed
+[2026-02-18 00:25:36] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.1.0.4\04_Reports\R26.1.0.4_ORM_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.1.0.4\04_Reports\R26.1.0.4_ORM_DeploymentDetails.json
+[2026-02-18 00:25:36] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-18 00:35:07] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 00:35:07] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 00:35:07] [INFO] Validated git repository successfully
+[2026-02-18 00:35:07] [INFO] Searching for release marker commits
+[2026-02-18 00:35:08] [INFO] Found release markers | BaseCommit=0a4cdbdd | TargetCommit=7685ce40
+[2026-02-18 00:35:08] [INFO] Extracting commits using marker slicing
+[2026-02-18 00:35:09] [INFO] Commit processing and classification completed
+[2026-02-18 00:35:09] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.1.0.4\04_Reports\R26.1.0.4_ORM_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.1.0.4\04_Reports\R26.1.0.4_ORM_DeploymentDetails.json
+[2026-02-18 00:35:09] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-18 00:44:45] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 00:44:45] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 00:44:45] [INFO] Validated git repository successfully
+[2026-02-18 00:44:45] [INFO] Searching for release marker commits
+[2026-02-18 00:44:46] [ERROR] Release marker not found | Base=R25.3.0.1.2 | Target=R26.1.0.4
+[2026-02-18 00:47:10] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 00:47:10] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 00:47:10] [INFO] Validated git repository successfully
+[2026-02-18 00:47:10] [INFO] Searching for release marker commits
+[2026-02-18 00:47:11] [ERROR] Release marker not found | Base=R25.3.0.1.2 | Target=R26.1.0.4
+[2026-02-18 00:48:59] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 00:48:59] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 00:49:00] [INFO] Validated git repository successfully
+[2026-02-18 00:57:11] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 00:57:11] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 00:57:11] [INFO] Validated git repository successfully
+[2026-02-18 01:00:37] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 01:00:37] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 01:00:37] [INFO] Validated git repository successfully
+[2026-02-18 01:00:37] [ERROR] Base (R25.3.0.1.2) or Target (R26.1.0.4) commit not found.
+[2026-02-18 01:03:38] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 01:03:38] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=ORM | Jira=R26.1.0.4
+[2026-02-18 01:03:38] [INFO] Validated git repository successfully
+[2026-02-18 01:03:38] [ERROR] Base or Target release marker not found. Base: R25.3.0.1.2 (0a4cdbdd), Target: R26.1.0.4 ()
+[2026-02-18 01:34:44] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 01:34:44] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM | Jira=R26.0.10
+[2026-02-18 01:34:44] [INFO] Validated git repository successfully
+[2026-02-18 01:34:44] [INFO] Extracting commits between d3dceae8 and 1deafdfb
+[2026-02-18 01:34:44] [INFO] Commit processing and classification completed
+[2026-02-18 01:34:44] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports\R26.0.10_ORM_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports\R26.0.10_ORM_DeploymentDetails.json
+[2026-02-18 01:34:44] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-18 01:40:51] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 01:40:51] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM | Jira=R26.0.10
+[2026-02-18 01:40:52] [INFO] Validated git repository successfully
+[2026-02-18 01:40:52] [INFO] Extracting commits between d3dceae8 and 1deafdfb
+[2026-02-18 01:40:52] [INFO] Commit processing and classification completed
+[2026-02-18 01:40:52] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports\R26.0.10_ORM_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports\R26.0.10_ORM_DeploymentDetails.json
+[2026-02-18 01:40:52] [INFO] Copied JSON to C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files
+[2026-02-18 01:40:52] [INFO] ========== Deployment Document Generator Completed ==========

@@ -1,0 +1,5 @@
+﻿CommitId | Author | CommitDate | Issues | Message
+--------------------------------------------------
+1deafdfb | Ayush Kumar Ahirwar | 22-Dec-2025 |  | build properties -> R26.0.0.1.2
+e5e6295f | Ayush Kumar Ahirwar | 19-Dec-2025 |  | Merge remote-tracking branch 'remotes/origin/release/BNPP_FO_ORM_25.3_DEV' into release/BNPP_FO_ORM_25.3_ST
+d3dceae8 | Syed Osama | 17-Dec-2025 |  | build properties -> R26.0.0.1.1

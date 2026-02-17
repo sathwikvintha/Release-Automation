@@ -1,0 +1,68 @@
+﻿{
+    "baseRelease":  "R26.0.0.1.1",
+    "deploymentDetails":  {
+                              "2.11 Keycloak Configuration changes":  [
+
+                                                                      ],
+                              "2.4 DB Changes- Environment Specific Changes":  [
+
+                                                                               ],
+                              "2.6 Scheduler jobs":  [
+
+                                                     ],
+                              "2.1 Web server Changes":  [
+
+                                                         ],
+                              "2.8 Shell Script changes":  [
+
+                                                           ],
+                              "2.2 Maven Deployment Changes":  [
+
+                                                               ],
+                              "2.5 Queue Configuration Scripts":  [
+
+                                                                  ],
+                              "2.3 App Server Changes":  [
+
+                                                         ],
+                              "2.10 Cron Job changes":  [
+
+                                                        ],
+                              "2.12 Scheduler Server changes":  [
+
+                                                                ],
+                              "2.7 Migration Scripts":  [
+
+                                                        ],
+                              "2.9 Sql Script change":  [
+
+                                                        ]
+                          },
+    "targetRelease":  "R26.0.0.1.2",
+    "generatedOn":  "18-Feb-2026",
+    "commitSummary":  [
+                          {
+                              "date":  "22-Dec-2025",
+                              "message":  "build properties -\u003e R26.0.0.1.2",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "1deafdfb"
+                          },
+                          {
+                              "date":  "19-Dec-2025",
+                              "message":  "Merge remote-tracking branch \u0027remotes/origin/release/BNPP_FO_ORM_25.3_DEV\u0027 into release/BNPP_FO_ORM_25.3_ST",
+                              "issues":  "",
+                              "author":  "Ayush Kumar Ahirwar",
+                              "commitId":  "e5e6295f"
+                          },
+                          {
+                              "date":  "17-Dec-2025",
+                              "message":  "build properties -\u003e R26.0.0.1.1",
+                              "issues":  "",
+                              "author":  "Syed Osama",
+                              "commitId":  "d3dceae8"
+                          }
+                      ],
+    "release":  "R26.0.0.1.2",
+    "appName":  "ORM"
+}

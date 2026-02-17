@@ -13,7 +13,7 @@ Running OSCS Scan...
 ***       
 ***             Open Source Compliance Service Client v6.12              
 ***       
-***             Time : Tue Feb 17 20:19:52 IST 2026                                       
+***             Time : Wed Feb 18 01:51:13 IST 2026                                       
 ***       
 ***             Hostname : ofss-mum-1766.snbomprshared1.gbucdsint02bom.oraclevcn.com                          
 ***       
@@ -21,183 +21,183 @@ Running OSCS Scan...
 ***       
 ***                                                                      
 ***       
-2026-02-17 20:19:52 **  Input arguments: -i /scratch/softwares_2/R25.3_shared_libs/ORM -g Oracle_Database -p CSCORM -r Release25.3 Scan -all  
+2026-02-18 01:51:13 **  Input arguments: -i /scratch/softwares_2/R25.3_shared_libs/ORM -g Oracle_Database -p CSCORM -r Release25.3 Scan -all  
 ***       
-2026-02-17 20:19:52 **  ****************Non Docker Environment**************** 
+2026-02-18 01:51:13 **  ****************Non Docker Environment**************** 
 ***       
-2026-02-17 20:19:52 **  --------------- OSCS Audit prerequisite check -------------- 
+2026-02-18 01:51:13 **  --------------- OSCS Audit prerequisite check -------------- 
 ***       
-2026-02-17 20:19:52 **  Validating Input Parameters  :- 
+2026-02-18 01:51:13 **  Validating Input Parameters  :- 
 ***       
-2026-02-17 20:19:52 **         Input file/path/url : /scratch/softwares_2/R25.3_shared_libs/ORM 
+2026-02-18 01:51:13 **         Input file/path/url : /scratch/softwares_2/R25.3_shared_libs/ORM 
 ***       
-2026-02-17 20:19:52 **         Output path/url: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT 
+2026-02-18 01:51:13 **         Output path/url: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT 
 ***       
-2026-02-17 20:19:52 **  Component Family : "ORACLE_DATABASE" 
+2026-02-18 01:51:13 **  Component Family : "ORACLE_DATABASE" 
 ***       
-2026-02-17 20:19:52 **         Component : "CSCORM" 
+2026-02-18 01:51:13 **         Component : "CSCORM" 
 ***       
-2026-02-17 20:19:52 **         Release : Release25.3 
+2026-02-18 01:51:13 **         Release : Release25.3 
 ***       
-2026-02-17 20:19:52 **         Scan Type : THIRDPARTY_SCAN  OWASP_SCAN JAVASCRIPT_SCAN DOTNET_SCAN RUBY_SCAN PYTHON_SCAN MALWARE_SCAN TRIVY_SCAN 
+2026-02-18 01:51:13 **         Scan Type : THIRDPARTY_SCAN  OWASP_SCAN JAVASCRIPT_SCAN DOTNET_SCAN RUBY_SCAN PYTHON_SCAN MALWARE_SCAN TRIVY_SCAN 
 ***       
-2026-02-17 20:19:52 **         Input Type : INSTALL 
+2026-02-18 01:51:13 **         Input Type : INSTALL 
 ***       
-2026-02-17 20:19:52 **  Checking Permissions : Input /scratch/softwares_2/R25.3_shared_libs/ORM is directory and accessible. 
+2026-02-18 01:51:13 **  Checking Permissions : Input /scratch/softwares_2/R25.3_shared_libs/ORM is directory and accessible. 
 ***       
-2026-02-17 20:19:52 **  Checking Disk Storage : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client: 55G 
+2026-02-18 01:51:13 **  Checking Disk Storage : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client: 55G 
 ***       
-2026-02-17 20:19:52 **  Performing OSCS server prerequisite checks :- 
+2026-02-18 01:51:13 **  Performing OSCS server prerequisite checks :- 
 ***       
-2026-02-17 20:20:53 **  Timed out while accessing the Server.. 
+2026-02-18 01:52:15 **  Timed out while accessing the Server.. 
 ***       
-2026-02-17 20:20:53 **         Checking Server URL : Failed 
+2026-02-18 01:52:15 **         Checking Server URL : Failed 
 ***       
-2026-02-17 20:21:53 **  Timed out while accessing the Server.. 
+2026-02-18 01:53:15 **  Timed out while accessing the Server.. 
 ***       
-2026-02-17 20:21:53 **         Checking Reports URL : Failed 
+2026-02-18 01:53:15 **         Checking Reports URL : Failed 
 ***       
-2026-02-17 20:21:53 **         Identified Non-Oracle Network. 
+2026-02-18 01:53:15 **         Identified Non-Oracle Network. 
 ***       
-2026-02-17 20:21:53 **  Checking JDK. 
+2026-02-18 01:53:15 **  Checking JDK. 
 ***       
-2026-02-17 20:21:53 **  INFO: Using JDK 1.8.0_341 ... 
+2026-02-18 01:53:15 **  INFO: Using JDK 1.8.0_341 ... 
 ***       
-2026-02-17 20:21:53 **         JAVA_VERSION: 1.8.0_341, JAVA_HOME: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace//OSCS_RUN_HOME/jdk1.8.0_341 
+2026-02-18 01:53:15 **         JAVA_VERSION: 1.8.0_341, JAVA_HOME: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace//OSCS_RUN_HOME/jdk1.8.0_341 
 ***       
-2026-02-17 20:21:53 **   
+2026-02-18 01:53:15 **   
 ***       
-2026-02-17 20:21:53 **  --------------- EXTRACTING ARTIFACTS ------------------- 
+2026-02-18 01:53:15 **  --------------- EXTRACTING ARTIFACTS ------------------- 
 ***       
-2026-02-17 20:21:53 **  INFO: Input dir size 119 MB... 
+2026-02-18 01:53:15 **  INFO: Input dir size 119 MB... 
 ***       
-2026-02-17 20:21:53 **  INFO: Copying /scratch/softwares_2/R25.3_shared_libs/ORM to /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_SCAN_AREA_20260217201952 for OSCS Audits... 
+2026-02-18 01:53:15 **  INFO: Copying /scratch/softwares_2/R25.3_shared_libs/ORM to /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_SCAN_AREA_20260218015113 for OSCS Audits... 
 ***       
-2026-02-17 20:21:54 **  INFO: Extracting artifacts recursively under /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_SCAN_AREA_20260217201952 
+2026-02-18 01:53:16 **  INFO: Extracting artifacts recursively under /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_SCAN_AREA_20260218015113 
 ***       
-2026-02-17 20:21:54 **  INFO: Recursive extraction of artifacts completed successfully /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_SCAN_AREA_20260217201952. 
+2026-02-18 01:53:17 **  INFO: Recursive extraction of artifacts completed successfully /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_SCAN_AREA_20260218015113. 
 ***       
-2026-02-17 20:21:54 **   
+2026-02-18 01:53:17 **   
 ***       
-2026-02-17 20:21:54 **  -------------------- OWASP ANALYSIS ------------------ 
+2026-02-18 01:53:17 **  -------------------- OWASP ANALYSIS ------------------ 
 ***       
-2026-02-17 20:21:55 **  INFO: Dependency-Check Core version 7.4.4 
+2026-02-18 01:53:17 **  INFO: Dependency-Check Core version 7.4.4 
 ***       
-2026-02-17 20:21:55 **  INFO: Running OWASP dependency-check script on /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_SCAN_AREA_20260217201952... 
+2026-02-18 01:53:17 **  INFO: Running OWASP dependency-check script on /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_SCAN_AREA_20260218015113... 
 ***       
-2026-02-17 20:22:47 **  SUCCESS: OWASP analysis completed successfully. 
+2026-02-18 01:54:09 **  SUCCESS: OWASP analysis completed successfully. 
 ***       
-2026-02-17 20:22:47 **   
+2026-02-18 01:54:09 **   
 ***       
-2026-02-17 20:22:47 **  -------------------- TRIVY ANALYSIS ------------------ 
+2026-02-18 01:54:09 **  -------------------- TRIVY ANALYSIS ------------------ 
 ***       
-2026-02-17 20:22:47 **  INFO: Version: v0.34.0-oscs 
+2026-02-18 01:54:09 **  INFO: Version: v0.34.0-oscs 
 ***       
-2026-02-17 20:22:47 **  INFO: Running Trivy analysis on /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_SCAN_AREA_20260217201952... 
+2026-02-18 01:54:09 **  INFO: Running Trivy analysis on /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_SCAN_AREA_20260218015113... 
 ***       
-2026-02-17 20:22:49 **  SUCCESS: Trivy analysis completed sucessfully. 
+2026-02-18 01:54:11 **  SUCCESS: Trivy analysis completed sucessfully. 
 ***       
-2026-02-17 20:22:49 **   
+2026-02-18 01:54:11 **   
 ***       
-2026-02-17 20:22:49 **   
+2026-02-18 01:54:11 **   
 ***       
-2026-02-17 20:22:49 **  -------------------- IF DOCKER, CLEAN UP ON OS FOLDERS ------------------ 
+2026-02-18 01:54:11 **  -------------------- IF DOCKER, CLEAN UP ON OS FOLDERS ------------------ 
 ***       
-2026-02-17 20:22:49 **  INFO: Scan area dir size 119 MB... 
+2026-02-18 01:54:11 **  INFO: Scan area dir size 119 MB... 
 ***       
-2026-02-17 20:22:49 **  SUCCESS: OS Folder clean up completed successfully. 
+2026-02-18 01:54:11 **  SUCCESS: OS Folder clean up completed successfully. 
 ***       
-2026-02-17 20:22:49 **  INFO: Scan area dir size 119 MB... 
+2026-02-18 01:54:11 **  INFO: Scan area dir size 119 MB... 
 ***       
-2026-02-17 20:22:49 **  INFO: Additional logs can be found in /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace//OSCS_20260217201952_LOGS/docker_sys_folder_remover.log 
+2026-02-18 01:54:11 **  INFO: Additional logs can be found in /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace//OSCS_20260218015113_LOGS/docker_sys_folder_remover.log 
 ***       
-2026-02-17 20:22:49 **   
+2026-02-18 01:54:11 **   
 ***       
-2026-02-17 20:22:49 **  ------------------------ THIRDPARTY ANALYSIS ----------------------- 
+2026-02-18 01:54:11 **  ------------------------ THIRDPARTY ANALYSIS ----------------------- 
 ***       
-2026-02-17 20:22:49 **  INFO: Starting OSCS Client Analysis... 
+2026-02-18 01:54:11 **  INFO: Starting OSCS Client Analysis... 
 ***       
-2026-02-17 20:22:54 **  SUCCESS: OSCS Client Analysis completed successfully. Client Json: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT/CSCORM_thirdparty.json 
+2026-02-18 01:54:16 **  SUCCESS: OSCS Client Analysis completed successfully. Client Json: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT/CSCORM_thirdparty.json 
 ***       
-2026-02-17 20:22:54 **  NOTE: To generate OSCS Summary Audit report, execute curl command on Oracle network :/usr/bin/curl --noproxy '*' --silent -X POST -H "Content-Type: application/json" -d@/scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT/CSCORM_thirdparty.json -o CSCORM.json "https://oscs.us.oracle.com/oscs/getthirdpartydetails?comp=CSCORM&compType=ORACLE_DATABASE&inputType=INSTALL&summaryJson=true" 
+2026-02-18 01:54:16 **  NOTE: To generate OSCS Summary Audit report, execute curl command on Oracle network :/usr/bin/curl --noproxy '*' --silent -X POST -H "Content-Type: application/json" -d@/scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT/CSCORM_thirdparty.json -o CSCORM.json "https://oscs.us.oracle.com/oscs/getthirdpartydetails?comp=CSCORM&compType=ORACLE_DATABASE&inputType=INSTALL&summaryJson=true" 
 ***       
-2026-02-17 20:22:54 **  NOTE: Alternatively, forward the client JSON file to OSCS Dev team(oscsdev_ww_grp@oracle.com) for further analysis. File Location : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT/CSCORM_thirdparty.json 
+2026-02-18 01:54:16 **  NOTE: Alternatively, forward the client JSON file to OSCS Dev team(oscsdev_ww_grp@oracle.com) for further analysis. File Location : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT/CSCORM_thirdparty.json 
 ***       
-2026-02-17 20:22:54 **   
+2026-02-18 01:54:16 **   
 ***       
-2026-02-17 20:22:54 **  -------------------- JAVASCRIPT ANALYSIS ---------------- 
+2026-02-18 01:54:16 **  -------------------- JAVASCRIPT ANALYSIS ---------------- 
 ***       
-2026-02-17 20:22:54 **  INFO: Starting OSCS JavaScript Client Analysis... 
+2026-02-18 01:54:16 **  INFO: Starting OSCS JavaScript Client Analysis... 
 ***       
-2026-02-17 20:22:59 **  SUCCESS: OSCS JavaScript Client Analysis completed successfully. JSON file generated : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT/CSCORM_JavaScript.json 
+2026-02-18 01:54:21 **  SUCCESS: OSCS JavaScript Client Analysis completed successfully. JSON file generated : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT/CSCORM_JavaScript.json 
 ***       
-2026-02-17 20:22:59 **  NOTE: To generate OSCS Audit report, execute curl command on Oracle network : /usr/bin/curl --noproxy '*' --silent -X POST -H "Content-Type: application/json" -d@/scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT/CSCORM_JavaScript.json -o  "https://oscs.us.oracle.com/oscs/getjsdetails?comp=CSCORM&compType=ORACLE_DATABASE&inputType=INSTALL&summaryJson=true" 
+2026-02-18 01:54:21 **  NOTE: To generate OSCS Audit report, execute curl command on Oracle network : /usr/bin/curl --noproxy '*' --silent -X POST -H "Content-Type: application/json" -d@/scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT/CSCORM_JavaScript.json -o  "https://oscs.us.oracle.com/oscs/getjsdetails?comp=CSCORM&compType=ORACLE_DATABASE&inputType=INSTALL&summaryJson=true" 
 ***       
-2026-02-17 20:22:59 **  Alternatively, forward the client JSON file to OSCS Dev team(oscsdev_ww_grp@oracle.com) for further analysis.File Location : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT/CSCORM_JavaScript.json 
+2026-02-18 01:54:21 **  Alternatively, forward the client JSON file to OSCS Dev team(oscsdev_ww_grp@oracle.com) for further analysis.File Location : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT/CSCORM_JavaScript.json 
 ***       
-2026-02-17 20:22:59 **   
+2026-02-18 01:54:21 **   
 ***       
-2026-02-17 20:22:59 **   
+2026-02-18 01:54:21 **   
 ***       
-2026-02-17 20:22:59 **  -------------------- DOTNET ANALYSIS ---------------- 
+2026-02-18 01:54:21 **  -------------------- DOTNET ANALYSIS ---------------- 
 ***       
-2026-02-17 20:22:59 **  INFO: Starting OSCS dotnet Client Analysis... 
+2026-02-18 01:54:21 **  INFO: Starting OSCS dotnet Client Analysis... 
 ***       
-2026-02-17 20:22:59 **  SUCCESS: OSCS dotnet Client Analysis completed successfully. JSON file generated : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT/CSCORM_dotnet.json 
+2026-02-18 01:54:21 **  SUCCESS: OSCS dotnet Client Analysis completed successfully. JSON file generated : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT/CSCORM_dotnet.json 
 ***       
-2026-02-17 20:22:59 **  No .Net files are available for server analysis. 
+2026-02-18 01:54:21 **  No .Net files are available for server analysis. 
 ***       
-2026-02-17 20:22:59 **   
+2026-02-18 01:54:21 **   
 ***       
-2026-02-17 20:22:59 **   
+2026-02-18 01:54:21 **   
 ***       
-2026-02-17 20:22:59 **  -------------------- ruby ANALYSIS ---------------- 
+2026-02-18 01:54:21 **  -------------------- ruby ANALYSIS ---------------- 
 ***       
-2026-02-17 20:22:59 **  INFO: Starting OSCS ruby Client Analysis... 
+2026-02-18 01:54:21 **  INFO: Starting OSCS ruby Client Analysis... 
 ***       
-2026-02-17 20:23:00 **  SUCCESS: OSCS ruby Client Analysis completed successfully. JSON file generated : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT/CSCORM_ruby.json 
+2026-02-18 01:54:22 **  SUCCESS: OSCS ruby Client Analysis completed successfully. JSON file generated : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT/CSCORM_ruby.json 
 ***       
-2026-02-17 20:23:00 **  No ruby files are available for server analysis. 
+2026-02-18 01:54:22 **  No ruby files are available for server analysis. 
 ***       
-2026-02-17 20:23:00 **   
+2026-02-18 01:54:22 **   
 ***       
-2026-02-17 20:23:00 **   
+2026-02-18 01:54:22 **   
 ***       
-2026-02-17 20:23:00 **  -------------------- PYTHON ANALYSIS ---------------- 
+2026-02-18 01:54:22 **  -------------------- PYTHON ANALYSIS ---------------- 
 ***       
-2026-02-17 20:23:00 **  INFO: Starting OSCS Python Client Analysis... 
+2026-02-18 01:54:22 **  INFO: Starting OSCS Python Client Analysis... 
 ***       
-2026-02-17 20:23:00 **  SUCCESS: OSCS Python Client Analysis completed successfully. JSON file generated : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT/CSCORM_PythonReq.json 
+2026-02-18 01:54:23 **  SUCCESS: OSCS Python Client Analysis completed successfully. JSON file generated : /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT/CSCORM_PythonReq.json 
 ***       
-2026-02-17 20:23:00 **  -------------------- PYTHON ANALYSIS CONSOLIDATED REPORT (MERGE) ---------------- 
+2026-02-18 01:54:23 **  -------------------- PYTHON ANALYSIS CONSOLIDATED REPORT (MERGE) ---------------- 
 ***       
-2026-02-17 20:23:00 **  No python files are available for server analysis. 
+2026-02-18 01:54:23 **  No python files are available for server analysis. 
 ***       
-2026-02-17 20:23:00 **   
+2026-02-18 01:54:23 **   
 ***       
-2026-02-17 20:23:00 **  --------------------- MALWARE SCAN ---------------------- 
+2026-02-18 01:54:23 **  --------------------- MALWARE SCAN ---------------------- 
 ***       
-2026-02-17 20:23:01 **  INFO: Running McAfee antivirus. This may take a few minutes/hours depending on size of SCAN area... 
+2026-02-18 01:54:23 **  INFO: Running McAfee antivirus. This may take a few minutes/hours depending on size of SCAN area... 
 ***       
-2026-02-17 20:28:22 **  SUCCESS: McAfee Scan completed successfully. 
+2026-02-18 01:59:50 **  SUCCESS: McAfee Scan completed successfully. 
 ***       
-2026-02-17 20:28:22 **   
+2026-02-18 01:59:50 **   
 ***       
-2026-02-17 20:28:22 **  ------------------ OSCS Audit Summary ----------------- 
+2026-02-18 01:59:50 **  ------------------ OSCS Audit Summary ----------------- 
 ***       
-2026-02-17 20:28:22 **  Time: Tue Feb 17 20:28:22 IST 2026 
+2026-02-18 01:59:50 **  Time: Wed Feb 18 01:59:50 IST 2026 
 ***       
-2026-02-17 20:28:22 **  Generate OSCS Audit reports manually as mentioned above. 
+2026-02-18 01:59:50 **  Generate OSCS Audit reports manually as mentioned above. 
 ***       
-2026-02-17 20:28:22 **  OSCS audit reports: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT 
+2026-02-18 01:59:50 **  OSCS audit reports: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT 
 ***       
-2026-02-17 20:28:22 **  Client JSON: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260217201952_OUTPUT/CSCORM_thirdparty.json 
+2026-02-18 01:59:50 **  Client JSON: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace/OSCS_20260218015113_OUTPUT/CSCORM_thirdparty.json 
 ***       
-2026-02-17 20:28:22 **  Logs: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace//OSCS_20260217201952_LOGS 
+2026-02-18 01:59:50 **  Logs: /scratch/softwares_2/ORM_25.3_workspace/OSCS/oscs_client/workspace//OSCS_20260218015113_LOGS 
 ***       
-2026-02-17 20:28:22 **  -------------------------------------------------- 
+2026-02-18 01:59:50 **  -------------------------------------------------- 
 ***       
-2026-02-17 20:28:22 **   
+2026-02-18 01:59:50 **   
 Copying OSCS output...
 Copying OSCS output...
 Running Sonar Analysis...
@@ -215,34 +215,34 @@ Running Sonar Analysis...
 [INFO] SonarQube version: 9.9.1.69595
 [INFO] Default locale: "en_US", source code encoding: "UTF-8"
 [INFO] Load global settings
-[INFO] Load global settings (done) | time=154ms
+[INFO] Load global settings (done) | time=493ms
 [INFO] Server id: BAFB8C7B-AZsmV74ZAPOT99R36qWu
 [INFO] User cache: /home/skomkar/.sonar/cache
 [INFO] Load/download plugins
 [INFO] Load plugins index
-[INFO] Load plugins index (done) | time=41ms
+[INFO] Load plugins index (done) | time=40ms
 [INFO] Load/download plugins (done) | time=175ms
 [INFO] Process project properties
-[INFO] Process project properties (done) | time=7ms
+[INFO] Process project properties (done) | time=8ms
 [INFO] Execute project builders
 [INFO] Execute project builders (done) | time=1ms
 [INFO] Project key: PSD.JAPAC.CSC.FO.MY.DEBTORS.25.3
 [INFO] Base dir: /scratch/oci_jenkins_home/workspace/BNPP/ORM/BNPP_CSC_ORM_25.3_ST_JOBS/BNPP_CSC_ORM_25.3_ST_Build_Job/cscorm-server
 [INFO] Working dir: /scratch/oci_jenkins_home/workspace/BNPP/ORM/BNPP_CSC_ORM_25.3_ST_JOBS/BNPP_CSC_ORM_25.3_ST_Build_Job/cscorm-server/target/sonar
 [INFO] Load project settings for component key: 'PSD.JAPAC.CSC.FO.MY.DEBTORS.25.3'
-[INFO] Load project settings for component key: 'PSD.JAPAC.CSC.FO.MY.DEBTORS.25.3' (done) | time=44ms
+[INFO] Load project settings for component key: 'PSD.JAPAC.CSC.FO.MY.DEBTORS.25.3' (done) | time=115ms
 [INFO] Load project branches
 [INFO] Load project branches (done) | time=10ms
 [INFO] Load branch configuration
 [INFO] Load branch configuration (done) | time=3ms
 [INFO] Load quality profiles
-[INFO] Load quality profiles (done) | time=2271ms
+[INFO] Load quality profiles (done) | time=5017ms
 [INFO] Load active rules
-[INFO] Load active rules (done) | time=3165ms
+[INFO] Load active rules (done) | time=6784ms
 [INFO] Load analysis cache
-[INFO] Load analysis cache | time=17ms
+[INFO] Load analysis cache | time=39ms
 [INFO] Load project repositories
-[INFO] Load project repositories (done) | time=32ms
+[INFO] Load project repositories (done) | time=33ms
 Testing extension file :
 [INFO] Indexing files...
 [INFO] Project configuration:
@@ -252,8 +252,8 @@ Testing extension file :
 [INFO] Quality profile for xml: Sonar way
 [INFO] ------------- Run sensors on module cscorm-server
 [INFO] Load metrics repository
-[INFO] Load metrics repository (done) | time=12ms
-Feb 17, 2026 8:28:33 PM oracle.apps.ta.util.taxonomy.client.TaxonomyApiClient getOrgService
+[INFO] Load metrics repository (done) | time=14ms
+Feb 18, 2026 2:00:08 AM oracle.apps.ta.util.taxonomy.client.TaxonomyApiClient getOrgService
 INFO: target.Uri=https://apex.oraclecorp.com/pls/apex/fretoolsprod/taxonomy/org/services
 [INFO] Enabling ojaudit sensor for java and jsp languages
 [INFO] Enabling ojaudit sensor for java and jsp languages
@@ -262,7 +262,7 @@ INFO: target.Uri=https://apex.oraclecorp.com/pls/apex/fretoolsprod/taxonomy/org/
 [INFO] JavaClasspath initialization
 [INFO] JavaClasspath initialization (done) | time=11ms
 [INFO] JavaTestClasspath initialization
-[INFO] JavaTestClasspath initialization (done) | time=4ms
+[INFO] JavaTestClasspath initialization (done) | time=6ms
 [INFO] Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
 [INFO] Using ECJ batch to parse 746 Main java source files with batch size 500 KB.
 [INFO] Starting batch processing.
@@ -279,28 +279,28 @@ INFO: target.Uri=https://apex.oraclecorp.com/pls/apex/fretoolsprod/taxonomy/org/
 [INFO] Did not optimize analysis for any files, performed a full analysis for all 29 files.
 [WARNING] Use of preview features have been detected during analysis. Enable DEBUG mode to see them.
 [INFO] No "Generated" source files to scan.
-[INFO] Sensor JavaSensor [java] (done) | time=20491ms
+[INFO] Sensor JavaSensor [java] (done) | time=22876ms
 [INFO] Sensor C# Project Type Information [csharp]
-[INFO] Sensor C# Project Type Information [csharp] (done) | time=1ms
+[INFO] Sensor C# Project Type Information [csharp] (done) | time=2ms
 [INFO] Sensor C# Analysis Log [csharp]
-[INFO] Sensor C# Analysis Log [csharp] (done) | time=10ms
+[INFO] Sensor C# Analysis Log [csharp] (done) | time=11ms
 [INFO] Sensor C# Properties [csharp]
 [INFO] Sensor C# Properties [csharp] (done) | time=1ms
 [INFO] Sensor SurefireSensor [java]
 [INFO] parsing [/scratch/oci_jenkins_home/workspace/BNPP/ORM/BNPP_CSC_ORM_25.3_ST_JOBS/BNPP_CSC_ORM_25.3_ST_Build_Job/cscorm-server/target/surefire-reports]
-[INFO] Sensor SurefireSensor [java] (done) | time=1ms
+[INFO] Sensor SurefireSensor [java] (done) | time=4ms
 [INFO] Sensor Text Sensor [tajson]
 [INFO] 0 source files to be analyzed
 [INFO] 0/0 source files have been analyzed
-[INFO] Sensor Text Sensor [tajson] (done) | time=7ms
+[INFO] Sensor Text Sensor [tajson] (done) | time=8ms
 [INFO] Sensor XML Sensor [xml]
 [INFO] 1 source file to be analyzed
 [INFO] 1/1 source file has been analyzed
-[INFO] Sensor XML Sensor [xml] (done) | time=178ms
+[INFO] Sensor XML Sensor [xml] (done) | time=210ms
 [INFO] Sensor TextAndSecretsSensor [text]
 [INFO] 776 source files to be analyzed
 [INFO] 776/776 source files have been analyzed
-[INFO] Sensor TextAndSecretsSensor [text] (done) | time=856ms
+[INFO] Sensor TextAndSecretsSensor [text] (done) | time=838ms
 [INFO] Sensor com.github.mc1arke.sonarqube.plugin.scanner.ScannerPullRequestPropertySensor
 [INFO] Sensor com.github.mc1arke.sonarqube.plugin.scanner.ScannerPullRequestPropertySensor (done) | time=1ms
 [INFO] Sensor Ojaudit Sensor [ojaudit]
@@ -309,11 +309,11 @@ INFO: target.Uri=https://apex.oraclecorp.com/pls/apex/fretoolsprod/taxonomy/org/
 [INFO] Sensor Ojaudit Sensor [ojaudit] (done) | time=1ms
 [INFO] Sensor CSS Rules [javascript]
 [INFO] No CSS, PHP, HTML or VueJS files are found in the project. CSS analysis is skipped.
-[INFO] Sensor CSS Rules [javascript] (done) | time=3ms
+[INFO] Sensor CSS Rules [javascript] (done) | time=2ms
 [INFO] Sensor Text Sensor [tajson]
 [INFO] 0 source files to be analyzed
 [INFO] 0/0 source files have been analyzed
-[INFO] Sensor Text Sensor [tajson] (done) | time=7ms
+[INFO] Sensor Text Sensor [tajson] (done) | time=6ms
 [INFO] Sensor FindBugs Sensor [oraclefindbugs]
 [INFO] Loading findbugs plugin: /home/skomkar/.sonar/cache/da9b0a7f2628fac4389f458bdebf9e40/sonar-oraclefindbugs-plugin.jar_unzip/META-INF/lib/oracle-findbugs-rules-5.0.0.0.1.jar
 [INFO] Loading findbugs plugin: /scratch/oci_jenkins_home/workspace/BNPP/ORM/BNPP_CSC_ORM_25.3_ST_JOBS/BNPP_CSC_ORM_25.3_ST_Build_Job/cscorm-server/target/sonar/findbugs/findsecbugs-plugin.jar
@@ -343,11 +343,11 @@ The following classes needed for analysis were missing:
   test
   get
 
-[INFO] Sensor FindBugs Sensor [oraclefindbugs] (done) | time=32827ms
+[INFO] Sensor FindBugs Sensor [oraclefindbugs] (done) | time=33619ms
 [INFO] Sensor HTML [web]
 [INFO] Sensor HTML [web] (done) | time=4ms
 [INFO] Sensor VB.NET Project Type Information [vbnet]
-[INFO] Sensor VB.NET Project Type Information [vbnet] (done) | time=2ms
+[INFO] Sensor VB.NET Project Type Information [vbnet] (done) | time=1ms
 [INFO] Sensor VB.NET Analysis Log [vbnet]
 [INFO] Sensor VB.NET Analysis Log [vbnet] (done) | time=11ms
 [INFO] Sensor VB.NET Properties [vbnet]
@@ -357,15 +357,15 @@ No active rules for Xml scan
 Number of files to be analyzed by Xml plugin : 1
 [INFO] There are no tas XPATH rules active
 Xml Sensor:end of analyse
-Total time taken for Xml sensor execution in milli seconds is : 2
-[INFO] Sensor Oracle XML DuplicateMessageCheck Sensor [oraclexml] (done) | time=2ms
+Total time taken for Xml sensor execution in milli seconds is : 1
+[INFO] Sensor Oracle XML DuplicateMessageCheck Sensor [oraclexml] (done) | time=1ms
 [INFO] Sensor JaCoCo XML Report Importer [jacoco]
 [INFO] 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
 [INFO] No report imported, no coverage information will be imported by JaCoCo XML Report Importer
 [INFO] Sensor JaCoCo XML Report Importer [jacoco] (done) | time=3ms
 [INFO] Sensor GSCC Sensor [gscc]
 [INFO] GSCC : GSCC has not been enabled for the project.
-[INFO] Sensor GSCC Sensor [gscc] (done) | time=25ms
+[INFO] Sensor GSCC Sensor [gscc] (done) | time=23ms
 [INFO] Sensor IaC Docker Sensor [iac]
 [INFO] 0 source files to be analyzed
 [INFO] 0/0 source files have been analyzed
@@ -374,26 +374,26 @@ Total time taken for Xml sensor execution in milli seconds is : 2
 [INFO] Sensor Analysis Warnings import [csharp]
 [INFO] Sensor Analysis Warnings import [csharp] (done) | time=1ms
 [INFO] Sensor Zero Coverage Sensor
-[INFO] Sensor Zero Coverage Sensor (done) | time=125ms
+[INFO] Sensor Zero Coverage Sensor (done) | time=121ms
 [INFO] Sensor Java CPD Block Indexer
-[INFO] Sensor Java CPD Block Indexer (done) | time=436ms
+[INFO] Sensor Java CPD Block Indexer (done) | time=422ms
 [INFO] CPD Executor 302 files had no CPD blocks
 [INFO] CPD Executor Calculating CPD for 444 files
-[INFO] CPD Executor CPD calculation finished (done) | time=177ms
+[INFO] CPD Executor CPD calculation finished (done) | time=164ms
 [INFO] Load New Code definition
-[INFO] Load New Code definition (done) | time=16ms
-[INFO] Analysis report generated in 320ms, dir size=5.7 MB
-[INFO] Analysis report compressed in 2210ms, zip size=2.6 MB
-[INFO] Analysis report uploaded in 132ms
+[INFO] Load New Code definition (done) | time=10ms
+[INFO] Analysis report generated in 310ms, dir size=5.7 MB
+[INFO] Analysis report compressed in 2208ms, zip size=2.6 MB
+[INFO] Analysis report uploaded in 1103ms
 [INFO] ANALYSIS SUCCESSFUL, you can find the results at: http://100.76.172.28:19030/dashboard?id=PSD.JAPAC.CSC.FO.MY.DEBTORS.25.3
 [INFO] Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
-[INFO] More about the report processing at http://100.76.172.28:19030/api/ce/task?id=AZxsHSE-95bJUnCToiTz
-[INFO] Analysis total time: 1:09.570 s
+[INFO] More about the report processing at http://100.76.172.28:19030/api/ce/task?id=AZxtTMC595bJUnCToiT4
+[INFO] Analysis total time: 1:20.278 s
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:11 min
-[INFO] Finished at: 2026-02-17T20:29:34+05:30
+[INFO] Total time:  01:22 min
+[INFO] Finished at: 2026-02-18T02:01:14+05:30
 [INFO] ------------------------------------------------------------------------
 ===============================================
 ===============================================
@@ -419,6 +419,6 @@ Total time taken for Xml sensor execution in milli seconds is : 2
 ===============================================
 Generating automation completion marker...
 Generating automation completion marker...
-FINISH_TIME: Tue Feb 17 20:29:34 IST 2026
+FINISH_TIME: Wed Feb 18 02:01:14 IST 2026
 
 Downloading reports...

@@ -4,12 +4,39 @@ param(
     [string]$TargetRelease,
     [string]$OutputFolder,
     [string]$JiraRef,
-    [string]$AppName
+    [string]$AppName,
+    [string]$AppVariant
 )
 
-if (-not $RepoPath -or -not $BaseRelease -or -not $TargetRelease -or -not $OutputFolder -or -not $JiraRef -or -not $AppName) {
+if ([string]::IsNullOrWhiteSpace($AppVariant)) {
+    $AppVariant = "DEV"
+}
+
+$AppVariant = $AppVariant.ToUpper()
+$AppVariant = $AppVariant -replace '[^A-Z0-9_]', ''
+
+
+# =================================================
+# STANDARD RELEASE STRUCTURE
+# =================================================
+
+$ProjectRoot = Split-Path $PSScriptRoot -Parent
+$BaseOutput = Join-Path $ProjectRoot "Report-output"
+
+$ReleaseRoot = Join-Path $BaseOutput "$($AppName)_$($AppVariant)\$TargetRelease"
+$ReportsRoot = Join-Path $ReleaseRoot "04_Reports"
+
+if (-not (Test-Path $ReportsRoot)) {
+    New-Item -ItemType Directory -Force -Path $ReportsRoot | Out-Null
+}
+
+
+Write-Host "Reports Root: $ReportsRoot" -ForegroundColor Cyan
+
+
+if (-not $RepoPath -or -not $BaseRelease -or -not $TargetRelease -or -not $JiraRef -or -not $AppName -or -not $AppVariant) {
     Write-Log "Missing required parameters." "ERROR"
-    Write-Error "All parameters must be passed from UI."
+    Write-Error "Required parameters missing."
     exit 1
 }
 
@@ -48,11 +75,6 @@ Write-Host ""
 
 Write-Log "Inputs | Repo=$RepoPath | Base=$BaseRelease | Target=$TargetRelease | App=$AppName | Jira=$JiraRef"
 
-if (-not $OutputFolder) {
-    Write-Log "Output folder not specified." "ERROR"
-    Write-Error "Output folder must be specified."
-    exit 1
-}
 
 # =================================================
 # VALIDATION: REPOSITORY
@@ -77,24 +99,31 @@ Write-Log "Validated git repository successfully"
 # =================================================
 # IDENTIFY RELEASE MARKER COMMITS
 # =================================================
-Write-Host "Locating release markers..." -ForegroundColor Yellow
-Write-Log "Searching for release marker commits"
+Write-Host "Locating release markers for Base: $BaseRelease and Target: $TargetRelease..." -ForegroundColor Yellow
 
+# This uses the exact logic from your 'Old' code which you verified works
 $BaseCommit = git log --oneline --grep="build.properties -> $BaseRelease" -n 1 |
 ForEach-Object { ($_ -split ' ')[0] }
 
 $TargetCommit = git log --oneline --grep="build.properties -> $TargetRelease" -n 1 |
 ForEach-Object { ($_ -split ' ')[0] }
 
+# DEBUG: Check if we actually found them
+if (-not $BaseCommit) { 
+    Write-Host "CRITICAL: Could not find commit for $BaseRelease" -ForegroundColor Red 
+}
+if (-not $TargetCommit) { 
+    Write-Host "CRITICAL: Could not find commit for $TargetRelease" -ForegroundColor Red 
+}
+
 if (-not $BaseCommit -or -not $TargetCommit) {
-    Write-Log "Release marker not found | Base=$BaseRelease | Target=$TargetRelease" "ERROR"
-    Write-Error "Base or Target release marker not found."
+    Write-Log "Base or Target release marker not found. Base: $BaseRelease ($BaseCommit), Target: $TargetRelease ($TargetCommit)" "ERROR"
+    Write-Error "Base or Target release marker not found in Git history."
     exit 1
 }
 
 Write-Host "Base Commit   : $BaseCommit"   -ForegroundColor Green
 Write-Host "Target Commit : $TargetCommit" -ForegroundColor Green
-Write-Log "Found release markers | BaseCommit=$BaseCommit | TargetCommit=$TargetCommit"
 
 # =================================================
 # DEPLOYMENT SECTIONS
@@ -150,6 +179,7 @@ Write-Log "Extracting commits between $BaseCommit and $TargetCommit"
 $CommitLines = git log --ancestry-path "$BaseCommit^..$TargetCommit" `
     --pretty=format:"%h|%an|%ad|%s" `
     --date=format:"%d-%b-%Y"
+
 
 # =================================================
 # BUILD OUTPUT
@@ -212,18 +242,30 @@ $FinalJson = @{
 # =================================================
 # WRITE OUTPUT FILES
 # =================================================
-if (-not (Test-Path $OutputFolder)) {
-    New-Item -ItemType Directory -Path $OutputFolder | Out-Null
-    Write-Log "Created output folder: $OutputFolder"
-}
 
-$TxtFile = Join-Path $OutputFolder "$JiraRef`_$AppName`_DeploymentDetails.txt"
-$JsonFile = Join-Path $OutputFolder "$JiraRef`_$AppName`_DeploymentDetails.json"
+$TxtFile = Join-Path $ReportsRoot "$JiraRef`_$AppName`_DeploymentDetails.txt"
+$JsonFile = Join-Path $ReportsRoot "$JiraRef`_$AppName`_DeploymentDetails.json"
 
 Set-Content -Path $TxtFile  -Value $TxtOutput -Encoding UTF8
-$FinalJson | ConvertTo-Json -Depth 6 | Out-File -FilePath $JsonFile -Encoding utf8NoBOM
+$FinalJson | ConvertTo-Json -Depth 6 | Out-File -FilePath $JsonFile -Encoding utf8
 
 Write-Log "Generated output files | TXT=$TxtFile | JSON=$JsonFile"
+
+# =================================================
+# COPY JSON TO REPORT GENERATOR FOLDER
+# =================================================
+
+$JsonCopyFolder = Join-Path $ProjectRoot "python\release-report-generator\json_files"
+
+if (-not (Test-Path $JsonCopyFolder)) {
+    New-Item -ItemType Directory -Force -Path $JsonCopyFolder | Out-Null
+}
+
+Copy-Item -Path $JsonFile -Destination $JsonCopyFolder -Force
+Copy-Item -Path $TxtFile -Destination $JsonCopyFolder -Force
+
+Write-Host "Copied JSON to: $JsonCopyFolder" -ForegroundColor Yellow
+Write-Log "Copied JSON to $JsonCopyFolder"
 
 # =================================================
 # DONE
@@ -231,6 +273,7 @@ Write-Log "Generated output files | TXT=$TxtFile | JSON=$JsonFile"
 Write-Host ""
 Write-Host "==============================================" -ForegroundColor Green
 Write-Host " Release Deployment Details Generated" -ForegroundColor Green
+Write-Output "RELEASE_ROOT=$ReleaseRoot"
 Write-Host " TXT  : $TxtFile"
 Write-Host " JSON : $JsonFile"
 Write-Host "==============================================" -ForegroundColor Green

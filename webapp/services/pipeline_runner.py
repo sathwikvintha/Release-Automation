@@ -16,6 +16,11 @@ def safe(value):
 
 def run_step(step_name, inputs=None):
 
+    base_release = safe(inputs.get("baseRelease"))
+    target_release = safe(inputs.get("targetRelease"))
+    output_folder = f".\\release_{target_release}"
+
+
     if inputs is None:
         inputs = {}
 
@@ -46,11 +51,11 @@ def run_step(step_name, inputs=None):
     # =========================================================
     elif step_name == "incrementals":
 
-        target_version = safe(inputs.get("TargetVersion"))
+        target_release = safe(inputs.get("TargetVersion"))
         output_folder = inputs.get("OutputFolder")
 
         if not output_folder:
-            output_folder = f".\\release_{target_version}"
+            output_folder = f".\\release_{target_release}"
 
         command = [
             "powershell",
@@ -59,8 +64,8 @@ def run_step(step_name, inputs=None):
             "-Step", "incrementals",
             "-RepoPath", safe(inputs.get("RepoPath")),
             "-AppName", safe(inputs.get("AppName")),
-            "-BaseVersion", safe(inputs.get("BaseVersion")),
-            "-TargetVersion", target_version,
+            "-BaseRelease", safe(inputs.get("BaseVersion")),
+            "-TargetRelease", target_release,
             "-OutputFolder", output_folder,
             "-JiraRef", safe(inputs.get("JiraRef")),
         ]
@@ -70,11 +75,10 @@ def run_step(step_name, inputs=None):
     # =========================================================
     elif step_name == "commit":
 
-        target_version = safe(inputs.get("targetRelease"))
         output_folder = inputs.get("OutputFolder")
 
         if not output_folder:
-            output_folder = f".\\release_{target_version}"
+            output_folder = f".\\release_{target_release}"
 
         command = [
             "powershell",
@@ -82,11 +86,14 @@ def run_step(step_name, inputs=None):
             "-File", BASE_SCRIPT,
             "-Step", "commit",
             "-RepoPath", safe(inputs.get("repoPath")),
-            "-BaseVersion", safe(inputs.get("baseRelease")),
-            "-TargetVersion", target_version,
+            "-BaseRelease", safe(inputs.get("baseRelease")),
+            "-TargetRelease", safe(inputs.get("targetRelease")),
             "-OutputFolder", output_folder,
+            "-JiraRef", safe(inputs.get("jiraRef")),
             "-AppName", safe(inputs.get("appName")),
+            "-AppVariant", safe(inputs.get("appVariant")),
         ]
+
 
     # =========================================================
     # RELEASE REPORT
@@ -96,13 +103,14 @@ def run_step(step_name, inputs=None):
         command = [
             "python",
             os.path.join(BASE_DIR, "python", "release-report-generator", "generate_release_doc.py"),
-            safe(inputs.get("jsonFile")),
-            safe(inputs.get("title")),
-            safe(inputs.get("release")),
-            safe(inputs.get("subtitle")),
-            safe(inputs.get("versionNumber")),
-            safe(inputs.get("versionDate")),
+            "--json", safe(inputs.get("jsonFile")),
+            "--title", safe(inputs.get("title")),
+            "--release", safe(inputs.get("release")),
+            "--subtitle", safe(inputs.get("subtitle")),
+            "--version", safe(inputs.get("versionNumber")),
+            "--date", safe(inputs.get("versionDate")),
         ]
+
 
     # =========================================================
     # ZIP + PGP

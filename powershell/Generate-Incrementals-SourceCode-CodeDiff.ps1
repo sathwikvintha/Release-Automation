@@ -1,22 +1,58 @@
 param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$RepoPath,
 
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$BaseRelease,
 
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$TargetRelease,
 
-    [Parameter(Mandatory=$true)]
-    [string]$OutputFolder,
+    [Parameter(Mandatory = $true)]
+    [string]$OutputFolder,  
 
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$JiraRef,
 
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$AppName
 )
+# =================================================
+# STANDARDIZED RELEASE OUTPUT STRUCTURE
+# =================================================
+
+$ProjectRoot = Split-Path $PSScriptRoot -Parent
+$BaseOutput = Join-Path $ProjectRoot "Report-output"
+
+# Treat OutputFolder as optional label — clean any path sent by backend
+$OptionalLabel = $OutputFolder
+
+# Remove slashes, dots, and "release_" prefix if backend sends path
+if (-not [string]::IsNullOrWhiteSpace($OptionalLabel)) {
+
+    $OptionalLabel = Split-Path $OptionalLabel -Leaf
+    $OptionalLabel = $OptionalLabel -replace '^release_', ''
+    $OptionalLabel = $OptionalLabel -replace '[^a-zA-Z0-9._-]', ''
+
+    if ($OptionalLabel -eq $TargetRelease) {
+        $OptionalLabel = ""
+    }
+}
+
+if ([string]::IsNullOrWhiteSpace($OptionalLabel)) {
+    $ReleaseName = $TargetRelease
+}
+else {
+    $ReleaseName = "$TargetRelease`_$OptionalLabel"
+}
+
+$ReleaseRoot = Join-Path $BaseOutput "$AppName\$ReleaseName"
+$IncrementalsRoot = Join-Path $ReleaseRoot "02_Incrementals"
+
+# Create structure safely
+New-Item -ItemType Directory -Force -Path $IncrementalsRoot | Out-Null
+
+Write-Host "Release Root: $ReleaseRoot" -ForegroundColor Cyan
 Write-Host "DEBUG Incrementals OutputFolder: $OutputFolder" -ForegroundColor Green
 
 # =================================================
@@ -67,20 +103,16 @@ if (-not $diff) {
 # =================================================
 # PREPARE OUTPUT STRUCTURE
 # =================================================
-if (-not (Test-Path $OutputFolder)) {
-    New-Item -ItemType Directory -Path $OutputFolder | Out-Null
-}
-
-$incrementalsFolder = Join-Path $OutputFolder ($JiraRef + "_Incrementals")
-
-if (-not (Test-Path $incrementalsFolder)) {
-    New-Item -ItemType Directory -Path $incrementalsFolder | Out-Null
-}
+$incrementalsFolder = Join-Path $IncrementalsRoot "Incrementals"
+New-Item -ItemType Directory -Force -Path $incrementalsFolder | Out-Null
 
 $outputFile = Join-Path $incrementalsFolder ($JiraRef + "_Incrementals.csv")
 
-$SourceExportPath = Join-Path $OutputFolder ($JiraRef + "_" + $AppName + "_SourceCode")
-$CodeDiffPath = Join-Path $OutputFolder ($JiraRef + "_" + $AppName + "_CodeDiff")
+$SourceExportPath = Join-Path $IncrementalsRoot "SourceCode"
+$CodeDiffPath = Join-Path $IncrementalsRoot "CodeDiff"
+
+New-Item -ItemType Directory -Force -Path $SourceExportPath | Out-Null
+New-Item -ItemType Directory -Force -Path $CodeDiffPath | Out-Null
 
 # =================================================
 # BUILD INCREMENTALS CSV
@@ -103,9 +135,9 @@ foreach ($line in $diff) {
     }
 
     $result += [PSCustomObject]@{
-        "S. NO." = $counter
-        "File Name" = $fileName
-        "Status" = $status
+        "S. NO."                   = $counter
+        "File Name"                = $fileName
+        "Status"                   = $status
         "JIRA / Release Reference" = $JiraRef
     }
 
@@ -159,6 +191,7 @@ git diff $BaseCommit $TargetCommit `
 Write-Host ""
 Write-Host "==============================================" -ForegroundColor Green
 Write-Host " Incrementals & CodeDiff Generated Successfully"
+Write-Output "RELEASE_ROOT=$ReleaseRoot"
 Write-Host " CSV  : $outputFile"
 Write-Host " DIFF : $diffFile"
 Write-Host "==============================================" -ForegroundColor Green

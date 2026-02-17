@@ -1,18 +1,28 @@
-DEBUG Received OutputFolder: C:\Users\Chathurya V\Desktop\model_release automation
+DEBUG Received OutputFolder: .\release_R26.0.0.1.2
 ======================================
    RELEASE AUTOMATION ENTRY POINT     
 ======================================
-Using Release Folder: C:\Users\Chathurya V\Desktop\model_release automation
+Using Release Folder: .\release_R26.0.0.1.2
 
 [STEP 3] Commit Summary
+Reports Root: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports
 ==============================================
   Release Deployment Document Generator
 ==============================================
 
-Locating release markers...
-C:\Users\Chathurya V\Desktop\release-automation-main\powershell\Generate-CommitSummary.ps1 : Base or Target release marker 
-not found.
-    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
-    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,Generate-CommitSummary.ps1
- 
-Commit Summary step failed.
+Locating release markers for Base: R26.0.0.1.1 and Target: R26.0.0.1.2...
+Base Commit   : d3dceae8
+Target Commit : 1deafdfb
+Extracting commits between releases...
+Copied JSON to: C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files
+
+==============================================
+ Release Deployment Details Generated
+RELEASE_ROOT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2
+ TXT  : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports\R26.0.10_ORM_DeploymentDetails.txt
+ JSON : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports\R26.0.10_ORM_DeploymentDetails.json
+==============================================
+Commit Summary completed successfully.
+======================================
+   RELEASE AUTOMATION COMPLETED      
+======================================

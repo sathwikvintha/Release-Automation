@@ -129,6 +129,7 @@ function submitCommit() {
         targetRelease: document.getElementById("targetRelease").value,
         jiraRef: document.getElementById("jiraRef").value,
         appName: document.getElementById("appName").value,
+        appVariant: document.getElementById("appVariant").value,
         OutputFolder: document.getElementById("commitOutputFolder").value
     });
 

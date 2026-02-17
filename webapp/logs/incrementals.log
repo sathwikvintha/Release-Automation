@@ -1,19 +1,21 @@
-DEBUG Received OutputFolder: C:\Users\Chathurya V\Desktop\model_release automation\incrementals
+DEBUG Received OutputFolder: .\release_R26.0.0.1.2
 ======================================
    RELEASE AUTOMATION ENTRY POINT     
 ======================================
-Using Release Folder: C:\Users\Chathurya V\Desktop\model_release automation\incrementals
+Using Release Folder: .\release_R26.0.0.1.2
 
 [STEP 2] Incrementals & CodeDiff
-DEBUG Incrementals OutputFolder: C:\Users\Chathurya V\Desktop\model_release automation\incrementals
+Release Root: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2
+DEBUG Incrementals OutputFolder: .\release_R26.0.0.1.2
 Locating release markers...
 Base Commit   : d3dceae8
-Target Commit : 13a4f4c8
+Target Commit : 1deafdfb
 
 ==============================================
  Incrementals & CodeDiff Generated Successfully
- CSV  : C:\Users\Chathurya V\Desktop\model_release automation\incrementals\R26.1.0.5_Incrementals\R26.1.0.5_Incrementals.csv
- DIFF : C:\Users\Chathurya V\Desktop\model_release automation\incrementals\R26.1.0.5_bnpp_fo_orm_CodeDiff\R26.1.0.5_bnpp_fo_orm_CodeDiff.diff
+RELEASE_ROOT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2
+ CSV  : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\02_Incrementals\Incrementals\12345678_Incrementals.csv
+ DIFF : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\02_Incrementals\CodeDiff\12345678_ORM_26_1_DEV_CodeDiff.diff
 ==============================================
 Incrementals step completed successfully.
 ======================================

@@ -1,0 +1,112 @@
+﻿diff --git a/cscorm-server/src/main/java/com/bnp/csc/orm/util/ValidateFileType.java b/cscorm-server/src/main/java/com/bnp/csc/orm/util/ValidateFileType.java
+index 8e30567b..dd362841 100644
+--- a/cscorm-server/src/main/java/com/bnp/csc/orm/util/ValidateFileType.java
++++ b/cscorm-server/src/main/java/com/bnp/csc/orm/util/ValidateFileType.java
+@@ -78,10 +78,7 @@ public class ValidateFileType {
+     }
+     
+     public static final int MAX_MAGIC_BYTES   = 16;
+-	
+-	// EICAR test string
+-    private static final String EICAR_STRING = "X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*";
+-	
++
+ 	/**
+ 	 * Check the File type as text/csv
+ 	 * 
+@@ -101,9 +98,6 @@ public class ValidateFileType {
+ 				log.debug("Document rejected due to invalid type --- {}", file.getResource().getFilename());
+ 				throw new ORMApplicationException("File Type Not Matched..");
+ 			}
+-			if (!validateCsv(file)) {
+-				throw new ORMApplicationException("Document rejected due to issues found during file validation in " + file.getResource().getFilename());				
+-			}
+ 		}
+ 	}
+ 	
+@@ -177,76 +171,6 @@ public class ValidateFileType {
+         return true;
+     }
+ 	
+-	private boolean validateCsv(MultipartFile file) throws IOException {
+-
+-	    try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
+-
+-	        String line;
+-	        int row = 0;
+-	        int expectedColumns = -1;
+-
+-	        while ((line = reader.readLine()) != null) {
+-	            row++;
+-
+-	            // 1∩╕Å Hard stop on binary / DoS attempts
+-	            if (line.indexOf('\0') >= 0 || line.length() > 10_000) {
+-	                return false;
+-	            }
+-
+-	            // 2∩╕Å Split CSV (simple & safe)
+-	            String[] fields = line.split(",", -1); // keep empty columns
+-
+-	            // 3∩╕Å Column count consistency check
+-	            if (expectedColumns == -1) {
+-	                expectedColumns = fields.length;
+-	            } else if (fields.length != expectedColumns) {
+-	                return false;
+-	            }
+-
+-	            // 4∩╕Å Field-level security checks
+-	            if(!fieldLevelSecuirtyChecks(fields)) return false;
+-	        }
+-
+-	        // 5∩╕Å Must contain at least one row
+-	        return row > 0;
+-	    }
+-	}
+-	
+-	private boolean fieldLevelSecuirtyChecks(String[] fields) {
+-		for (String field : fields) {
+-            String trimmed = field.trim();
+-
+-            // Formula injection (Excel / Sheets)
+-            if (!trimmed.isEmpty()) {
+-                char c = trimmed.charAt(0);
+-                if (c == '=' || c == '+' || c == '-' || c == '@') {
+-                    log.info("CSV formula injection detected: {}", trimmed);
+-                    return false;
+-                }
+-            }
+-
+-            // Normalize to catch hidden Unicode tricks
+-            String normalized = Normalizer.normalize(trimmed, Normalizer.Form.NFKC);
+-
+-            // Reject control / invisible Unicode chars
+-            for (int i = 0; i < normalized.length(); i++) {
+-                char ch = normalized.charAt(i);
+-                if (Character.isISOControl(ch) && ch != '\n' && ch != '\r' && ch != '\t') {
+-                    return false;
+-                }
+-            }
+-
+-            // EICAR malware test string
+-            if (normalized.contains(EICAR_STRING)) {
+-                log.error("EICAR test string detected");
+-                return false;
+-            }
+-        }
+-		return true;
+-	}
+-
+-	
+-    
+ 	/**
+ 	 * Valid file for max size
+ 	 * 
+diff --git a/cscorm-war/src/main/webapp/resources/build.properties b/cscorm-war/src/main/webapp/resources/build.properties
+index c8077f72..8807cd44 100644
+--- a/cscorm-war/src/main/webapp/resources/build.properties
++++ b/cscorm-war/src/main/webapp/resources/build.properties
+@@ -1 +1 @@
+-R26.0.0.1.1
+\ No newline at end of file
++R26.0.0.1.2
+\ No newline at end of file

@@ -11,11 +11,11 @@ Using Release Folder: .\release_R26.1.0.4
 Fetching Jenkins crumb...
 Triggering Angular Build...
 
-Monitoring Build Number: 37
+Monitoring Build Number: 39
 Build Completed with Status: SUCCESS
 Triggering Push Dist...
 
-Monitoring Build Number: 18
+Monitoring Build Number: 21
 Build Completed with Status: SUCCESS
 Jenkins Angular Pipeline Completed Successfully!
 Angular step completed successfully.
