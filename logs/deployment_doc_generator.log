@@ -31,3 +31,64 @@
 [2026-02-14 10:20:39] [INFO] Commit processing and classification completed
 [2026-02-14 10:20:39] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files\R26.0.10_ORM Build Properties_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files\R26.0.10_ORM Build Properties_DeploymentDetails.json
 [2026-02-14 10:20:39] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-17 17:21:05] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 17:21:05] [INFO] Inputs | Repo=C:\Codebases\bnpp_fo_orm_26.1_DEV | Base=R26.0.0.1.1 | Target=R26.1.0.5 | App=ORM | Jira=1234
+[2026-02-17 17:21:06] [INFO] Validated git repository successfully
+[2026-02-17 17:21:06] [INFO] Searching for release marker commits
+[2026-02-17 17:21:06] [ERROR] Release marker not found | Base=R26.0.0.1.1 | Target=R26.1.0.5
+[2026-02-17 17:22:53] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 17:22:53] [INFO] Inputs | Repo=C:\Codebases\bnpp_fo_orm_26.1_DEV | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM | Jira=1234
+[2026-02-17 17:22:53] [INFO] Validated git repository successfully
+[2026-02-17 17:22:53] [INFO] Searching for release marker commits
+[2026-02-17 17:22:54] [ERROR] Release marker not found | Base=R26.0.0.1.1 | Target=R26.0.0.1.2
+[2026-02-17 17:27:31] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 17:27:31] [INFO] Inputs | Repo=C:\Codebases\bnpp_fo_orm_ST | Base=R26.0.0.1.1 | Target=R26.1.0.5 | App=ORM | Jira=1234
+[2026-02-17 17:27:32] [INFO] Validated git repository successfully
+[2026-02-17 17:27:32] [INFO] Searching for release marker commits
+[2026-02-17 17:27:32] [INFO] Found release markers | BaseCommit=d3dceae8 | TargetCommit=13a4f4c8
+[2026-02-17 17:27:32] [INFO] Extracting commits between d3dceae8 and 13a4f4c8
+[2026-02-17 17:27:32] [INFO] Commit processing and classification completed
+[2026-02-17 17:27:33] [INFO] Generated output files | TXT=.\release_R26.1.0.5\1234_ORM_DeploymentDetails.txt | JSON=.\release_R26.1.0.5\1234_ORM_DeploymentDetails.json
+[2026-02-17 17:27:33] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-17 17:40:46] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 17:40:46] [INFO] Inputs | Repo=C:\Codebases\bnpp_fo_orm_ST | Base=R26.0.0.1.1 | Target=R26.1.0.5 | App=ORM | Jira=4321
+[2026-02-17 17:40:46] [INFO] Validated git repository successfully
+[2026-02-17 17:40:46] [INFO] Searching for release marker commits
+[2026-02-17 17:40:47] [INFO] Found release markers | BaseCommit=d3dceae8 | TargetCommit=13a4f4c8
+[2026-02-17 17:40:47] [INFO] Extracting commits between d3dceae8 and 13a4f4c8
+[2026-02-17 17:40:47] [INFO] Commit processing and classification completed
+[2026-02-17 17:40:47] [INFO] Generated output files | TXT=.\release_R26.1.0.5\4321_ORM_DeploymentDetails.txt | JSON=.\release_R26.1.0.5\4321_ORM_DeploymentDetails.json
+[2026-02-17 17:40:47] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-17 19:06:45] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 19:06:45] [INFO] Inputs | Repo=C:\Codebases\bnpp_csc_so_ST | Base=R25.3.0.1.2 | Target=R26.1.0.4 | App=BNPP_CSC_SO | Jira=R26.1.0.4
+[2026-02-17 19:06:45] [INFO] Validated git repository successfully
+[2026-02-17 19:06:45] [INFO] Searching for release marker commits
+[2026-02-17 19:06:46] [ERROR] Release marker not found | Base=R25.3.0.1.2 | Target=R26.1.0.4
+[2026-02-17 19:12:01] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 19:12:01] [INFO] Inputs | Repo=C:\Codebases\bnpp_fo_orm_ST | Base=R26.0.0.1.1 | Target=R26.1.0.5 | App=ORM | Jira=R26.1.0.5
+[2026-02-17 19:12:01] [INFO] Validated git repository successfully
+[2026-02-17 19:12:02] [INFO] Searching for release marker commits
+[2026-02-17 19:12:02] [INFO] Found release markers | BaseCommit=d3dceae8 | TargetCommit=13a4f4c8
+[2026-02-17 19:12:02] [INFO] Extracting commits between d3dceae8 and 13a4f4c8
+[2026-02-17 19:12:02] [INFO] Commit processing and classification completed
+[2026-02-17 19:12:02] [INFO] Generated output files | TXT=C:\Users\Chathurya V\Desktop\model_release automation\R26.1.0.5_ORM_DeploymentDetails.txt | JSON=C:\Users\Chathurya V\Desktop\model_release automation\R26.1.0.5_ORM_DeploymentDetails.json
+[2026-02-17 19:12:02] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-17 19:25:31] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 19:25:31] [INFO] Inputs | Repo=C:\Codebases\bnpp_fo_orm_ST | Base=R26.1.0.4 | Target=R26.0.0.1.1 | App=ORM | Jira=R26.0.0.1.1
+[2026-02-17 19:25:31] [INFO] Validated git repository successfully
+[2026-02-17 19:25:31] [INFO] Searching for release marker commits
+[2026-02-17 19:25:31] [INFO] Found release markers | BaseCommit=7685ce40 | TargetCommit=d3dceae8
+[2026-02-17 19:25:31] [INFO] Extracting commits between 7685ce40 and d3dceae8
+[2026-02-17 19:25:32] [INFO] Commit processing and classification completed
+[2026-02-17 19:25:32] [INFO] Generated output files | TXT=C:\Users\Chathurya V\Desktop\model_release automation\R26.0.0.1.1_ORM_DeploymentDetails.txt | JSON=C:\Users\Chathurya V\Desktop\model_release automation\R26.0.0.1.1_ORM_DeploymentDetails.json
+[2026-02-17 19:25:32] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-17 19:31:53] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 19:31:53] [INFO] Inputs | Repo=C:\Codebases\bnpp_csc_so_ST | Base=R26.1.0.8 | Target=R26.1.0.13 | App=SO | Jira=R26.1.0.13
+[2026-02-17 19:31:53] [INFO] Validated git repository successfully
+[2026-02-17 19:31:53] [INFO] Searching for release marker commits
+[2026-02-17 19:31:54] [ERROR] Release marker not found | Base=R26.1.0.8 | Target=R26.1.0.13
+[2026-02-17 19:32:42] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-17 19:32:42] [INFO] Inputs | Repo=C:\Codebases\bnpp_csc_so_ST | Base=R26.1.0.8 | Target=R26.1.0.13 | App=SO | Jira=R26.1.0.13
+[2026-02-17 19:32:42] [INFO] Validated git repository successfully
+[2026-02-17 19:32:42] [INFO] Searching for release marker commits
+[2026-02-17 19:32:42] [ERROR] Release marker not found | Base=R26.1.0.8 | Target=R26.1.0.13

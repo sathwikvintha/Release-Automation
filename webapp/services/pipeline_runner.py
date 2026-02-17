@@ -22,7 +22,6 @@ def run_step(step_name, inputs=None):
     update_step_status(step_name, "RUNNING")
 
     log_file = os.path.join(LOG_DIR, f"{step_name}.log")
-
     command = []
 
     # =========================================================
@@ -47,13 +46,7 @@ def run_step(step_name, inputs=None):
     # =========================================================
     elif step_name == "incrementals":
 
-        repo_path = safe(inputs.get("RepoPath"))
-        app_name = safe(inputs.get("AppName"))
-        base_version = safe(inputs.get("BaseVersion"))
         target_version = safe(inputs.get("TargetVersion"))
-        jira_ref = safe(inputs.get("JiraRef"))
-
-        # SAFE Output Folder Handling
         output_folder = inputs.get("OutputFolder")
 
         if not output_folder:
@@ -64,37 +57,34 @@ def run_step(step_name, inputs=None):
             "-ExecutionPolicy", "Bypass",
             "-File", BASE_SCRIPT,
             "-Step", "incrementals",
-            "-RepoPath", repo_path,
-            "-AppName", app_name,
-            "-BaseVersion", base_version,
+            "-RepoPath", safe(inputs.get("RepoPath")),
+            "-AppName", safe(inputs.get("AppName")),
+            "-BaseVersion", safe(inputs.get("BaseVersion")),
             "-TargetVersion", target_version,
             "-OutputFolder", output_folder,
-            "-JiraRef", jira_ref,
+            "-JiraRef", safe(inputs.get("JiraRef")),
         ]
-        print("DEBUG INPUTS:", inputs)
-        print("DEBUG OutputFolder:", inputs.get("OutputFolder"))
-
 
     # =========================================================
     # COMMIT SUMMARY
     # =========================================================
     elif step_name == "commit":
 
+        target_version = safe(inputs.get("targetRelease"))
         output_folder = inputs.get("OutputFolder")
 
         if not output_folder:
-            target_version = safe(inputs.get("targetRelease"))
             output_folder = f".\\release_{target_version}"
 
         command = [
             "powershell",
             "-ExecutionPolicy", "Bypass",
-            "-File", os.path.join(BASE_DIR, "powershell", "Generate-CommitSummary.ps1"),
+            "-File", BASE_SCRIPT,
+            "-Step", "commit",
             "-RepoPath", safe(inputs.get("repoPath")),
-            "-BaseRelease", safe(inputs.get("baseRelease")),
-            "-TargetRelease", safe(inputs.get("targetRelease")),
+            "-BaseVersion", safe(inputs.get("baseRelease")),
+            "-TargetVersion", target_version,
             "-OutputFolder", output_folder,
-            "-JiraRef", safe(inputs.get("jiraRef")),
             "-AppName", safe(inputs.get("appName")),
         ]
 
@@ -178,6 +168,116 @@ def run_step(step_name, inputs=None):
         ]
 
     # =========================================================
+    # SECURITY 
+    # =========================================================
+    elif step_name == "security":
+
+        import paramiko
+        from scp import SCPClient
+
+        host = "100.76.144.249"
+        username = safe(inputs.get("username"))
+        password = safe(inputs.get("password"))
+        app = safe(inputs.get("RemoteAppName"))
+        release = safe(inputs.get("RemoteReleaseVersion"))
+
+        remote_report_path = f"/scratch/softwares_2/Reports-ALL/{release}/{app}"
+        local_report_path = os.path.join(BASE_DIR, "Report-output", "Sonar_OSCS_Malware_Reports")
+
+        os.makedirs(local_report_path, exist_ok=True)
+
+        remote_command = f"/scratch/softwares_2/run_oscs_sonar_generic.sh {app} {release}"
+
+        with open(log_file, "w", encoding="utf-8") as log:
+            try:
+                log.write("Connecting to server...\n")
+                log.flush()
+
+                client = paramiko.SSHClient()
+                client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                client.connect(hostname=host, username=username, password=password)
+
+                log.write("Connected successfully.\n")
+                log.flush()
+
+                stdin, stdout, stderr = client.exec_command(remote_command, get_pty=True)
+
+                for line in iter(stdout.readline, ""):
+                    log.write(line)
+                    log.flush()
+
+                log.write("\nDownloading reports...\n")
+                log.flush()
+
+                scp = SCPClient(client.get_transport())
+                scp.get(remote_report_path, local_path=local_report_path, recursive=True)
+
+                scp.close()
+                client.close()
+
+                update_step_status(step_name, "SUCCESS")
+
+            except Exception as e:
+                log.write(f"\nERROR: {str(e)}\n")
+                update_step_status(step_name, "FAILED")
+
+        return
+
+    # =========================================================
+    # STAAS 
+    # =========================================================
+    elif step_name == "staas":
+
+        import paramiko
+        from scp import SCPClient
+
+        host = "100.76.144.249"
+        username = safe(inputs.get("username"))
+        password = safe(inputs.get("password"))
+
+        remote_report_path = "/scratch/softwares_2/STaaS_Reports"
+        local_report_path = os.path.join(BASE_DIR, "Report-output", "STaaS_Reports")
+
+        os.makedirs(local_report_path, exist_ok=True)
+
+        remote_command = "/scratch/softwares_2/run_staas_generic.sh"
+
+        with open(log_file, "w", encoding="utf-8") as log:
+            try:
+                log.write("Connecting to server...\n")
+                log.flush()
+
+                client = paramiko.SSHClient()
+                client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                client.connect(hostname=host, username=username, password=password)
+
+                log.write("Connected successfully.\n")
+                log.flush()
+
+                stdin, stdout, stderr = client.exec_command(remote_command, get_pty=True)
+
+                for line in iter(stdout.readline, ""):
+                    log.write(line)
+                    log.flush()
+
+                log.write("\nDownloading STaaS reports...\n")
+                log.flush()
+
+                scp = SCPClient(client.get_transport())
+                scp.get(remote_report_path, local_path=local_report_path, recursive=True)
+
+                scp.close()
+                client.close()
+
+                update_step_status(step_name, "SUCCESS")
+
+            except Exception as e:
+                log.write(f"\nERROR: {str(e)}\n")
+                update_step_status(step_name, "FAILED")
+
+        return
+
+    # =========================================================
     # DEFAULT
     # =========================================================
     else:
@@ -190,13 +290,14 @@ def run_step(step_name, inputs=None):
         ]
 
     # =========================================================
-    # EXECUTE + STREAM LOGS
+    # EXECUTE (FIXED WORKING DIRECTORY ISSUE)
     # =========================================================
     with open(log_file, "w", encoding="utf-8") as log:
 
         try:
             process = subprocess.Popen(
                 command,
+                cwd=BASE_DIR,   
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 text=True,

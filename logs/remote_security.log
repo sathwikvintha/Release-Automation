@@ -6,3 +6,17 @@
 [2026-02-13 11:39:45] [INFO] Local security report folder ensured at ..\release_RR25.3\security-reports
 [2026-02-13 11:39:45] [INFO] Application: ORM
 [2026-02-13 11:39:45] [INFO] Release Version: R25.3
+[2026-02-17 19:41:02] [INFO] ========== Remote OSCS + Sonar Execution Started ==========
+[2026-02-17 19:41:02] [INFO] Application: ORM
+[2026-02-17 19:41:02] [INFO] Release Version: 25.3
+[2026-02-17 19:41:02] [INFO] Local security folder: C:\Users\Chathurya V\Desktop\release-automation-main\Report-output\Sonar_OSCS_Malware_Reports\25.3\ORM
+[2026-02-17 19:41:02] [INFO] Executing remote security script...
+[2026-02-17 19:41:02] [INFO] Starting SSH execution...
+[2026-02-17 19:41:07] [ERROR] Remote execution failed.
+[2026-02-17 19:41:33] [INFO] ========== Remote OSCS + Sonar Execution Started ==========
+[2026-02-17 19:41:33] [INFO] Application: ORM
+[2026-02-17 19:41:33] [INFO] Release Version: 25.3
+[2026-02-17 19:41:33] [INFO] Local security folder: C:\Users\Chathurya V\Desktop\release-automation-main\Report-output\Sonar_OSCS_Malware_Reports\25.3\ORM
+[2026-02-17 19:41:33] [INFO] Executing remote security script...
+[2026-02-17 19:41:33] [INFO] Starting SSH execution...
+[2026-02-17 19:41:37] [ERROR] Remote execution failed.

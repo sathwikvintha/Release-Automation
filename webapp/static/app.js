@@ -122,13 +122,16 @@ function submitIncrementals() {
 }
 
 function submitCommit() {
+
     runStep("commit", {
         repoPath: document.getElementById("repoPath").value,
         baseRelease: document.getElementById("baseRelease").value,
         targetRelease: document.getElementById("targetRelease").value,
         jiraRef: document.getElementById("jiraRef").value,
-        appName: document.getElementById("appName").value
+        appName: document.getElementById("appName").value,
+        OutputFolder: document.getElementById("commitOutputFolder").value
     });
+
     closeModal("commitModal");
 }
 

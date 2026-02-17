@@ -1,11 +1,11 @@
-2026-02-17 16:09:38,544 [INFO] ========== Release Email Generator Started ==========
-2026-02-17 16:09:38,545 [INFO] Release: R26.1.0.4
-2026-02-17 16:09:38,545 [INFO] Base Folder: C:\Users\Chathurya V\Desktop\model_release automation\release_R26.1.0.4
-2026-02-17 16:09:38,545 [INFO] Application Base Path: Documents > From_ORACLE > CR Release
-2026-02-17 16:09:38,545 [INFO] Application: FO
-2026-02-17 16:09:38,548 [INFO] Output Dir: C:\Users\Chathurya V\Desktop\model_release automation\Email
-2026-02-17 16:09:38,548 [INFO] Scanning PGP files in folder: C:\Users\Chathurya V\Desktop\model_release automation\release_R26.1.0.4
-2026-02-17 16:09:38,549 [INFO] Found 9 PGP files
-2026-02-17 16:09:38,554 [INFO] Release email generated successfully: C:\Users\Chathurya V\Desktop\model_release automation\Email\Release_Email_R26.1.0.4_20260217_160938.txt
-2026-02-17 16:09:38,555 [INFO] ========== Release Email Generator Completed ==========
-Release email generated successfully at: C:\Users\Chathurya V\Desktop\model_release automation\Email\Release_Email_R26.1.0.4_20260217_160938.txt
+2026-02-17 19:55:22,475 [INFO] ========== Release Email Generator Started ==========
+2026-02-17 19:55:22,476 [INFO] Release: R26.1.0.4
+2026-02-17 19:55:22,476 [INFO] Base Folder: C:\Users\Chathurya V\Desktop\model_release automation\release_R26.1.0.4
+2026-02-17 19:55:22,476 [INFO] Application Base Path: Documents > From_ORACLE > CR Release
+2026-02-17 19:55:22,476 [INFO] Application: FO
+2026-02-17 19:55:22,476 [INFO] Output Dir: C:\Users\Chathurya V\Desktop\model_release automation\Email
+2026-02-17 19:55:22,476 [INFO] Scanning PGP files in folder: C:\Users\Chathurya V\Desktop\model_release automation\release_R26.1.0.4
+2026-02-17 19:55:22,477 [INFO] Found 9 PGP files
+2026-02-17 19:55:22,506 [INFO] Release email generated successfully: C:\Users\Chathurya V\Desktop\model_release automation\Email\Release_Email_R26.1.0.4_20260217_195522.txt
+2026-02-17 19:55:22,507 [INFO] ========== Release Email Generator Completed ==========
+Release email generated successfully at: C:\Users\Chathurya V\Desktop\model_release automation\Email\Release_Email_R26.1.0.4_20260217_195522.txt
