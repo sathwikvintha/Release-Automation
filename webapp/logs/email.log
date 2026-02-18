@@ -1,11 +1,14 @@
-2026-02-17 19:55:22,475 [INFO] ========== Release Email Generator Started ==========
-2026-02-17 19:55:22,476 [INFO] Release: R26.1.0.4
-2026-02-17 19:55:22,476 [INFO] Base Folder: C:\Users\Chathurya V\Desktop\model_release automation\release_R26.1.0.4
-2026-02-17 19:55:22,476 [INFO] Application Base Path: Documents > From_ORACLE > CR Release
-2026-02-17 19:55:22,476 [INFO] Application: FO
-2026-02-17 19:55:22,476 [INFO] Output Dir: C:\Users\Chathurya V\Desktop\model_release automation\Email
-2026-02-17 19:55:22,476 [INFO] Scanning PGP files in folder: C:\Users\Chathurya V\Desktop\model_release automation\release_R26.1.0.4
-2026-02-17 19:55:22,477 [INFO] Found 9 PGP files
-2026-02-17 19:55:22,506 [INFO] Release email generated successfully: C:\Users\Chathurya V\Desktop\model_release automation\Email\Release_Email_R26.1.0.4_20260217_195522.txt
-2026-02-17 19:55:22,507 [INFO] ========== Release Email Generator Completed ==========
-Release email generated successfully at: C:\Users\Chathurya V\Desktop\model_release automation\Email\Release_Email_R26.1.0.4_20260217_195522.txt
+2026-02-18 18:38:01,408 [INFO] ========== Release Email Generator Started ==========
+2026-02-18 18:38:01,410 [INFO] Release: R26.0.0.1.2
+2026-02-18 18:38:01,410 [INFO] Base Folder: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV
+2026-02-18 18:38:01,410 [INFO] Application Base Path: Documents > From_ORACLE > CR Release
+2026-02-18 18:38:01,410 [INFO] Application: FO
+2026-02-18 18:38:01,410 [INFO] Output Dir: C:\Users\Sathwik Vintha\Desktop\Dummy
+2026-02-18 18:38:01,411 [INFO] Sub-folder not found. Scanning Base Folder directly: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV
+2026-02-18 18:38:01,411 [INFO] Scanning PGP files in folder: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV
+2026-02-18 18:38:01,413 [INFO] Found 4 PGP files
+2026-02-18 18:38:01,413 [INFO] Scanning PGP files in folder: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV
+2026-02-18 18:38:01,415 [INFO] Found 4 PGP files
+2026-02-18 18:38:01,427 [INFO] Release email generated successfully: C:\Users\Sathwik Vintha\Desktop\Dummy\Release_Email_R26.0.0.1.2_20260218_183801.txt
+2026-02-18 18:38:01,428 [INFO] ========== Release Email Generator Completed ==========
+Release email generated successfully at: C:\Users\Sathwik Vintha\Desktop\Dummy\Release_Email_R26.0.0.1.2_20260218_183801.txt

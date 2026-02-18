@@ -61,8 +61,10 @@ def import_public_key():
 
     logging.info("Importing company public key...")
 
+    # We wrap the KEY_PATH in double quotes to handle spaces in the username
     subprocess.run(
-        ["gpg", "--batch", "--yes", "--import", KEY_PATH],
+        f'gpg --batch --yes --import "{KEY_PATH}"',
+        shell=True,
         check=True
     )
 
@@ -105,20 +107,16 @@ def pgp_encrypt(zip_file):
 
     logging.info(f"Encrypting ZIP: {zip_file}")
 
-    subprocess.run(
-        [
-            "gpg",
-            "--batch",
-            "--yes",
-            "--trust-model", "always",
-            "--armor",
-            "--output", pgp_file,
-            "--encrypt",
-            "--recipient", EXPECTED_FINGERPRINT,
-            zip_file
-        ],
-        check=True
+    # Using a formatted string with quotes for all file paths
+    command = (
+        f'gpg --batch --yes --trust-model always --armor '
+        f'--output "{pgp_file}" --encrypt --recipient {EXPECTED_FINGERPRINT} "{zip_file}"'
     )
+
+    subprocess.run(command, shell=True, check=True)
+
+    logging.info(f"PGP encryption completed: {pgp_file}")
+    return pgp_file
 
     logging.info(f"PGP encryption completed: {pgp_file}")
     return pgp_file

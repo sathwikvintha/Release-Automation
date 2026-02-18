@@ -24,11 +24,20 @@ $ProjectRoot = Split-Path $PSScriptRoot -Parent
 $BaseOutput = Join-Path $ProjectRoot "Report-output"
 
 $ReleaseRoot = Join-Path $BaseOutput "$($AppName)_$($AppVariant)\$TargetRelease"
-$ReportsRoot = Join-Path $ReleaseRoot "04_Reports"
 
-if (-not (Test-Path $ReportsRoot)) {
-    New-Item -ItemType Directory -Force -Path $ReportsRoot | Out-Null
-}
+# =================================================
+# PROMOTED REPORTS FOLDER (FLAT STRUCTURE)
+# =================================================
+
+$ParentReleaseDir = Split-Path $ReleaseRoot -Parent
+$ReleaseLeaf = Split-Path $ReleaseRoot -Leaf
+
+# Extract ORM from AppName (first 3 chars)
+$AppPrefix = $AppName.Substring(0, 3).ToUpper()
+
+$ReportsRoot = Join-Path $ParentReleaseDir "${ReleaseLeaf}_${AppPrefix}_Deployment_Document"
+
+New-Item -ItemType Directory -Force -Path $ReportsRoot | Out-Null
 
 
 Write-Host "Reports Root: $ReportsRoot" -ForegroundColor Cyan

@@ -1,6 +1,8 @@
 param (
     [string]$AppName,
     [string]$ReleaseVersion,
+    [string]$ReleaseId,
+    [string]$Variant,
     [string]$OverrideMode,
     [string]$WorkingDirOverride,
     [string]$OscsDirOverride,
@@ -31,10 +33,14 @@ function Write-Log {
 Write-Log "========== Remote OSCS + Sonar Execution Started =========="
 
 # ================= VALIDATION =================
-if (-not $AppName -or -not $ReleaseVersion) {
-    Write-Log "AppName or ReleaseVersion missing." "ERROR"
+if (-not $AppName -or -not $ReleaseVersion -or -not $ReleaseId -or -not $Variant) {
+    Write-Log "Required parameters missing." "ERROR"
     exit 1
 }
+
+$AppName = $AppName.ToUpper()
+$Variant = $Variant.ToUpper()
+$releaseFs = $ReleaseVersion.Replace(".", "_")
 
 # ================= CONFIG =================
 $remoteHost = "oracle-server"
@@ -45,20 +51,11 @@ $remoteReportBase = "/scratch/softwares_2/Reports-ALL"
 $projectRoot = Resolve-Path "$PSScriptRoot\.."
 
 $baseOutput = Join-Path $projectRoot "Report-output"
-$securityBase = Join-Path $baseOutput "Sonar_OSCS_Malware_Reports"
+$finalRoot = Join-Path $baseOutput "${AppName}_${releaseFs}_${Variant}"
 
-# Create base if not exists
-New-Item -ItemType Directory -Force -Path $securityBase | Out-Null
+New-Item -ItemType Directory -Force -Path $finalRoot | Out-Null
 
-# Create version folder
-$versionFolder = Join-Path $securityBase $ReleaseVersion
-New-Item -ItemType Directory -Force -Path $versionFolder | Out-Null
-
-# Create application folder inside version
-$appFolder = Join-Path $versionFolder $AppName
-New-Item -ItemType Directory -Force -Path $appFolder | Out-Null
-
-$localReleaseFolder = $appFolder
+$localReleaseFolder = $finalRoot
 
 Write-Host "DEBUG -> Final Local Path: $localReleaseFolder"
 Write-Log "Application: $AppName"
@@ -128,41 +125,35 @@ while ($true) {
 
 # ================= COPY ONLY LATEST REPORTS =================
 Write-Log "Detecting latest report folders on server..."
-
-$latestSonar = ssh $remoteHost "ls -td $remoteReportBase/$ReleaseVersion/$AppName/Sonar_* 2>/dev/null | head -1"
-$latestOSCS = ssh $remoteHost "ls -td $remoteReportBase/$ReleaseVersion/$AppName/OSCS_* 2>/dev/null | head -1"
-$latestMalware = ssh $remoteHost "ls -td $remoteReportBase/$ReleaseVersion/$AppName/Malware_* 2>/dev/null | head -1"
-
+$remoteRunRoot = "$remoteReportBase/$ReleaseVersion/$AppName"
+if (-not $remoteRunRoot) {
+    Write-Log "Could not detect remote Reports folder." "ERROR"
+    exit 1
+}
+$latestSonar = "$remoteRunRoot/${ReleaseId}_${AppName}_Sonar_Report"
+$latestOSCS = "$remoteRunRoot/${ReleaseId}_${AppName}_OSCS_Report"
+$latestMalware = "$remoteRunRoot/${ReleaseId}_${AppName}_Malware_Report"
 if (-not $latestSonar -or -not $latestOSCS -or -not $latestMalware) {
     Write-Log "Could not detect latest report folders." "ERROR"
     exit 1
 }
-
-# Extract timestamp
-$timestamp = ($latestSonar -split "_")[-1]
-
-Write-Log "Latest run timestamp detected: $timestamp"
-
-# Create clean timestamp folder locally
-$localTimestampFolder = Join-Path $localReleaseFolder $timestamp
-New-Item -ItemType Directory -Force -Path $localTimestampFolder | Out-Null
-
+$sonarDest = Join-Path $localReleaseFolder "${ReleaseId}_${AppName}_Sonar_Report"
+$oscsDest = Join-Path $localReleaseFolder "${ReleaseId}_${AppName}_OSCS_Report"
+$malwareDest = Join-Path $localReleaseFolder "${ReleaseId}_${AppName}_Malware_Report"
 Write-Log "Copying latest Sonar report..."
-scp -r "${remoteHost}:$latestSonar" (Join-Path $localTimestampFolder "Sonar")
+scp -r "${remoteHost}:$latestSonar"   $sonarDest
 
 Write-Log "Copying latest OSCS report..."
-scp -r "${remoteHost}:$latestOSCS" (Join-Path $localTimestampFolder "OSCS")
+scp -r "${remoteHost}:$latestOSCS"    $oscsDest
 
 Write-Log "Copying latest Malware report..."
-scp -r "${remoteHost}:$latestMalware" (Join-Path $localTimestampFolder "Malware")
+scp -r "${remoteHost}:$latestMalware" $malwareDest
 
 if ($LASTEXITCODE -ne 0) {
     Write-Log "Failed to copy latest reports." "ERROR"
     exit 1
 }
 
-Write-Log "Reports copied successfully to $localTimestampFolder"
-
-
+Write-Log "Reports copied successfully to $localReleaseFolder"
 Write-Log "Security reports copied successfully."
 Write-Log "========== Remote OSCS + Sonar Execution Completed =========="

@@ -152,6 +152,8 @@ function submitSecurity() {
     runStep("security", {
         RemoteReleaseVersion: document.getElementById("secRelease").value,
         RemoteAppName: document.getElementById("secApp").value,
+        AppVariant: document.getElementById("secVariant").value,
+        ReleaseId: document.getElementById("secReleaseId").value,
         username: document.getElementById("secUsername").value,
         password: document.getElementById("secPassword").value
     });
@@ -201,6 +203,3 @@ function submitEmail() {
 
     closeModal("emailModal");
 }
-
-
-    

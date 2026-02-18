@@ -1,15 +1,9 @@
-Connecting to server...
-Connected successfully.
-
-Ensuring execute permission on staas_status.sh...
-
-Checking Scan Status...
-
 --------------------------------------
 Checking Scan Status
-Scan ID: 0000697b4fee00000000001f3d80
+Scan ID: 0000697b4fee00000000002b4440
 --------------------------------------
-{"Scan Id":"0000697b4fee00000000001f3d80","Status":"100","High":4,"Testtype":"UI","Scan Name":"MY_ONBOARDING_R26.1.0.X","Low":17,"Medium":14,"Audit Completed":"0%","SubmittedBy":"ayush.kumar.ahirwar@oracle.com","CreatedOn":"Fri Feb 13 04:53:46 PST 2026","Information":22}
+{"Scan Id":"0000697b4fee00000000002b4440","Status":"0","Testtype":"UI","Scan Name":"MY_DEBTORS_R26.1.0.17","SubmittedBy":"sathwik.vintha@oracle.com","Severity Count":"Since scan not completed yet, severity count is not updated","CreatedOn":"Wed Feb 18 04:41:25 PST 2026"}
 --------------------------------------
 Status Check Completed
 --------------------------------------
+/scratch/softwares_2/Staas_Report_Generator/StaaS_Reports/MY_ONBOARDING_R26.1.0.X.html

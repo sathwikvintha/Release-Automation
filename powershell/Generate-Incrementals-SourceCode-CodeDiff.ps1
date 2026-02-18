@@ -47,14 +47,29 @@ else {
 }
 
 $ReleaseRoot = Join-Path $BaseOutput "$AppName\$ReleaseName"
-$IncrementalsRoot = Join-Path $ReleaseRoot "02_Incrementals"
 
-# Create structure safely
-New-Item -ItemType Directory -Force -Path $IncrementalsRoot | Out-Null
+# =================================================
+# PROMOTED RELEASE FOLDERS (NO 02_Incrementals)
+# =================================================
+
+$ParentReleaseDir = Split-Path $ReleaseRoot -Parent
+$ReleaseLeaf = Split-Path $ReleaseRoot -Leaf
+
+# Take first 3 characters of AppName (ORM from ORM_26_1_DEV)
+$AppShort = $AppName.Substring(0, 3).ToUpper()
+
+$incrementalsFolder = Join-Path $ParentReleaseDir "${ReleaseLeaf}_${AppShort}_Incrementals"
+$SourceExportPath = Join-Path $ParentReleaseDir "${ReleaseLeaf}_${AppShort}_Source_Code"
+$CodeDiffPath = Join-Path $ParentReleaseDir "${ReleaseLeaf}_${AppShort}_Code_Diff"
+
+New-Item -ItemType Directory -Force -Path $incrementalsFolder | Out-Null
+New-Item -ItemType Directory -Force -Path $SourceExportPath   | Out-Null
+New-Item -ItemType Directory -Force -Path $CodeDiffPath       | Out-Null
 
 Write-Host "Release Root: $ReleaseRoot" -ForegroundColor Cyan
 Write-Host "DEBUG Incrementals OutputFolder: $OutputFolder" -ForegroundColor Green
 
+$outputFile = Join-Path $incrementalsFolder ($JiraRef + "_Incrementals.csv")
 # =================================================
 # VALIDATION
 # =================================================
@@ -99,20 +114,6 @@ if (-not $diff) {
     Write-Host "No changes found between releases."
     exit 0
 }
-
-# =================================================
-# PREPARE OUTPUT STRUCTURE
-# =================================================
-$incrementalsFolder = Join-Path $IncrementalsRoot "Incrementals"
-New-Item -ItemType Directory -Force -Path $incrementalsFolder | Out-Null
-
-$outputFile = Join-Path $incrementalsFolder ($JiraRef + "_Incrementals.csv")
-
-$SourceExportPath = Join-Path $IncrementalsRoot "SourceCode"
-$CodeDiffPath = Join-Path $IncrementalsRoot "CodeDiff"
-
-New-Item -ItemType Directory -Force -Path $SourceExportPath | Out-Null
-New-Item -ItemType Directory -Force -Path $CodeDiffPath | Out-Null
 
 # =================================================
 # BUILD INCREMENTALS CSV

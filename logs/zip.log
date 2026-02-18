@@ -52,3 +52,147 @@
 2026-02-17 14:13:05,688 [INFO] PGP encryption completed: C:\Users\Chathurya V\Desktop\model_release automation\release_R26.1.0.4\R26.1.0.4_Release Notes.pgp
 2026-02-17 14:13:05,688 [INFO] All folders zipped and encrypted successfully.
 2026-02-17 14:13:05,689 [INFO] ========== ZIP + PGP Completed Successfully ==========
+2026-02-18 18:17:58,476 [INFO] ========== ZIP + PGP Release Automation Started ==========
+2026-02-18 18:17:58,477 [INFO] Release Version: R.26.0.0.1.2
+2026-02-18 18:17:58,477 [INFO] Base Directory: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV
+2026-02-18 18:17:58,477 [INFO] Importing company public key...
+2026-02-18 18:17:58,494 [ERROR] ZIP + PGP Failed
+Traceback (most recent call last):
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 160, in <module>
+    process_release()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 136, in process_release
+    import_public_key()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 64, in import_public_key
+    subprocess.run(
+    ~~~~~~~~~~~~~~^
+        ["gpg", "--batch", "--yes", "--import", KEY_PATH],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        check=True
+        ^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Sathwik Vintha\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sathwik Vintha\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sathwik Vintha\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1552, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+2026-02-18 18:23:04,753 [INFO] ========== ZIP + PGP Release Automation Started ==========
+2026-02-18 18:23:04,755 [INFO] Release Version: R.26.0.0.1.2
+2026-02-18 18:23:04,755 [INFO] Base Directory: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV
+2026-02-18 18:23:04,755 [INFO] Importing company public key...
+2026-02-18 18:23:04,775 [ERROR] ZIP + PGP Failed
+Traceback (most recent call last):
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 160, in <module>
+    process_release()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 136, in process_release
+    import_public_key()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 64, in import_public_key
+    subprocess.run(
+    ~~~~~~~~~~~~~~^
+        ["gpg", "--batch", "--yes", "--import", KEY_PATH],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        check=True
+        ^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Sathwik Vintha\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sathwik Vintha\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Sathwik Vintha\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 1552, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+2026-02-18 18:24:56,702 [INFO] ========== ZIP + PGP Release Automation Started ==========
+2026-02-18 18:24:56,703 [INFO] Release Version: R.26.0.0.1.2
+2026-02-18 18:24:56,703 [INFO] Base Directory: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV
+2026-02-18 18:24:56,704 [INFO] Importing company public key...
+2026-02-18 18:24:57,395 [ERROR] ZIP + PGP Failed
+Traceback (most recent call last):
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 160, in <module>
+    process_release()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 136, in process_release
+    import_public_key()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\automate_release.py", line 64, in import_public_key
+    subprocess.run(
+    ~~~~~~~~~~~~~~^
+        ["gpg", "--batch", "--yes", "--import", KEY_PATH],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        check=True
+        ^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Sathwik Vintha\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['gpg', '--batch', '--yes', '--import', 'C:\\Users\\Sathwik Vintha\\Desktop\\Release-Automation\\keys\\pub.asc']' returned non-zero exit status 2.
+2026-02-18 18:29:31,281 [INFO] ========== ZIP + PGP Release Automation Started ==========
+2026-02-18 18:29:31,282 [INFO] Release Version: R.26.0.0.1.2
+2026-02-18 18:29:31,282 [INFO] Base Directory: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV
+2026-02-18 18:29:31,283 [INFO] Importing company public key...
+2026-02-18 18:29:31,562 [INFO] Validating public key fingerprint...
+2026-02-18 18:29:31,703 [INFO] Public key validated successfully.
+2026-02-18 18:29:31,703 [INFO] Processing release folders inside: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV
+2026-02-18 18:29:31,704 [INFO] Processing directory: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Code_Diff
+2026-02-18 18:29:31,705 [INFO] Zipping folder: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Code_Diff
+2026-02-18 18:29:31,750 [INFO] ZIP created: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Code_Diff.zip
+2026-02-18 18:29:31,751 [INFO] Encrypting ZIP: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Code_Diff.zip
+2026-02-18 18:29:32,080 [INFO] PGP encryption completed: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Code_Diff.pgp
+2026-02-18 18:29:32,080 [INFO] Processing directory: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Incrementals
+2026-02-18 18:29:32,081 [INFO] Zipping folder: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Incrementals
+2026-02-18 18:29:32,087 [INFO] ZIP created: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Incrementals.zip
+2026-02-18 18:29:32,088 [INFO] Encrypting ZIP: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Incrementals.zip
+2026-02-18 18:29:32,386 [INFO] PGP encryption completed: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Incrementals.pgp
+2026-02-18 18:29:32,387 [INFO] Processing directory: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Reports
+2026-02-18 18:29:32,387 [INFO] Zipping folder: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Reports
+2026-02-18 18:29:32,404 [INFO] ZIP created: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Reports.zip
+2026-02-18 18:29:32,405 [INFO] Encrypting ZIP: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Reports.zip
+2026-02-18 18:29:32,730 [INFO] PGP encryption completed: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Reports.pgp
+2026-02-18 18:29:32,731 [INFO] Processing directory: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Source_Code
+2026-02-18 18:29:32,732 [INFO] Zipping folder: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Source_Code
+2026-02-18 18:29:32,769 [INFO] ZIP created: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Source_Code.zip
+2026-02-18 18:29:32,769 [INFO] Encrypting ZIP: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Source_Code.zip
+2026-02-18 18:29:33,129 [INFO] PGP encryption completed: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Source_Code.pgp
+2026-02-18 18:29:33,130 [INFO] All folders zipped and encrypted successfully.
+2026-02-18 18:29:33,130 [INFO] ========== ZIP + PGP Completed Successfully ==========

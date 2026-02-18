@@ -26,7 +26,11 @@ def run_step(step_name, inputs=None):
 
     update_step_status(step_name, "RUNNING")
 
-    log_file = os.path.join(LOG_DIR, f"{step_name}.log")
+    if step_name.startswith("staas"):
+        log_file = os.path.join(LOG_DIR, "staas.log")
+    else:
+        log_file = os.path.join(LOG_DIR, f"{step_name}.log")
+
     command = []
 
     # =========================================================
@@ -188,13 +192,15 @@ def run_step(step_name, inputs=None):
         password = safe(inputs.get("password"))
         app = safe(inputs.get("RemoteAppName"))
         release = safe(inputs.get("RemoteReleaseVersion"))
+        variant = safe(inputs.get("AppVariant"))
+        release_id = safe(inputs.get("ReleaseId"))
 
-        remote_report_path = f"/scratch/softwares_2/Reports-ALL/{release}/{app}"
-        local_report_path = os.path.join(BASE_DIR, "Report-output", "Sonar_OSCS_Malware_Reports")
+        remote_report_path = f"/scratch/softwares_2/Report-output/{app}_{release.replace('.', '_')}_{variant.upper()}"
+        local_report_path = os.path.join(BASE_DIR, "Report-output")
 
         os.makedirs(local_report_path, exist_ok=True)
 
-        remote_command = f"/scratch/softwares_2/run_oscs_sonar_generic.sh {app} {release}"
+        remote_command = f"/scratch/softwares_2/run_oscs_sonar_generic.sh {app} {release} {variant} {release_id}"
 
         with open(log_file, "w", encoding="utf-8") as log:
             try:
@@ -237,20 +243,36 @@ def run_step(step_name, inputs=None):
     elif step_name == "staas":
 
         import paramiko
-        from scp import SCPClient
 
         host = "100.76.144.249"
         username = safe(inputs.get("username"))
         password = safe(inputs.get("password"))
 
-        remote_report_path = "/scratch/softwares_2/STaaS_Reports"
-        local_report_path = os.path.join(BASE_DIR, "Report-output", "STaaS_Reports")
+        title = safe(inputs.get("title"))
+        url = safe(inputs.get("url"))
+        version = safe(inputs.get("version"))
+        groupId = safe(inputs.get("groupId"))
+        emails = safe(inputs.get("emails"))
+        loginType = safe(inputs.get("loginType"))
+        appUsername = safe(inputs.get("appUsername"))
+        appPassword = safe(inputs.get("appPassword"))
+        webinspect = safe(inputs.get("webinspect"))
+        testType = safe(inputs.get("testType"))
+        auth = safe(inputs.get("auth"))
+        addUrlsOn = safe(inputs.get("addUrlsOn"))
+        addUrl = safe(inputs.get("addUrl"))
 
-        os.makedirs(local_report_path, exist_ok=True)
+        remote_command = (
+            "cd /scratch/softwares_2/Staas_Report_Generator && "
+            f"bash staas_start.sh "
+            f"\"{title}\" \"{url}\" \"{version}\" \"{groupId}\" "
+            f"\"{emails}\" \"{loginType}\" \"{appUsername}\" "
+            f"\"{appPassword}\" \"{webinspect}\" \"{testType}\" "
+            f"\"{auth}\" \"{addUrlsOn}\" \"{addUrl}\""
+        )
 
-        remote_command = "/scratch/softwares_2/run_staas_generic.sh"
 
-        with open(log_file, "w", encoding="utf-8") as log:
+        with open(log_file, "a", encoding="utf-8") as log:
             try:
                 log.write("Connecting to server...\n")
                 log.flush()
@@ -268,11 +290,89 @@ def run_step(step_name, inputs=None):
                     log.write(line)
                     log.flush()
 
-                log.write("\nDownloading STaaS reports...\n")
-                log.flush()
+                client.close()
+                update_step_status(step_name, "SUCCESS")
 
+            except Exception as e:
+                log.write(f"\nERROR: {str(e)}\n")
+                update_step_status(step_name, "FAILED")
+
+        return
+    
+    elif step_name == "staas-status":
+
+        import paramiko
+
+        host = "100.76.144.249"
+        username = safe(inputs.get("username"))
+        password = safe(inputs.get("password"))
+        scanId = safe(inputs.get("scanId"))
+
+        remote_command = (
+            "cd /scratch/softwares_2/Staas_Report_Generator && "
+            f"./staas_status.sh \"{scanId}\""
+        )
+
+        with open(log_file, "a", encoding="utf-8") as log:
+            try:
+                client = paramiko.SSHClient()
+                client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                client.connect(hostname=host, username=username, password=password)
+
+                stdin, stdout, stderr = client.exec_command(remote_command, get_pty=True)
+
+                for line in iter(stdout.readline, ""):
+                    log.write(line)
+                    log.flush()
+
+                client.close()
+                update_step_status(step_name, "SUCCESS")
+
+            except Exception as e:
+                log.write(f"\nERROR: {str(e)}\n")
+                update_step_status(step_name, "FAILED")
+
+        return
+    
+    elif step_name == "staas-download":
+
+        import paramiko
+        from scp import SCPClient
+
+        host = "100.76.144.249"
+        username = safe(inputs.get("username"))
+        password = safe(inputs.get("password"))
+        scanId = safe(inputs.get("scanId"))
+        reportName = safe(inputs.get("reportName"))
+        fileType = safe(inputs.get("fileType"))
+
+        remote_base = "/scratch/softwares_2/Staas_Report_Generator"
+        remote_report_path = f"{remote_base}/StaaS_Reports/{reportName}.{fileType}"
+        local_report_path = os.path.join(BASE_DIR, "Report-output", "STaaS_Reports")
+
+        os.makedirs(local_report_path, exist_ok=True)
+
+        remote_command = (
+            f"cd {remote_base} && "
+            f"./staas_download.sh \"{scanId}\" \"{reportName}\" \"{fileType}\""
+        )
+
+
+        with open(log_file, "a", encoding="utf-8") as log:
+            try:
+                client = paramiko.SSHClient()
+                client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                client.connect(hostname=host, username=username, password=password)
+
+                stdin, stdout, stderr = client.exec_command(remote_command, get_pty=True)
+
+                for line in iter(stdout.readline, ""):
+                    log.write(line)
+                    log.flush()
+
+                # Download generated report
                 scp = SCPClient(client.get_transport())
-                scp.get(remote_report_path, local_path=local_report_path, recursive=True)
+                scp.get(remote_report_path, local_path=local_report_path)
 
                 scp.close()
                 client.close()

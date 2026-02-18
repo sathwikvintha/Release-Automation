@@ -213,3 +213,11 @@
 [2026-02-18 01:40:52] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports\R26.0.10_ORM_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports\R26.0.10_ORM_DeploymentDetails.json
 [2026-02-18 01:40:52] [INFO] Copied JSON to C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files
 [2026-02-18 01:40:52] [INFO] ========== Deployment Document Generator Completed ==========
+[2026-02-18 15:24:08] [INFO] ========== Deployment Document Generator Started ==========
+[2026-02-18 15:24:08] [INFO] Inputs | Repo=C:\Users\Sathwik Vintha\Desktop\BNPP\codebases\orm_26_1_dev\bnpp_fo_orm | Base=R26.0.0.1.1 | Target=R26.0.0.1.2 | App=ORM | Jira=R26.0.10
+[2026-02-18 15:24:09] [INFO] Validated git repository successfully
+[2026-02-18 15:24:09] [INFO] Extracting commits between d3dceae8 and 1deafdfb
+[2026-02-18 15:24:09] [INFO] Commit processing and classification completed
+[2026-02-18 15:24:09] [INFO] Generated output files | TXT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Reports\R26.0.10_ORM_DeploymentDetails.txt | JSON=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Reports\R26.0.10_ORM_DeploymentDetails.json
+[2026-02-18 15:24:09] [INFO] Copied JSON to C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\release-report-generator\json_files
+[2026-02-18 15:24:09] [INFO] ========== Deployment Document Generator Completed ==========

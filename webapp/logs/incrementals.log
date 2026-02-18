@@ -14,8 +14,8 @@ Target Commit : 1deafdfb
 ==============================================
  Incrementals & CodeDiff Generated Successfully
 RELEASE_ROOT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2
- CSV  : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\02_Incrementals\Incrementals\12345678_Incrementals.csv
- DIFF : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\02_Incrementals\CodeDiff\12345678_ORM_26_1_DEV_CodeDiff.diff
+ CSV  : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Incrementals\12348765_Incrementals.csv
+ DIFF : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Code_Diff\12348765_ORM_26_1_DEV_CodeDiff.diff
 ==============================================
 Incrementals step completed successfully.
 ======================================

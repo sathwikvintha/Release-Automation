@@ -126,11 +126,23 @@ def format_row(col1, col2):
 
 def generate():
 
-    # Detect whether BASE_FOLDER already points to release folder
-    if BASE_FOLDER.endswith(f"release_{RELEASE_VERSION}"):
-        release_folder = BASE_FOLDER
+    # --- FLEXIBLE FOLDER DETECTION ---
+    release_subfolder = os.path.join(BASE_FOLDER, f"release_{RELEASE_VERSION}")
+    
+    # Logic: If the subfolder exists, use it. Otherwise, use the Base Folder directly.
+    if os.path.exists(release_subfolder):
+        release_folder = release_subfolder
+        logging.info(f"Using release sub-folder: {release_folder}")
     else:
-        release_folder = os.path.join(BASE_FOLDER, f"release_{RELEASE_VERSION}")
+        release_folder = BASE_FOLDER
+        logging.info(f"Sub-folder not found. Scanning Base Folder directly: {release_folder}")
+    # ---------------------------------
+
+    pgp_files = scan_pgp_files(release_folder)
+    
+    if not pgp_files:
+        logging.error(f"No .pgp files found in {release_folder}. Email will be empty.")
+        # Optional: raise Exception("No PGP files found")
 
     pgp_files = scan_pgp_files(release_folder)
 

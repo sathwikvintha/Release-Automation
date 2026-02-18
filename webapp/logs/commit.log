@@ -5,7 +5,7 @@ DEBUG Received OutputFolder: .\release_R26.0.0.1.2
 Using Release Folder: .\release_R26.0.0.1.2
 
 [STEP 3] Commit Summary
-Reports Root: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports
+Reports Root: C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Reports
 ==============================================
   Release Deployment Document Generator
 ==============================================
@@ -19,8 +19,8 @@ Copied JSON to: C:\Users\Sathwik Vintha\Desktop\Release-Automation\python\releas
 ==============================================
  Release Deployment Details Generated
 RELEASE_ROOT=C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2
- TXT  : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports\R26.0.10_ORM_DeploymentDetails.txt
- JSON : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2\04_Reports\R26.0.10_ORM_DeploymentDetails.json
+ TXT  : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Reports\R26.0.10_ORM_DeploymentDetails.txt
+ JSON : C:\Users\Sathwik Vintha\Desktop\Release-Automation\Report-output\ORM_26_1_DEV\R26.0.0.1.2_ORM_Reports\R26.0.10_ORM_DeploymentDetails.json
 ==============================================
 Commit Summary completed successfully.
 ======================================

@@ -1,6 +1,8 @@
-DEBUG Received OutputFolder: 
-======================================
-   RELEASE AUTOMATION ENTRY POINT     
-======================================
-Using Release Folder: .\release_
-Invalid or missing Step parameter.
+--------------------------------------
+Checking Scan Status
+Scan ID: 0000697b4fee00000000002b4440
+--------------------------------------
+{"Scan Id":"0000697b4fee00000000002b4440","Status":"0","Testtype":"UI","Scan Name":"MY_DEBTORS_R26.1.0.17","SubmittedBy":"sathwik.vintha@oracle.com","Severity Count":"Since scan not completed yet, severity count is not updated","CreatedOn":"Wed Feb 18 04:41:25 PST 2026"}
+--------------------------------------
+Status Check Completed
+--------------------------------------

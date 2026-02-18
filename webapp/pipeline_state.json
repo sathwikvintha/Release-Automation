@@ -1,1 +1,1 @@
-{"angular": "IDLE", "incrementals": "IDLE", "commit": "IDLE", "report": "SUCCESS", "attach": "IDLE", "security": "SUCCESS", "staas": "IDLE", "zip": "IDLE", "email": "IDLE", "staas-download": "FAILED", "staas-status": "FAILED"}
+{"angular": "IDLE", "incrementals": "IDLE", "commit": "IDLE", "report": "IDLE", "attach": "IDLE", "security": "IDLE", "staas": "IDLE", "zip": "IDLE", "email": "IDLE", "staas-status": "SUCCESS", "staas-download": "SUCCESS"}
